@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 Upload
+  hr
+  div
+    form(action="/user/upload" method="POST" enctype="multipart/form-data")
+      div
+        label(for="name") Name
+        input(type="text" id="name" placeholder="Name" value="" name="name" required)
+      div
+        label(for="password") Password
+        input(id="password" name="password" placeholder="Password" required)
+      div 
+        label(for="status") Status 
+        input(id="status" name="status" placeholder="status")
+      div
+        label(for="avatar") 
+        input(type="file" id="avatar" name="avatar" value="" required)
+      div
+        button(type="submit") Submit
+  hr
+  
+  h1 Uploaded Images
+    div
+      each user in items
+        img(src=`data:image/${user.avatar.contentType};base64, ${user.avatar.data.toString('base64')}`)
