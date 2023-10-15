@@ -24,7 +24,7 @@ exports.signup_post = asyncHandler(async (req, res, next) => {
   const user = {
     name: req.body.name,
     password: req.body.password,
-    status: req.body.status,
+    status: '',
     avatar: {
       data: fs.readFileSync(path.join(__dirname, '..', '/uploads/' + req.file.filename)),
       contentType: 'image/png'
