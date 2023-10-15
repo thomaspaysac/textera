@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { UserProfile } from './pages/UserProfile';
 
 function App() {
   const [message, setMessage] = useState('lol');
@@ -14,11 +13,12 @@ function App() {
 
   useEffect(() => {
     getMessage()
-  }, [message]);
+  }, []);
 
   return (
     <>
       <button onClick={() => console.log(message)}>Click !</button>
+      <UserProfile />
     </>
   )
 }

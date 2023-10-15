@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+.avatar_thumbnail {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}

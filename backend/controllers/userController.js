@@ -6,8 +6,8 @@ const path = require('path');
 const User = require('../models/user');
 
 exports.user_profile_get = asyncHandler( async (req, res, next) => {
-  const user = User.findById(req.params.id);
-  res.json(user.name);
+  const user = await User.findById(req.params.id);
+  res.json(user);
 });
 
 exports.signup_get = asyncHandler(async (req, res, next) => {
