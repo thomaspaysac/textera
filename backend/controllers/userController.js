@@ -4,8 +4,9 @@ const mongoose = require('mongoose')
 const fs = require('fs');
 const path = require('path');
 const User = require('../models/user');
+const firebaseFn = require('../firebaseFunctions');
 
-exports.user_profile_get = asyncHandler( async (req, res, next) => {
+exports.user_profile_get = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   res.json(user);
 });
@@ -21,7 +22,9 @@ exports.signup_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.signup_post = asyncHandler(async (req, res, next) => {
-  const user = {
+  firebaseFn.uploadFile(req.file.path, 'test');
+  res.end();
+  /*const user = {
     name: req.body.name,
     password: req.body.password,
     status: '',
@@ -38,5 +41,5 @@ exports.signup_post = asyncHandler(async (req, res, next) => {
       item.save();
       res.end();
     }
-  });
+  });*/
 })

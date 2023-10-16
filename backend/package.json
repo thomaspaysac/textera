@@ -16,6 +16,8 @@
     "ejs": "^3.1.9",
     "express": "~4.16.1",
     "express-async-handler": "^1.2.0",
+    "firebase": "^10.5.0",
+    "firebase-admin": "^11.11.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongoose": "^7.6.2",
