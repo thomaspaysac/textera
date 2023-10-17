@@ -1,8 +1,6 @@
 require('dotenv').config();
 // Set up Firebase
 const admin = require("firebase-admin");
-const { getStorage, getDownloadURL } = require('firebase/storage');
-const serviceAccount = require("./serviceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert({
