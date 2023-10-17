@@ -22,16 +22,14 @@ exports.signup_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.signup_post = asyncHandler(async (req, res, next) => {
-  firebaseFn.uploadFile(req.file.path, 'test');
-  res.end();
-  /*const user = {
+  res.send(req.file);
+  /*
+  const avatarUrl = await firebaseFn.uploadFile(req.file.path, 'test');
+  const user = {
     name: req.body.name,
     password: req.body.password,
     status: '',
-    avatar: {
-      data: fs.readFileSync(path.join(__dirname, '..', '/uploads/' + req.file.filename)),
-      contentType: 'image/png'
-    }
+    avatar: avatarUrl,
   }
   User.create(user)
   .then((err, item) => {
@@ -41,5 +39,6 @@ exports.signup_post = asyncHandler(async (req, res, next) => {
       item.save();
       res.end();
     }
-  });*/
+  });
+  */
 })

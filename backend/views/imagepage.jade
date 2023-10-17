@@ -20,8 +20,3 @@ block content
       div
         button(type="submit") Submit
   hr
-  
-  h1 Uploaded Images
-    div
-      each user in items
-        img(src=`data:image/${user.avatar.contentType};base64, ${user.avatar.data.toString('base64')}`)

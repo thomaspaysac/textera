@@ -15,13 +15,15 @@ const bucket = admin.storage().bucket();
 const uploadFile = async (filepath, filename) => {
 	const file = await bucket.upload(filepath, {
 		gzip: true,
-		destination: filename + '.jpg',
+		destination: filename,
+		public: true,
 		metadata: {
 			cacheControl: 'public, max-age=31536000'
 		}
 	});
-  const trimUrl = file[0];
-  console.log(file[0].metadata.mediaLink);
+
+	const imageUrl = file[0].metadata.mediaLink;
+	return imageUrl;
 	//console.log(`${filename} uploaded to bucket.`);
 }
 

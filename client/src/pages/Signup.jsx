@@ -11,7 +11,6 @@ export const Signup = () => {
     const form = document.getElementById('signup_form');
     const data = {};
     new FormData(form).forEach((value, key) => data[key] = value);
-    console.log(data.avatar)
     const req = await fetch(`http://localhost:3000/user/signup`, {
       method: 'POST',
       headers: {
