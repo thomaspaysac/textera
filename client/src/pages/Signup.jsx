@@ -10,11 +10,15 @@ export const Signup = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    const req = await fetch(`https://textera-production.up.railway.app/user/signup`, {
+    console.log(data);
+    await fetch(`https://textera-production.up.railway.app/user/signup`, {
       method: 'POST',
-      body: ({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         name: data.name,
-        password: data.password,
+        password: data.password
       }),
       file: data.avatar,
     });
@@ -35,7 +39,7 @@ export const Signup = () => {
     <>
       <main>
         <h2 className="page-title">Sign up</h2>
-        <form id='signup_form' className='form' encType="multipart/form-data" onSubmit={signup}>
+        <form id='signup_form' className='form' onSubmit={signup}>
           <div>
             <label htmlFor="name">Name: </label>
             <input type='text' id='name' name='name' />
