@@ -31,7 +31,7 @@ export const Signup = () => {
     <>
       <main>
         <h2 className="page-title">Sign up</h2>
-        <form id='signup_form' action='https://textera-production.up.railway.app/user/signup' method='POST' className='form'>
+        <form id='signup_form' action='https://textera-production.up.railway.app/user/signup' encType="multipart/form-data" method='POST' className='form'>
           <div>
             <label htmlFor="name">Name: </label>
             <input type='text' id='name' name='name' />
