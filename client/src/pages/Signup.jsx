@@ -8,10 +8,9 @@ export const Signup = () => {
 
   const signup = async (e) => {
     e.preventDefault();
-    const form = document.getElementById('signup_form');
-    const data = {};
-    new FormData(form).forEach((value, key) => data[key] = value);
-    await fetch(`https://textera-production.up.railway.app/user/signup`, {
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    const req = await fetch(`https://textera-production.up.railway.app/user/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -22,14 +21,14 @@ export const Signup = () => {
       }),
       file: data.avatar,
     });
-    /*const errors = await req.json();
+    const errors = await req.json();
     console.log(errors);
     if (errors.length > 0) {
       setError(errors);
     } else {
       navigateTo('/');
     }
-    navigateTo('/');*/
+    navigateTo('/');
   }
 
   //<form id='signup_form' action='https://textera-production.up.railway.app/user/signup' encType="multipart/form-data" method='POST' className='form'>
