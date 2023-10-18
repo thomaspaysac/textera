@@ -4,23 +4,20 @@ import { ErrorContainer } from "../components/ErrorContainer";
 
 export const Signup = () => {
   const [error, setError] = useState();
+  const [uploadedFile, setUploadedFile] = useState();
   const navigateTo = useNavigate();
+
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    setUploadedFile(file);
+  }
 
   const signup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data);
     await fetch(`https://textera-production.up.railway.app/user/signup`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: data.name,
-        password: data.password
-      }),
-      file: data.avatar,
+      body: formData,
     });
     /*const errors = await req.json();
     console.log(errors);
@@ -32,14 +29,12 @@ export const Signup = () => {
     navigateTo('/');*/
   }
 
-  //<form id='signup_form' action='https://textera-production.up.railway.app/user/signup' encType="multipart/form-data" method='POST' className='form'>
-
-
   return (
     <>
       <main>
         <h2 className="page-title">Sign up</h2>
         <form id='signup_form' className='form' onSubmit={signup}>
+
           <div>
             <label htmlFor="name">Name: </label>
             <input type='text' id='name' name='name' />
@@ -50,7 +45,7 @@ export const Signup = () => {
           </div>
           <div>
             <label htmlFor="avatar">Avatar: </label>
-            <input type='file' id='avatar' name='avatar' />
+            <input type='file' id='avatar' name='avatar' onChange={onFileChange}  />
           </div>
           <button type='submit' className="button_primary">Sign up</button>
         </form>
