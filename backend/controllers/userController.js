@@ -22,7 +22,7 @@ exports.signup_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.signup_post = asyncHandler(async (req, res, next) => {
-  let avatarUrl = "https://storage.googleapis.com/download/storage/v1/b/textera-e04fe.appspot.com/o/avatar-1697659975713?generation=1697659976398077&alt=media";
+  let avatarUrl = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=e9d070f9-dfb7-48cf-a79f-ab9872776c4f";
   if (req.file) {
     avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
   }
