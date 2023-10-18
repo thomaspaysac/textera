@@ -15,18 +15,18 @@ export const Signup = () => {
   const signup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    await fetch(`https://textera-production.up.railway.app/user/signup`, {
+    const req = await fetch(`https://textera-production.up.railway.app/user/signup`, {
       method: 'POST',
       body: formData,
     });
-    /*const errors = await req.json();
+    const errors = await req.json();
     console.log(errors);
     if (errors.length > 0) {
       setError(errors);
     } else {
       navigateTo('/');
     }
-    navigateTo('/');*/
+    navigateTo('/');
   }
 
   return (

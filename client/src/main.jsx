@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
+import './App.css'
 import {Homepage} from './pages/Homepage.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
