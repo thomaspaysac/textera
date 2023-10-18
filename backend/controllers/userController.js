@@ -22,7 +22,7 @@ exports.signup_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.signup_post = asyncHandler(async (req, res, next) => {
-  console.log(req, req.file, req.body)
+  console.log(req.file, req.body)
   res.status(200).json("ok")
   /*const avatarUrl = await firebaseFn.uploadFile(req.file.path, 'test');
   const user = {
