@@ -55,7 +55,6 @@ exports.login_get = asyncHandler(async (req, res, next) => {
 
 // POST login
 exports.login_post = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   try {
     passport.authenticate ('local', {session: false}, (err, user, userData) => {
       if (err || !user) {
@@ -68,7 +67,7 @@ exports.login_post = asyncHandler(async (req, res, next) => {
         if (err){
           next(err);
         }
-        const userInfo = { _id: user._id, username: user.username }
+        const userInfo = { _id: user._id, username: user.username, role: user.role }
         return res.status(200).json({userInfo});
       });
     }) (req, res, next);
@@ -77,4 +76,4 @@ exports.login_post = asyncHandler(async (req, res, next) => {
       err
     })
   }
-})
+});
