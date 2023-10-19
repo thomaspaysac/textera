@@ -4,29 +4,22 @@ import { ErrorContainer } from "../components/ErrorContainer";
 
 export const SignupPage = () => {
   const [error, setError] = useState();
-  const [uploadedFile, setUploadedFile] = useState();
   const navigateTo = useNavigate();
 
-  const onFileChange = (e) => {
-    const file = e.target.files[0];
-    setUploadedFile(file);
-  }
-
+  //https://textera-production.up.railway.app/user/signup
   const signup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const req = await fetch(`https://textera-production.up.railway.app/user/signup`, {
+    const req = await fetch(`http://localhost:3000/user/signup`, {
       method: 'POST',
       body: formData,
     });
     const errors = await req.json();
-    console.log(errors);
     if (errors.length > 0) {
       setError(errors);
     } else {
-      navigateTo('/');
+      navigateTo('/login');
     }
-    navigateTo('/');
   }
 
   return (
@@ -44,8 +37,12 @@ export const SignupPage = () => {
             <input type='password' id='password' name='password' />
           </div>
           <div>
+            <label htmlFor='password_confirm'>Confirm password: </label>
+            <input type="password" id="password_confirm" name="password_confirm" />
+          </div>
+          <div>
             <label htmlFor="avatar">Avatar: </label>
-            <input type='file' id='avatar' name='avatar' onChange={onFileChange}  />
+            <input type='file' id='avatar' name='avatar' />
           </div>
           <button type='submit' className="button_primary">Sign up</button>
         </form>

@@ -2,12 +2,13 @@ import { useState } from "react";
 
 export const LoginPage = () => {
   const [error, setError] = useState();
-
+//https://textera-production.up.railway.app/user/login
   const login = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
+    const form = document.getElementById('login_form');
+    const data = {};
+    new FormData(form).forEach((value, key) => data[key] = value);
+    const req = await fetch(`http://localhost:3000/user/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -20,8 +21,8 @@ export const LoginPage = () => {
       const result = await req.json();
       localStorage.setItem('username', result.userInfo.username);
       localStorage.setItem('user_id', result.userInfo._id);
-      localStorage.setItem('role', result.userInfo.role);
       localStorage.setItem('logged_in', true);
+      console.log(localStorage);
     }
   }
 

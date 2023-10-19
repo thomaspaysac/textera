@@ -3,9 +3,9 @@ const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose')
 const path = require('path');
-const session = require("express-session");
-//const session = require('cookie-session');
+const session = require('cookie-session');
 const passport = require("passport");
+const bcrypt = require('bcryptjs');
 const LocalStrategy = require("passport-local").Strategy;
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -35,6 +35,7 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
+      console.log({username, password});
       const user = await User.findOne({ username: username });
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
@@ -43,13 +44,13 @@ passport.use(
       if (!match) {
         return done(null, false, { message: "Incorrect password" })
       }
+      console.log(user);
       return done(null, user);
     } catch(err) {
       return done(err);
     };
   })
 );
-
 
 // Set up mongoose connection
 mongoose.set("strictQuery", false);
