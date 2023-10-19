@@ -3,14 +3,32 @@ const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose')
 const path = require('path');
+const session = require('cookie-session');
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user.js');
+const User = require('./models/user')
 
 const app = express();
+
+// Passport setup
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch(err) {
+    done(err);
+  };
+});
 
 // Set up mongoose connection
 mongoose.set("strictQuery", false);
@@ -27,6 +45,13 @@ app.set('view engine', 'jade');
 
 app.use(cors());
 app.use(logger('dev'));
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

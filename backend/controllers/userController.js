@@ -42,3 +42,12 @@ exports.signup_post = asyncHandler(async (req, res, next) => {
     }
   });
 })
+
+exports.login_get = asyncHandler(async (req, res, next) => {
+  res.render('login');
+})
+
+exports.login_post = asyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  res.end();
+})
