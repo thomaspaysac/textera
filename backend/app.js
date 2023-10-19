@@ -3,7 +3,8 @@ const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose')
 const path = require('path');
-const session = require('cookie-session');
+const session = require("express-session");
+//const session = require('cookie-session');
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const cookieParser = require('cookie-parser');
@@ -42,7 +43,6 @@ passport.use(
       if (!match) {
         return done(null, false, { message: "Incorrect password" })
       }
-      console.log(user);
       return done(null, user);
     } catch(err) {
       return done(err);

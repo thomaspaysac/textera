@@ -7,6 +7,7 @@ export const LoginPage = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+    console.log(data);
     const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
       method: 'POST',
       headers: {
