@@ -36,11 +36,11 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 100px;
+  height: 66px;
   background-color: #222222;
   display: flex;
   justify-content: space-around;
-  padding: 8px; }
+  padding: 16px; }
   footer .footer-button {
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ footer {
     gap: 8px;
     color: #efefef; }
     footer .footer-button .footer-icon {
-      height: 50px; }
+      height: 30px; }
       footer .footer-button .footer-icon img {
         height: 100%; }
 

@@ -11,7 +11,7 @@ export const SignupPage = () => {
   const signup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const req = await fetch(`https://textera-production.up.railway.app/user/signup`, {
+    const req = await fetch(`http://localhost:3000/user/signup`, {
       method: 'POST',
       body: formData,
     });
