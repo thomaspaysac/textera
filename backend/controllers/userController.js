@@ -54,7 +54,7 @@ exports.login_get = asyncHandler(async (req, res, next) => {
 })
 
 // POST login
-exports.login_post = asyncHandler(async (req, res, next) => {
+/*exports.login_post = asyncHandler(async (req, res, next) => {
   try {
     passport.authenticate ('local', {session: false}, (err, user, userData) => {
       if (err || !user) {
@@ -76,4 +76,9 @@ exports.login_post = asyncHandler(async (req, res, next) => {
       err
     })
   }
-});
+});*/
+
+exports.login_post = passport.authenticate("local", {
+  successRedirect: "/user/confirm",
+  failureRedirect: "/user/error"
+})

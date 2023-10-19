@@ -36,7 +36,7 @@ export const UserProfile = () => {
 
   return (
     <>
-      <div>{user.name}</div>
+      <div>{user.username}</div>
       <div>{user.status}</div>
       <AvatarSmall imageUrl={user.avatar} />
     </>
