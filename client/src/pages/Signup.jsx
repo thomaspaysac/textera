@@ -36,8 +36,8 @@ export const Signup = () => {
         <form id='signup_form' className='form' onSubmit={signup}>
 
           <div>
-            <label htmlFor="name">Name: </label>
-            <input type='text' id='name' name='name' />
+            <label htmlFor="username">Name: </label>
+            <input type='text' id='username' name='username' />
           </div>
           <div>
             <label htmlFor="password">Password: </label>

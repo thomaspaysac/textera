@@ -30,6 +30,27 @@ passport.deserializeUser(async (id, done) => {
   };
 });
 
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      console.log({username, password});
+      const user = await User.findOne({ username: username });
+      if (!user) {
+        return done(null, false, { message: "Incorrect username" });
+      };
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        return done(null, false, { message: "Incorrect password" })
+      }
+      console.log(user);
+      return done(null, user);
+    } catch(err) {
+      return done(err);
+    };
+  })
+);
+
+
 // Set up mongoose connection
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGO_URI;
