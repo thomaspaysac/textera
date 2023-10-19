@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Layout } from "../components/Layout";
 import { ErrorContainer } from "../components/ErrorContainer";
 
 export const SignupPage = () => {
@@ -24,10 +25,9 @@ export const SignupPage = () => {
 
   return (
     <>
-      <main>
+      <Layout>
         <h2 className="page-title">Sign up</h2>
         <form id='signup_form' className='form' onSubmit={signup}>
-
           <div>
             <label htmlFor="username">Username: </label>
             <input type='text' id='username' name='username' />
@@ -46,9 +46,7 @@ export const SignupPage = () => {
           </div>
           <button type='submit' className="button_primary">Sign up</button>
         </form>
-      </main>
+      </Layout>
     </>
   )
-
-
 }

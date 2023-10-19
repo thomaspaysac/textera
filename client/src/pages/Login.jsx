@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Layout } from "../components/Layout";
 
 export const LoginPage = () => {
   const [error, setError] = useState();
+  const navigateTo = useNavigate();
+
 //https://textera-production.up.railway.app/user/login
   const login = async (e) => {
     e.preventDefault();
@@ -18,17 +22,19 @@ export const LoginPage = () => {
     if (req.status !== 200) {
       setError(true);
     } else {
-      const result = await req.json();
-      localStorage.setItem('username', result.userInfo.username);
-      localStorage.setItem('user_id', result.userInfo._id);
+      const res = await req.json();
+      localStorage.setItem('username', res.userInfo.username);
+      localStorage.setItem('user_id', res.userInfo._id);
+      localStorage.setItem('avatar', res.userInfo.avatar);
       localStorage.setItem('logged_in', true);
       console.log(localStorage);
+      navigateTo('/');
     }
   }
 
   return (
     <>
-      <main>
+      <Layout>
         <h2 className="page-title">Log in</h2>
         <form id='login_form' className="form" onSubmit={login}>
           <div>
@@ -41,7 +47,7 @@ export const LoginPage = () => {
           </div>
           <button type='submit' className="button_primary">Log in</button>
         </form>
-      </main>
+      </Layout>
     </>
   )
 }

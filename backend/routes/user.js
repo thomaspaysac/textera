@@ -25,6 +25,4 @@ router.post('/login', userController.login_post);
 
 router.get('/:id', userController.user_profile_get);
 
-
-
 module.exports = router;

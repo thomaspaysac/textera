@@ -1,5 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+* {
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  height: 100vh;
+  background-color: #fcfcfc;
+
+}
+
+header {
+  //position: fixed;
+  //top: 0;
+  background-color: #222222;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+
+  .logo_main {
+    width: 200px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .user-container {
+    display: flex;
+    color: #efefef;
+  }
+
+  @media (max-width: 480px) {
+    .header_expanded {
+      display: none;
+    }
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #222222;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px;
+
+  .footer-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: #efefef;
+
+    .footer-icon {
+      height: 50px;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+}
+
 .avatar_thumbnail {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+
+main {
+  padding: 16px;
+  min-height: 100%;
+  margin: 0;
 }
