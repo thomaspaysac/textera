@@ -4,7 +4,6 @@ export const LoginPage = () => {
     const formData = new FormData(e.target);
     const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
       method: 'POST',
-      mode: 'no-cors',
       body: formData,
     });
     const res = await req.json();
