@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import './App.css'
-import {Homepage} from './pages/Homepage.jsx'
-import { Signup } from './pages/Signup.jsx'
+import { Homepage } from './pages/Homepage.jsx'
+import { SignupPage } from './pages/Signup.jsx'
+import { LoginPage } from './pages/Login'
 import { UserProfile } from './pages/UserProfile.jsx'
 
 const router = createBrowserRouter([
@@ -14,7 +15,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/signup',
-    element: <Signup />
+    element: <SignupPage />
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
   },
   {
     path: '/user/:id',

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ErrorContainer } from "../components/ErrorContainer";
 
-export const Signup = () => {
+export const SignupPage = () => {
   const [error, setError] = useState();
   const [uploadedFile, setUploadedFile] = useState();
   const navigateTo = useNavigate();
@@ -36,7 +36,7 @@ export const Signup = () => {
         <form id='signup_form' className='form' onSubmit={signup}>
 
           <div>
-            <label htmlFor="username">Name: </label>
+            <label htmlFor="username">Username: </label>
             <input type='text' id='username' name='username' />
           </div>
           <div>
