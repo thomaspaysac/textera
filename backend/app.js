@@ -15,6 +15,7 @@ const userRouter = require('./routes/user.js');
 const User = require('./models/user')
 
 const app = express();
+app.use(cors());
 
 // Passport setup
 passport.serializeUser((user, done) => {
@@ -64,7 +65,6 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors());
 app.use(logger('dev'));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
