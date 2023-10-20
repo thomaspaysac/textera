@@ -1,19 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Layout } from "../components/Layout";
 
 export const Homepage = () => {
-  const [message, setMessage] = useState();
-
-  const loadTest = async () => {
-    const req = await fetch('https://textera-production.up.railway.app/test');
-    const res = await req.json();
-    setMessage(res);
-  }
-
-  useEffect(() => {
-    loadTest();
-  }, [])
-
   return (
     <>
       <Layout>
