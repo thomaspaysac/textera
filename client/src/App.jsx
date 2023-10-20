@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import './App.css'
 
-import { Homepage } from "./pages/HomePage"
+import { Homepage } from "./pages/Homepage"
 import { SignupPage } from "./pages/Signup"
 import { LoginPage } from "./pages/Login"
 import { SettingsPage } from "./pages/Settings"
