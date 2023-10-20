@@ -1,6 +1,8 @@
+require('dotenv').config();
 const asyncHandler = require("express-async-handler");
 const passport = require("passport");
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 const fs = require('fs');
@@ -100,7 +102,20 @@ exports.login_post = asyncHandler(async (req, res, next) => {
         if (err){
           next(err);
         }
+        /*const token = jwt.sign(
+          { _id: user._id, username: user.username, avatar: user.avatar },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: "1d",
+          }
+        );*/
         const userInfo = { _id: user._id, username: user.username, avatar: user.avatar }
+        /*res.status(200).json({
+          status: 200,
+          userInfo,
+          message: "login success",
+          token: token,
+        });*/
         return res.status(200).json({userInfo});
       });
     }) (req, res, next);
@@ -109,4 +124,21 @@ exports.login_post = asyncHandler(async (req, res, next) => {
       err
     })
   }
+});
+
+// Verify JWT
+exports.verify_user = asyncHandler(async (req, res, next) => {
+  console.log(req.token);
+  res.end();
+  /*jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) =>{
+    if (err) {
+      res.status(403);
+    } else {
+      res.json({
+        message: 'Authorized',
+        authData
+      }
+        );
+    }
+  })*/
 });
