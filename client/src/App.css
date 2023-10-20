@@ -40,6 +40,8 @@ footer {
   background-color: #222222;
   display: flex;
   justify-content: space-around; }
+  footer a {
+    width: 100%; }
   footer .active {
     background-color: #444444;
     font-weight: 700; }

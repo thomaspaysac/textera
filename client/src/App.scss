@@ -57,6 +57,10 @@ footer {
   background-color: #222222;
   display: flex;
   justify-content: space-around;
+  
+  a {
+    width: 100%;
+  }
 
   .active {
     background-color: #444444;
