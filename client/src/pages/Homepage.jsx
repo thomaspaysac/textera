@@ -3,7 +3,6 @@ import { Layout } from "../components/Layout";
 
 export const Homepage = () => {
   return (
-    <>
       <Layout>
         <h1>Welcome</h1>
         <p></p>
@@ -20,7 +19,5 @@ Mauris feugiat volutpat lorem, sed molestie erat porta in. Pellentesque pretium 
 
         
       </Layout>
-      
-    </>
   )
 }

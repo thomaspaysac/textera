@@ -1,17 +1,30 @@
+import { useEffect, useState, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import conversations from '../assets/icons/conversation.png'
 import groups from '../assets/icons/group-chat.png'
 import settings from '../assets/icons/settings.png'
 import login from '../assets/icons/login.png'
+import signup from '../assets/icons/signup.png'
 
 export const Footer = () => {
-  const activeTab = useLocation().state.activeTab;
+  const [activeTab, setActiveTab] = useState('messages');
+
+  const loc = useLocation();
+
+  useEffect(() => {
+    if (loc.state === null) {
+      return;
+    } else {
+      setActiveTab(loc.state.tab);
+    }
+  }, [])
+
 
   if (localStorage.logged_in) {
     return (
       <footer>
-        <Link to='/' state={{activeTab: 'messages'}}>
+        <Link to='/' state={{tab: 'messages'}}>
         <div className={`footer-button ${activeTab === 'messages' ? ' active' : ''}`}>
           <div className='footer-icon'>
             <img src={conversations} alt='messages tab' />
@@ -20,7 +33,7 @@ export const Footer = () => {
         </div>
         </Link>
         
-        <Link to='/login' state={{activeTab: 'groups'}}>
+        <Link to='/groups' state={{tab: 'groups'}}>
         <div className={`footer-button ${activeTab === 'groups' ? ' active' : ''}`}>
           <div className='footer-icon'>
             <img src={groups} alt='groups tab' />
@@ -29,7 +42,7 @@ export const Footer = () => {
         </div>
         </Link>
         
-        <Link to='/settings' state={{activeTab: 'settings'}}>
+        <Link to='/settings' state={{tab: 'settings'}}>
         <div className={`footer-button ${activeTab === 'settings' ? ' active' : ''}`}>
           <div className='footer-icon'>
             <img src={settings} alt='settings tab' />
@@ -43,12 +56,23 @@ export const Footer = () => {
 
   return (
     <footer>
-      <div className='footer-button'>
-        <div className='footer-icon'>
-          <img src={login} alt='login button' />
+      <Link to='/login' state={{tab: 'login'}}>
+        <div className={`footer-button ${activeTab === 'login' ? ' active' : ''}`}>
+          <div className='footer-icon'>
+            <img src={login} alt='login button' />
+          </div>
+          <div>Log In</div>
         </div>
-        <div>Login</div>
-      </div>
+      </Link>
+
+      <Link to='/signup' state={{tab: 'signup'}}>
+        <div className={`footer-button ${activeTab === 'signup' ? ' active' : ''}`}>
+          <div className='footer-icon'>
+            <img src={signup} alt='login button' />
+          </div>
+          <div>Sign Up</div>
+        </div>
+      </Link>
     </footer>
   )
 

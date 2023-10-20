@@ -19,24 +19,19 @@ export const UserProfile = () => {
 
   if (!user) {
     return (
-      <>
         <Layout>
           <div>
             Looking for user...
           </div>
         </Layout>
-      </>
     )
   }
 
   return (
-    <>
-    <Layout>
-      <div>{user.username}</div>
-      <div>{user.status}</div>
-      <AvatarSmall imageUrl={user.avatar} />
-    </Layout>
-      
-    </>
+      <Layout>
+        <div>{user.username}</div>
+        <div>{user.status}</div>
+        <AvatarSmall imageUrl={user.avatar} />
+      </Layout>
   )
 }

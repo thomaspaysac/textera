@@ -24,7 +24,6 @@ export const SignupPage = () => {
   }
 
   return (
-    <>
       <Layout>
         <h2 className="page-title">Sign up</h2>
         <form id='signup_form' className='form' onSubmit={signup}>
@@ -47,6 +46,5 @@ export const SignupPage = () => {
           <button type='submit' className="button_primary">Sign up</button>
         </form>
       </Layout>
-    </>
   )
 }

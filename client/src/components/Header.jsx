@@ -24,11 +24,7 @@ const UserContainer = () => {
     )
   }
 
-  return (
-    <>
-      <a href='/login'>Login</a>
-    </>
-  )
+  return null;
 
 }
 

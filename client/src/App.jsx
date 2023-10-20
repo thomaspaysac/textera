@@ -4,13 +4,24 @@ import './App.css'
 import { Homepage } from "./pages/Homepage"
 import { SignupPage } from "./pages/Signup"
 import { LoginPage } from "./pages/Login"
+import { MessagesPage } from "./pages/Messages"
+import { GroupsPage } from "./pages/Groups"
 import { SettingsPage } from "./pages/Settings"
 import { UserProfile } from "./pages/UserProfile"
+
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Homepage />
+    element: <MessagesPage />
+  },
+  {
+    path: '/groups',
+    element: <GroupsPage />
+  },
+  {
+    path: '/settings',
+    element: <SettingsPage />
   },
   {
     path: '/signup',
@@ -20,10 +31,7 @@ const router = createBrowserRouter([
     path: '/login',
     element: <LoginPage />,
   },
-  {
-    path: '/settings',
-    element: <SettingsPage />
-  },
+
   {
     path: '/user/:id',
     element: <UserProfile />,

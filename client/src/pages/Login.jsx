@@ -32,7 +32,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <>
+    
       <Layout>
         <h2 className="page-title">Log in</h2>
         <form id='login_form' className="form" onSubmit={login}>
@@ -47,6 +47,6 @@ export const LoginPage = () => {
           <button type='submit' className="button_primary">Log in</button>
         </form>
       </Layout>
-    </>
+    
   )
 }
