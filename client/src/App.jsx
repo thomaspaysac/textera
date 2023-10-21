@@ -6,6 +6,7 @@ import { SignupPage } from "./pages/Signup"
 import { LoginPage } from "./pages/Login"
 import { MessagesPage } from "./pages/Messages"
 import { GroupsPage } from "./pages/Groups"
+import { ContactsPage } from "./pages/Contacts"
 import { SettingsPage } from "./pages/Settings"
 import { UserProfile } from "./pages/UserProfile"
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     element: <GroupsPage />
   },
   {
+    path: '/contacts',
+    element: <ContactsPage />
+  },
+  {
     path: '/settings',
     element: <SettingsPage />
   },
@@ -31,7 +36,6 @@ const router = createBrowserRouter([
     path: '/login',
     element: <LoginPage />,
   },
-
   {
     path: '/user/:id',
     element: <UserProfile />,

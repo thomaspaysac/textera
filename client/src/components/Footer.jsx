@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import conversations from '../assets/icons/conversation.png'
+import contacts from '../assets/icons/contacts.png'
 import groups from '../assets/icons/group-chat.png'
 import settings from '../assets/icons/settings.png'
 import login from '../assets/icons/login.png'
@@ -39,6 +40,15 @@ export const Footer = () => {
             <img src={groups} alt='groups tab' />
           </div>
           <div>Groups</div>
+        </div>
+        </Link>
+
+        <Link to='/contacts' state={{tab: 'contacts'}}>
+        <div className={`footer-button ${activeTab === 'contacts' ? ' active' : ''}`}>
+          <div className='footer-icon'>
+            <img src={contacts} alt='contacts tab' />
+          </div>
+          <div>Contacts</div>
         </div>
         </Link>
         
