@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ConversationSchema = new Schema ({
-  users: { type: Schema.Types.ObjectId, ref: 'User' },
+  users: { type: [mongoose.Schema.ObjectId], ref: 'User' },
+  //users: { type: Array },
   type: { type: String, enum: ['single', 'group'] }
 })
 
