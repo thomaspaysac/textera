@@ -17,7 +17,8 @@ exports.message_create = asyncHandler(async (req, res, next) => {
   res.end();
 })
 
+// GET all messages from one conversation
 exports.conversation_messages_get = asyncHandler(async (req, res, next) => {
-  const messages = await Message.find({ conversation: req.params.id });
+  const messages = await Message.find({ conversation: req.params.id }).populate('author', 'username');
   res.json(messages);
 })

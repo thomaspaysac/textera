@@ -3,19 +3,19 @@ import { Layout } from "../components/Layout"
 import { MessageOverview } from "../components/MessageOverview";
 
 export const MessagesPage = () => {
-  const [messages, setMessages] = useState();
+  const [conversations, setConversations] = useState();
 
-  const fetchMessages = async () => {
+  const fetchConversations = async () => {
     const req = await fetch('http://localhost:3000/conversation/' + localStorage.user_id);
     const res = await req.json()
-    setMessages(res);
+    setConversations(res);
   }
 
-  const messagesList = (messages) => {
+  const conversationsList = (conversations) => {
     return(
       <>
         {
-          messages.map((el) => {
+          conversations.map((el) => {
             return (
               <MessageOverview key={el._id} message={el} />
             )
@@ -27,15 +27,15 @@ export const MessagesPage = () => {
   }
 
   useEffect(() => {
-    fetchMessages();
+    fetchConversations();
   }, [])
 
-  if (!messages) {
+  if (!conversations) {
     return (
       <>
       <Layout>
-        <h2>Messages</h2>
-        <div>No messages</div>
+        <h2>Conversations</h2>
+        <div>No conversations</div>
       </Layout>
     </>
     )
@@ -44,8 +44,8 @@ export const MessagesPage = () => {
   return (
     <>
       <Layout>
-        <div className="messages-list">
-          {messagesList(messages)}
+        <div className="conversation-list">
+          {conversationsList(conversations)}
         </div>
       </Layout>
     </>

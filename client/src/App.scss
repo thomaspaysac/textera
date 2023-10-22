@@ -114,3 +114,29 @@ main {
   gap: 16px;
   padding: 8px 0;
 }
+
+.message-single {
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .message_timestamp {
+    align-self: end;
+    font-size: 0.7rem;
+  }
+}
+
+.message_own {
+  background-color: #ededed;
+
+  align-items: end;
+  margin-left: 10%;
+}
+
+.message_other {
+  background-color: #f5f5f5;
+  margin-right: 10%;
+}
