@@ -12,9 +12,10 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const indexRouter = require('./routes/index');
-const userRouter = require('./routes/user.js');
-const conversationRouter = require('./routes/conversation.js')
+const userRouter = require('./routes/user');
+const conversationRouter = require('./routes/conversation')
 const groupRouter = require('./routes/group')
+const messagesRouter = require('./routes/messages')
 const User = require('./models/user');
 
 const app = express();
@@ -84,6 +85,7 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/conversation', conversationRouter);
 app.use('/group', groupRouter);
+app.use('/messages', messagesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

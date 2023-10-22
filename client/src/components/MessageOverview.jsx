@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { AvatarSmall } from "./AvatarSmall"
 
 export const MessageOverview = ({ message }) => {
@@ -15,7 +16,7 @@ export const MessageOverview = ({ message }) => {
   }
 
   return (
-    <>
+    <Link to={`/conv/${message._id}`}>
         {
           message.users.map((el) => {
             return (
@@ -23,6 +24,6 @@ export const MessageOverview = ({ message }) => {
             )
           })
         }
-    </>
+    </Link>
   )
 }

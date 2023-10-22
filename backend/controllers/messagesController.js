@@ -9,10 +9,15 @@ const User = require('../models/user');
 exports.message_create = asyncHandler(async (req, res, next) => {
   const message = new Message ({
     type: 'text',
-    content: 'Salut, ceci est un test de message.',
-    author: '653103fee34793b9b2491f19',
+    content: 'Salut.',
+    author: '6531038900a6fb5d566f0be2',
     conversation: '6533dd95088e5a560125a3c5'
   })
   await message.save();
-  res.status(200);
+  res.end();
+})
+
+exports.conversation_messages_get = asyncHandler(async (req, res, next) => {
+  const messages = await Message.find({ conversation: req.params.id });
+  res.json(messages);
 })
