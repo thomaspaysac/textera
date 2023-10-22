@@ -68,8 +68,18 @@ footer {
   border-radius: 50%; }
 
 main {
-  padding: 16px;
+  padding: 0 16px;
   min-height: 100%;
   margin: 0; }
+
+.messages-list {
+  display: flex;
+  flex-direction: column; }
+
+.message-overview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0; }
 
 /*# sourceMappingURL=App.css.map */
