@@ -6,7 +6,7 @@ export const MessagesPage = () => {
   const [conversations, setConversations] = useState();
 
   const fetchConversations = async () => {
-    const req = await fetch('http://localhost:3000/conversation/' + localStorage.user_id);
+    const req = await fetch('http://localhost:3000/conversation/user/' + localStorage.user_id);
     const res = await req.json()
     setConversations(res);
   }
@@ -44,7 +44,7 @@ export const MessagesPage = () => {
   return (
     <>
       <Layout>
-        <div className="conversation-list">
+        <div className="content conversation-list">
           {conversationsList(conversations)}
         </div>
       </Layout>

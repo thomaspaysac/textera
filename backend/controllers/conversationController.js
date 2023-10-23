@@ -9,6 +9,12 @@ exports.user_conv_get = asyncHandler(async (req, res, next) => {
   res.json(conv);
 })
 
+// GET conversation by ID
+exports.get_convById = asyncHandler(async (req, res, next) => {
+  const conv = await Conversation.findById(req.params.id).populate('users', 'username avatar');
+  res.json(conv);
+})
+
 // test functions
 exports.create_conv = asyncHandler(async (req, res, next) => {
   const users = [];

@@ -15,7 +15,7 @@ export const MessageInputField = (props) => {
   }
 
   return (
-    <div>
+    <div className="message-input">
       <form id='input_form' onSubmit={submitInput}>
         <input type="text" id='text_input' name='text_input' />
         <button type="submit">Send</button>

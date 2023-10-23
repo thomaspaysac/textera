@@ -68,9 +68,33 @@ footer {
   border-radius: 50%; }
 
 main {
-  padding: 0 16px;
   min-height: 100%;
   margin: 0; }
+
+.content {
+  padding: 0 16px 64px 16px; }
+  .content .content-end {
+    margin-top: 88px; }
+
+.conversation-header {
+  position: sticky;
+  top: 0;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.2rem;
+  background-color: #ededed;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700; }
+
+.message-input {
+  position: sticky;
+  width: 100%;
+  background-color: #ededed;
+  bottom: 64px;
+  z-index: 4; }
 
 .messages-list {
   display: flex;
