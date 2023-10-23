@@ -7,14 +7,18 @@ const User = require('../models/user');
 
 // test functions
 exports.message_create = asyncHandler(async (req, res, next) => {
-  const message = new Message ({
+  try {
+    const message = new Message ({
     type: 'text',
-    content: 'Salut.',
-    author: '6531038900a6fb5d566f0be2',
-    conversation: '6533dd95088e5a560125a3c5'
+    content: req.body.text_input,
+    author: req.body.author,
+    conversation: req.body.conversation
   })
   await message.save();
-  res.end();
+  res.status(200)
+  } catch {
+    res.status(500)
+  }
 })
 
 // GET all messages from one conversation

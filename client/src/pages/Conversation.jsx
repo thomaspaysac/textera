@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { Layout } from "../components/Layout";
-import { MessageSingle } from "../components/MessageSingle";
+import { ConversationHeader } from "../components/ConversationHeader";
+import { MessageInputField } from "../components/MessageInputField";
 
 export const Conversation = () => {
   const [messages, setMessages] = useState();
@@ -23,9 +24,7 @@ export const Conversation = () => {
 
   return (
     <Layout>
-      <div onClick={() => console.log(messages)}>
-        {id}
-      </div>
+      
       <div className='messages-list'>
       {
         messages.map((el) => {
@@ -43,7 +42,7 @@ export const Conversation = () => {
           } else {
             return (
             <div key={el._id} className="message-single message_other">
-              <div>
+              <div className="message_content">
                 {el.content}
               </div>
               <div className="message_timestamp">
@@ -55,6 +54,7 @@ export const Conversation = () => {
         })
       }
       </div>
+      <MessageInputField conversationID={id} />
     </Layout>
   )
 }
