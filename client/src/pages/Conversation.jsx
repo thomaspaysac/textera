@@ -22,7 +22,7 @@ export const Conversation = () => {
   }
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block:"end" })
+    messagesEndRef.current?.scrollIntoView(/*{ behavior: "smooth", block:"end" }*/)
   }
 
   useEffect(() => {

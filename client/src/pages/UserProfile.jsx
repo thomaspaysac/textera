@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { AvatarBig } from "../components/AvatarBig";
 import { AvatarSmall } from "../components/AvatarSmall";
 import { Layout } from "../components/Layout";
 
@@ -29,9 +30,11 @@ export const UserProfile = () => {
 
   return (
       <Layout>
-        <div>{user.username}</div>
-        <div>{user.status}</div>
-        <AvatarSmall imageUrl={user.avatar} />
+        <div className="content user-profile">
+          <AvatarBig imageUrl={user.avatar} />
+          <div className="user_name">{user.username}</div>
+          <div className="user_status">{user.status}</div>
+        </div>
       </Layout>
   )
 }
