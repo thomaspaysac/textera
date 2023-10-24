@@ -6,13 +6,13 @@ export const LoginPage = () => {
   const [error, setError] = useState();
   const navigateTo = useNavigate();
 
-//https://textera-production.up.railway.app/user/login
   const login = async (e) => {
     e.preventDefault();
     const form = document.getElementById('login_form');
     const data = {};
     new FormData(form).forEach((value, key) => data[key] = value);
-    const req = await fetch(`http://localhost:3000/user/login`, {
+    //http://localhost:3000/user/login
+    const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

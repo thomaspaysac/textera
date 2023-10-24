@@ -6,12 +6,12 @@ import { ErrorContainer } from "../components/ErrorContainer";
 export const SignupPage = () => {
   const [error, setError] = useState();
   const navigateTo = useNavigate();
-
-  //https://textera-production.up.railway.app/user/signup
+  
   const signup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const req = await fetch(`http://localhost:3000/user/signup`, {
+    // http://localhost:3000/user/signup
+    const req = await fetch(`https://textera-production.up.railway.app/user/signup`, {
       method: 'POST',
       body: formData,
     });

@@ -13,10 +13,8 @@ export const MessageInputField = (props) => {
   const submitInput = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    //const data = Object.fromEntries(formData.entries());
-    /*data['author'] = localStorage.user_id;
-    data['conversation'] = props.conversationID;*/
-    const req = await fetch('http://localhost:3000/messages/create', {
+    // http://localhost:3000/messages/create
+    const req = await fetch('https://textera-production.up.railway.app/messages/create', {
       method: 'POST',
       body: formData,
       /*headers: {
