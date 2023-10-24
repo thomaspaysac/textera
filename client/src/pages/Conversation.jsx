@@ -47,12 +47,11 @@ export const Conversation = () => {
           messages.map((el) => {
             if (el.author._id === localStorage.user_id) {
               return (
-                <MessageSingle key={el.id} content={el.content} timestamp={el.timestampFormatted} author={'own'} />
+                <MessageSingle key={el.id} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'own'} />
               )
             } else {
               return (
-                <MessageSingle key={el._id} content={el.content} timestamp={el.timestampFormatted} author={'other'} />
-
+                <MessageSingle key={el._id} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'other'} />
             )
             }
           })

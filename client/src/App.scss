@@ -194,6 +194,7 @@ main {
   padding: 8px 0;
 }
 
+// Messages
 .message-single {
   padding: 8px;
   margin: 8px 0;
@@ -206,6 +207,16 @@ main {
   .message_timestamp {
     align-self: end;
     font-size: 0.7rem;
+  }
+
+  .message_file {
+    width: 100%;
+
+    img {
+      height: 200px;
+      width: auto;
+      border-radius: 4px;
+    }
   }
 }
 

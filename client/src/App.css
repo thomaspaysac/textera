@@ -153,6 +153,12 @@ main {
   .message-single .message_timestamp {
     align-self: end;
     font-size: 0.7rem; }
+  .message-single .message_file {
+    width: 100%; }
+    .message-single .message_file img {
+      height: 200px;
+      width: auto;
+      border-radius: 4px; }
 
 .message_own {
   background-color: #ededed;
