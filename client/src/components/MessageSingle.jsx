@@ -1,14 +1,15 @@
-import { useEffect } from "react"
-
 export const MessageSingle = (props) => {
   const DisplayFile = () => {
     if (!props.file) {
       return null;
     } else {
       return (
-        <div className="message_file">
-          <img src={props.file} />
-        </div>
+        <a href={props.file} target="_blank" rel="noreferrer">
+          <div className="message_file">
+            <img src={props.file} />
+          </div>
+        </a>
+        
       )
     }
   }
