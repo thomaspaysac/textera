@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { Layout } from "../components/Layout";
 import { ConversationHeader } from "../components/ConversationHeader";
 import { MessageInputField } from "../components/MessageInputField";
+import { MessageSingle } from "../components/MessageSingle";
 
 export const Conversation = () => {
   const [messages, setMessages] = useState();
@@ -40,31 +41,18 @@ export const Conversation = () => {
   return (
     <Layout>
       <ConversationHeader name={correspondant.username} image={correspondant.avatar} id={correspondant._id} />
-      <div className="content">
+      <div className="content conversation-page">
         <div className='messages-list'>
         {
           messages.map((el) => {
             if (el.author._id === localStorage.user_id) {
               return (
-              <div key={el._id} className="message-single message_own">
-                <div>
-                  {el.content}
-                </div>
-                <div className="message_timestamp">
-                  {el.timestampFormatted}
-                </div>
-              </div>
-            )
+                <MessageSingle key={el.id} content={el.content} timestamp={el.timestampFormatted} author={'own'} />
+              )
             } else {
               return (
-              <div key={el._id} className="message-single message_other">
-                <div className="message_content">
-                  {el.content}
-                </div>
-                <div className="message_timestamp">
-                  {el.timestampFormatted}
-                </div>
-              </div>
+                <MessageSingle key={el._id} content={el.content} timestamp={el.timestampFormatted} author={'other'} />
+
             )
             }
           })

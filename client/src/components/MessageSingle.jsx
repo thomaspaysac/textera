@@ -1,15 +1,12 @@
-export const MessageSingle = ({ message }) => {
+export const MessageSingle = (props) => {
   return (
-    <>
+    <div className={'message-single message_' + props.author}>
       <div>
-        {message.author}
+        {props.content}
       </div>
-      <div>
-        {message.content}
+      <div className="message_timestamp">
+        {props.timestamp}
       </div>
-      <div>
-        {message.timestampFormatted}
-      </div>
-    </>
+    </div>
   )
 }

@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 const userController = require('../controllers/userController');
 
+// Multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads')
@@ -27,6 +28,7 @@ const verifyToken = (req, res, next) => {
     }
 }
 
+// Routes
 router.get('/signup', userController.signup_get);
 
 router.post('/signup', upload.single('avatar'), userController.signup_post);

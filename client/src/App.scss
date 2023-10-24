@@ -119,6 +119,11 @@ main {
 }
 
 // CONVERSATIONS
+.conversation-page {
+  background: url('./assets/v748-toon-106.jpg');
+  background-size: contain;
+}
+
 .conversation-header {
   position: sticky;
   top: 0;
@@ -136,7 +141,7 @@ main {
 .message-input {
   position: sticky;
   width: 100%;
-  background-color: #ededed;
+  background-color: #ededed00;
   bottom: 64px;
   z-index: 4;
 
@@ -196,6 +201,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  font-size: 1rem;
 
   .message_timestamp {
     align-self: end;
