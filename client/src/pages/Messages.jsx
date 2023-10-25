@@ -12,7 +12,7 @@ export const MessagesPage = () => {
     setConversations(res);
   }
 
-  const conversationsList = (conversations) => {
+  const conversationsList = () => {
     return(
       <>
         {
@@ -46,7 +46,7 @@ export const MessagesPage = () => {
     <>
       <Layout>
         <div className="content conversation-list">
-          {conversationsList(conversations)}
+          {conversationsList()}
         </div>
       </Layout>
     </>
