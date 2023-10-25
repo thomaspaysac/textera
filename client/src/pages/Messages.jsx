@@ -6,7 +6,8 @@ export const MessagesPage = () => {
   const [conversations, setConversations] = useState();
 
   const fetchConversations = async () => {
-    const req = await fetch('http://localhost:3000/conversation/user/' + localStorage.user_id);
+    // http://localhost:3000/conversation/user/
+    const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
     const res = await req.json()
     setConversations(res);
   }
