@@ -18,7 +18,8 @@ export const UserProfile = () => {
   }
 
   const fetchUser = async () => {
-    const req = await fetch('https://textera-production.up.railway.app/user/' + id);
+    // https://textera-production.up.railway.app/user/
+    const req = await fetch('http://localhost:3000/user/' + id);
     const res = await req.json()
     setUser(res);
   }

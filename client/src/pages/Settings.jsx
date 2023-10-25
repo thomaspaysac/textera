@@ -7,7 +7,8 @@ export const SettingsPage = () => {
   const [user, setUser] = useState();
 
   const fetchUserData = async () => {
-    const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
+    // https://textera-production.up.railway.app/user/
+    const req = await fetch('http://localhost:3000/user/' + localStorage.user_id);
     const res = await req.json()
     setUser(res);
   }

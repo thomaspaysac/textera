@@ -12,12 +12,12 @@ export const Conversation = () => {
   const messagesEndRef = useRef(null)
 
   const fetchConv = async () => {
-    // http://localhost:3000/messages/conv/
-    const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id);
+    // https://textera-production.up.railway.app/messages/conv/
+    const req = await fetch('http://localhost:3000/messages/conv/' + id);
     const res = await req.json();
     setMessages(res);
-    // http://localhost:3000/conversation/
-    const convReq = await fetch('https://textera-production.up.railway.app/conversation/' + id)
+    // https://textera-production.up.railway.app/conversation/
+    const convReq = await fetch('http://localhost:3000/conversation/' + id)
     const convRes = await convReq.json();
     convRes.users.forEach((el) => {
       return el._id === localStorage.user_id ? null : setCorrespondant(el);
