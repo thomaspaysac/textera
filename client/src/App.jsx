@@ -10,6 +10,7 @@ import { ContactsPage } from "./pages/Contacts"
 import { SettingsPage } from "./pages/Settings"
 import { UserProfile } from "./pages/UserProfile"
 import { Conversation } from "./pages/Conversation"
+import { Group } from "./pages/Group"
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: '/conv/:id',
     element: <Conversation />
+  },
+  {
+    path: '/group/:id',
+    element: <Group />
   }
 ])
 

@@ -20,4 +20,6 @@ router.post('/create', upload.single('file_upload'), messagesController.message_
 
 router.get('/conv/:id', messagesController.conversation_messages_get);
 
+router.get('/group/:id', messagesController.group_messages_get);
+
 module.exports = router;

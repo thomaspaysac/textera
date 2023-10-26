@@ -8,4 +8,6 @@ router.post('/create', groupController.create_group);
 
 router.get('/user/:id', groupController.user_groups_get);
 
+router.get('/:id', groupController.get_groupById);
+
 module.exports = router;

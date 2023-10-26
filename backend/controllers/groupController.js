@@ -10,6 +10,13 @@ exports.user_groups_get = asyncHandler(async (req, res, next) => {
   res.json(groups);
 })
 
+// GET group by ID
+exports.get_groupById = asyncHandler(async (req, res, next) => {
+  const group = await Group.findById(req.params.id).populate('users', 'username avatar');
+  res.json(group);
+})
+
+
 // test functions
 exports.create_group = asyncHandler(async (req, res, next) => {
   const users = [];

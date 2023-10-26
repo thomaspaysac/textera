@@ -26,7 +26,7 @@ export const GroupOverview = ({ group }) => {
   }
 
   return (
-    <Link to={``} className="group-overview_link">
+    <Link to={`/group/${group._id}`} className="group-overview_link">
       <div className="group-overview">
         <div className="group-image">
           <AvatarSmall imageUrl={group.image} />
