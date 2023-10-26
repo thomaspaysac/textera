@@ -133,26 +133,41 @@ main {
       border: none;
       background-color: #ffffff; }
 
-.messages-list {
+.conversation-list {
+  padding-top: 16px;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  gap: 16px; }
+
+.conversation-overview_link {
+  text-decoration: none;
+  color: #222222; }
 
 .conversation-overview {
   display: flex;
-  flex-direction: column; }
+  align-items: center;
+  gap: 16px;
+  height: 100%; }
+
+.conversation-overview_content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px; }
+  .conversation-overview_content .last-message {
+    font-size: 0.9rem;
+    color: #707070; }
 
 .conversation-overview_metadata {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  padding: 8px 0; }
-
-.conversation-overview_user-container {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 8px 0; }
+  gap: 16px; }
+  .conversation-overview_metadata .conversation_name {
+    font-weight: 700; }
+  .conversation-overview_metadata .last-update {
+    font-size: 0.8rem;
+    color: #707070; }
 
 .message-single {
   padding: 8px;

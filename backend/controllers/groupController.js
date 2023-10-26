@@ -23,6 +23,7 @@ exports.create_group = asyncHandler(async (req, res, next) => {
     users: users,
     title: 'Test group',
     admin: user1,
+    lastMessage: '',
   })
   await group.save();
   res.end;

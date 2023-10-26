@@ -183,14 +183,37 @@ main {
   }
 }
 
-.messages-list {
-  display:flex;
+
+// Conversations list
+.conversation-list {
+  padding-top: 16px;
+  display: flex;
   flex-direction: column;
+  gap: 16px;
+}
+
+.conversation-overview_link {
+  text-decoration: none;
+  color: #222222;
 }
 
 .conversation-overview {
   display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+.conversation-overview_content {
+  display: flex;
   flex-direction: column;
+  width: 100%;
+  gap: 4px;
+
+  .last-message {
+    font-size: 0.9rem;
+    color: #707070;
+  }
 }
 
 .conversation-overview_metadata {
@@ -198,14 +221,15 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: 8px 0;
-}
 
-.conversation-overview_user-container {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 8px 0;
+  .conversation_name {
+    font-weight: 700;
+  }
+
+  .last-update {
+    font-size: 0.8rem;
+    color: #707070;
+  }
 }
 
 // Messages

@@ -5,7 +5,9 @@ const User = require('../models/user');
 
 // GET all user's conversations
 exports.user_conv_get = asyncHandler(async (req, res, next) => {
-  const conv = await Conversation.find({ users: req.params.id }).populate('users', 'username avatar');
+  const conv = await Conversation.find({ users: req.params.id })
+    .sort({ updatedAt: -1 })
+    .populate('users', 'username avatar');
   res.json(conv);
 })
 
@@ -18,15 +20,16 @@ exports.get_convById = asyncHandler(async (req, res, next) => {
 // test functions
 exports.create_conv = asyncHandler(async (req, res, next) => {
   const users = [];
-  const user1 = await User.findById('65318e150d029949f5b5b1b9');
+  const user1 = await User.findById('6531038900a6fb5d566f0be2');
   const user2 = await User.findById('653103fee34793b9b2491f19');
   users.push(user1);
   users.push(user2);
   const conversation = new Conversation({
     users: users,
+    lastMessage: '',
   })
   await conversation.save();
-  res.end;
+  res.status(200);
 })
 
 exports.get_conv = asyncHandler(async (req, res, next) => {
