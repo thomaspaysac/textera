@@ -6,6 +6,15 @@ import { AvatarSmall } from "../components/AvatarSmall";
 export const SettingsPage = () => {
   const [user, setUser] = useState();
 
+  const logout = () => {
+    if (window.confirm('Do you really want to log out ?')) {
+      localStorage.clear();
+      navigateTo('/');
+    } else {
+      return;
+    }
+  }
+
   const fetchUserData = async () => {
     // https://textera-production.up.railway.app/user/
     const req = await fetch('http://localhost:3000/user/' + localStorage.user_id);
@@ -32,6 +41,9 @@ export const SettingsPage = () => {
         <div>{user.username}</div>
         <div>{user.status}</div>
         <AvatarSmall imageUrl={user.avatar} />
+        <div>
+          <button onClick={logout}>Log out</button>
+        </div>
       </Layout>
     
   )

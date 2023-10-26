@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react"
 import { Layout } from "../components/Layout"
-import { MessageOverview } from "../components/MessageOverview";
+import { ConversationOverview } from "../components/ConversationOverview";
 
-export const MessagesPage = () => {
+export const ConversationsList = () => {
   const [conversations, setConversations] = useState();
 
   const fetchConversations = async () => {
     // http://localhost:3000/conversation/user/
-    const req = await fetch('https://textera-production.up.railway.app/conversation/user/' + localStorage.user_id);
+    // https://textera-production.up.railway.app/conversation/user/
+    const req = await fetch('http://localhost:3000/conversation/user/' + localStorage.user_id);
     const res = await req.json()
     setConversations(res);
   }
@@ -18,7 +19,7 @@ export const MessagesPage = () => {
         {
           conversations.map((el) => {
             return (
-              <MessageOverview key={el._id} message={el} />
+              <ConversationOverview key={el._id} message={el} />
             )
           })
         }

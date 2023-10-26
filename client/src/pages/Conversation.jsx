@@ -53,7 +53,7 @@ export const Conversation = () => {
               )
             } else {
               return (
-                <MessageSingle key={el._id} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'other'} />
+                <MessageSingle key={el._id} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'other'} conv_id={id} />
             )
             }
           })

@@ -14,7 +14,8 @@ export const MessageInputField = (props) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     // http://localhost:3000/messages/create
-    const req = await fetch('https://textera-production.up.railway.app/messages/create', {
+    // https://textera-production.up.railway.app/messages/create
+    const req = await fetch('http://localhost:3000/messages/create', {
       method: 'POST',
       body: formData,
       /*headers: {

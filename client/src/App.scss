@@ -188,7 +188,20 @@ main {
   flex-direction: column;
 }
 
-.message-overview {
+.conversation-overview {
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation-overview_metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.conversation-overview_user-container {
   display: flex;
   align-items: center;
   gap: 16px;

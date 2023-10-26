@@ -4,7 +4,7 @@ import './App.css'
 import { Homepage } from "./pages/Homepage"
 import { SignupPage } from "./pages/Signup"
 import { LoginPage } from "./pages/Login"
-import { MessagesPage } from "./pages/Messages"
+import { ConversationsList } from "./pages/ConversationsList"
 import { GroupsPage } from "./pages/Groups"
 import { ContactsPage } from "./pages/Contacts"
 import { SettingsPage } from "./pages/Settings"
@@ -14,7 +14,7 @@ import { Conversation } from "./pages/Conversation"
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MessagesPage />
+    element: <ConversationsList />
   },
   {
     path: '/groups',
