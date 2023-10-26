@@ -24,6 +24,7 @@ exports.group_messages_get = asyncHandler(async (req, res, next) => {
 
 // POST message create
 exports.message_create = asyncHandler(async (req, res, next) => {
+  console.log(req.body);
   try {
     const message = new Message ({
     type: 'text',
@@ -36,18 +37,19 @@ exports.message_create = asyncHandler(async (req, res, next) => {
     message.file = fileUrl;
   }
   await message.save();
-  /*if (!!req.body.conversation) {
+  if (!!req.body.conversation) {
     const conversation = await Conversation.findById(req.body.conversation);
     conversation.lastMessage = req.body.text_input;
     conversation.updatedAt = Date.now();
     await conversation.save();
+    res.status(200)
   } else if (!!req.body.group) {
     const group = await Group.findById(req.body.group);
     group.lastMessage = req.body.author + ' : ' + req.body.text_input;
     group.updatedAt= Date.now();
     await group.save()
-  }*/
-  res.status(200)
+    res.status(200)
+  }
   } catch {
     res.status(500)
   }

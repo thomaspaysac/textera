@@ -47,7 +47,6 @@ export const Conversation = () => {
         <div className='messages-list'>
         {
           messages.map((el) => {
-            console.log(el.author)
             if (el.author._id === localStorage.user_id) {
               return (
                 <MessageSingle key={el.id} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'own'} />
@@ -62,7 +61,7 @@ export const Conversation = () => {
         </div>
         <div className="content-end" ref={messagesEndRef}></div>
       </div>
-      <MessageInputField conversationID={id} />
+      <MessageInputField conversationID={id} groupID={undefined} />
     </Layout>
   )
 }

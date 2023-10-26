@@ -33,6 +33,7 @@ export const MessageInputField = (props) => {
         <input type='file' id='file_upload' name='file_upload' />
         <input name='author' style={{display: "none"}} value={localStorage.user_id} readOnly />
         <input name='conversation' style={{display: "none"}} value={props.conversationID} readOnly />
+        <input name='group' style={{display: "none"}} value={props.groupID} readOnly />
         <button type="submit">Send</button>
       </form>
     </div>
