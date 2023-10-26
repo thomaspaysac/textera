@@ -5,7 +5,7 @@ import { ConversationHeader } from "../components/ConversationHeader";
 import { MessageInputField } from "../components/MessageInputField";
 import { MessageSingle } from "../components/MessageSingle";
 
-export const Conversation = () => {
+export const Group = () => {
   const [messages, setMessages] = useState();
   const [correspondant, setCorrespondant] = useState();
   const { id } = useParams();
@@ -47,7 +47,6 @@ export const Conversation = () => {
         <div className='messages-list'>
         {
           messages.map((el) => {
-            console.log(el.author)
             if (el.author._id === localStorage.user_id) {
               return (
                 <MessageSingle key={el.id} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'own'} />

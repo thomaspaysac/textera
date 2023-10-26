@@ -179,6 +179,10 @@ main {
     font-size: 0.8rem;
     color: #707070; }
 
+.messages-list {
+  display: flex;
+  flex-direction: column; }
+
 .message-single {
   padding: 8px;
   margin: 8px 0;

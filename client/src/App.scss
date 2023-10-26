@@ -239,6 +239,11 @@ main {
 }
 
 // Messages
+.messages-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .message-single {
   padding: 8px;
   margin: 8px 0;
