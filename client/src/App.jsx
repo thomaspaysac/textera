@@ -5,7 +5,7 @@ import { Homepage } from "./pages/Homepage"
 import { SignupPage } from "./pages/Signup"
 import { LoginPage } from "./pages/Login"
 import { ConversationsList } from "./pages/ConversationsList"
-import { GroupsPage } from "./pages/Groups"
+import { GroupsList } from "./pages/GroupsList"
 import { ContactsPage } from "./pages/Contacts"
 import { SettingsPage } from "./pages/Settings"
 import { UserProfile } from "./pages/UserProfile"
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/groups',
-    element: <GroupsPage />
+    element: <GroupsList />
   },
   {
     path: '/contacts',

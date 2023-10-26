@@ -184,27 +184,31 @@ main {
 }
 
 
-// Conversations list
-.conversation-list {
+// Conversations & Groups lists
+.conversation-list,
+.groups-list {
   padding-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.conversation-overview_link {
+.conversation-overview_link,
+.group-overview_link {
   text-decoration: none;
   color: #222222;
 }
 
-.conversation-overview {
+.conversation-overview,
+.group-overview {
   display: flex;
   align-items: center;
   gap: 16px;
   height: 100%;
 }
 
-.conversation-overview_content {
+.conversation-overview_content,
+.group-overview_content {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -216,13 +220,15 @@ main {
   }
 }
 
-.conversation-overview_metadata {
+.conversation-overview_metadata,
+.group-overview_metadata {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
 
-  .conversation_name {
+  .conversation_name,
+  .group_name {
     font-weight: 700;
   }
 

@@ -5,6 +5,7 @@ const GroupSchema = new Schema ({
   users: { type: [mongoose.Schema.ObjectId], ref: 'User' },
   title: { type: String },
   admin: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  image: { type: String },
   lastMessage: { type: String },
 },
 { 

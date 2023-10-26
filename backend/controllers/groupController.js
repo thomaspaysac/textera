@@ -5,10 +5,10 @@ const User = require('../models/user');
 
 // GET user's groups
 exports.user_groups_get = asyncHandler(async (req, res, next) => {
-  const groups = await Group.find({ users: req.params.id });
+  const groups = await Group.find({ users: req.params.id })
+    .sort({ updatedAt: -1 });
   res.json(groups);
 })
-
 
 // test functions
 exports.create_group = asyncHandler(async (req, res, next) => {
@@ -24,6 +24,7 @@ exports.create_group = asyncHandler(async (req, res, next) => {
     title: 'Test group',
     admin: user1,
     lastMessage: '',
+    image: '',
   })
   await group.save();
   res.end;
