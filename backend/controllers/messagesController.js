@@ -14,12 +14,24 @@ exports.conversation_messages_get = asyncHandler(async (req, res, next) => {
   res.json(messages);
 })
 
+// GET all media from one conversation
+exports.conversation_media_get = asyncHandler(async (req, res, next) => {
+  const media = await Message.find({ conversation: req.params.id, file: {$exists: true} });
+  res.json(media);
+})
+
 // GET all messages from one group
 exports.group_messages_get = asyncHandler(async (req, res, next) => {
   const messages = await Message.find({ group: req.params.id })
     .sort({ createdAt: 1 })
     .populate('author', 'username avatar');
   res.json(messages);
+})
+
+// GET all media from one group
+exports.group_media_get = asyncHandler(async (req, res, next) => {
+  const media = await Message.find({ group: req.params.id, file: {$exists: true} });
+  res.json(media);
 })
 
 // POST message create

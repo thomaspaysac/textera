@@ -108,8 +108,8 @@ footer {
 }
 
 .avatar_big {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
 }
 
@@ -134,7 +134,8 @@ main {
   background-size: contain;
 }
 
-.conversation-header {
+.conversation-header,
+.group-header {
   position: sticky;
   top: 0;
   padding: 4px 8px;

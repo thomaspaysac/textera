@@ -77,8 +77,8 @@ footer {
   align-items: center; }
 
 .avatar_big {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%; }
 
 main {
@@ -95,7 +95,8 @@ main {
   background: url("./assets/v748-toon-106.jpg");
   background-size: contain; }
 
-.conversation-header {
+.conversation-header,
+.group-header {
   position: sticky;
   top: 0;
   padding: 4px 8px;

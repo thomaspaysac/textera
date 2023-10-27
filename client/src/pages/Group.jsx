@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom"
 import { Layout } from "../components/Layout";
-import { ConversationHeader } from "../components/ConversationHeader";
+import { GroupHeader } from "../components/GroupHeader";
 import { MessageInputField } from "../components/MessageInputField";
 import { MessageSingle } from "../components/MessageSingle";
 
@@ -46,7 +46,7 @@ export const Group = () => {
 
   return (
     <Layout>
-      <ConversationHeader name={groupInfo.title} image={groupInfo.image} id={groupInfo._id} />
+      <GroupHeader name={groupInfo.title} image={groupInfo.image} id={groupInfo._id} />
       <div className="content conversation-page">
         <div className='messages-list'>
         {
