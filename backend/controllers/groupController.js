@@ -31,7 +31,7 @@ exports.create_group = asyncHandler(async (req, res, next) => {
     title: 'Test group 2',
     admin: user2,
     lastMessage: '',
-    image: '',
+    image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
   })
   await group.save();
   res.end;

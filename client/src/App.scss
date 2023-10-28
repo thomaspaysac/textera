@@ -410,3 +410,27 @@ main {
     margin: 0 2px
   }
 }
+
+// Contacts Page
+.contacts-page {
+  padding-top: 16px;
+
+  .contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .contacts-length {
+      align-self: center;
+      color: #777777;
+    }
+  
+    .contact-single {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #222222;
+    }
+  }
+}

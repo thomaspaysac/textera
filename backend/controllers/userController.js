@@ -18,6 +18,12 @@ exports.user_profile_get = asyncHandler(async (req, res, next) => {
   res.json(user);
 });
 
+// GET user contacts
+exports.get_contacts = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.params.id).populate('contacts', 'username avatar');
+  res.json(user.contacts);
+});
+
 // GET signup view
 exports.signup_get = asyncHandler(async (req, res, next) => {
   User.find({})
@@ -59,7 +65,7 @@ exports.signup_post = [
     const user = new User({
       username: req.body.username,
       password: req.body.password,
-      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=e9d070f9-dfb7-48cf-a79f-ab9872776c4f",
+      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc",
     });
     if (!errors.isEmpty()) {
       res.json(errors.array());
@@ -126,6 +132,21 @@ exports.login_post = asyncHandler(async (req, res, next) => {
   }
 });
 
+// POST Add contact
+exports.add_contact = asyncHandler(async (req, res, next) => {
+  // get both users
+  const user = await User.findById(req.params.user);
+  const contact = await User.findById(req.params.contact);
+  // Add users to each other's contacts
+  user.contacts.push(contact);
+  contact.contacts.push(user);
+  await user.save();
+  await contact.save();
+  res.end();
+})
+
+
+
 // Verify JWT
 exports.verify_user = asyncHandler(async (req, res, next) => {
   console.log(req.token);
@@ -142,3 +163,4 @@ exports.verify_user = asyncHandler(async (req, res, next) => {
     }
   })*/
 });
+

@@ -6,7 +6,7 @@ const UserSchema = new Schema ({
   password: { type: String, required: true },
   status: { type: String, default: "Hey there, I'm on Textera!" },
   avatar : { type: String },
-  loggedIn: { Boolean },
+  contacts: { type: [mongoose.Schema.ObjectId], ref: 'User' },
 })
 
 module.exports = mongoose.model('User', UserSchema);

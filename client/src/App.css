@@ -316,4 +316,20 @@ main {
     display: inline;
     margin: 0 2px; }
 
+.contacts-page {
+  padding-top: 16px; }
+  .contacts-page .contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; }
+    .contacts-page .contacts-list .contacts-length {
+      align-self: center;
+      color: #777777; }
+    .contacts-page .contacts-list .contact-single {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #222222; }
+
 /*# sourceMappingURL=App.css.map */

@@ -41,4 +41,8 @@ router.post('/verify', verifyToken, userController.verify_user);
 
 router.get('/:id', userController.user_profile_get);
 
+router.get('/:id/contacts', userController.get_contacts);
+
+router.post('/:user/add/:contact', userController.add_contact);
+
 module.exports = router;
