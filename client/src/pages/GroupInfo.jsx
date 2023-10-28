@@ -13,12 +13,13 @@ export const GroupInfo = () => {
   const { id } = useParams();
 
   const fetchGroup = async () => {
-    // https://textera-production.up.railway.app/user/
-    const req = await fetch('http://localhost:3000/group/' + id);
+    //const req = await fetch('http://localhost:3000/group/' + id);
+    const req = await fetch('https://textera-production.up.railway.app/group/' + id);
     const res = await req.json()
     setGroup(res);
     // Fetch media
-    const mediaReq = await fetch('http://localhost:3000/messages/group/' + id + '/media');
+    //const mediaReq = await fetch('http://localhost:3000/messages/group/' + id + '/media');
+    const mediaReq = await fetch('https://textera-production.up.railway.app/group/' + id + '/media');
     const mediaRes = await mediaReq.json();
     setMedia(mediaRes);
   }
