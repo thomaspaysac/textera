@@ -164,7 +164,7 @@ main {
   position: sticky;
   width: 100%;
   background-color: #ededed00;
-  bottom: 64px;
+  bottom: 10vh;
   z-index: 4;
 
   #input_form {
@@ -172,6 +172,7 @@ main {
     gap: 8px;
     padding: 8px;
     align-items: center;
+    justify-content: space-between;
 
     input[type='text'], textarea {
       padding: 8px;
@@ -189,10 +190,15 @@ main {
 
     .file-upload_button {
       background-color: #ffffff;
-      min-height: 24px;
-      min-width: 24px;
-      background: url('./assets/icons/file_upload.png');
-      background-size: contain;
+      height: 38px;
+      min-width: 38px;
+      border-radius: 8px;
+      padding: 8px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     button {
@@ -350,7 +356,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 24px;
 
   .user_name,
   .group-name {
@@ -360,6 +366,13 @@ main {
 
   .user_status {
     font-style: italic;
+  }
+
+  .admin {
+    display: flex;
+    gap: 8px;
+    text-decoration: none;
+    color: #222222;
   }
 }
 
@@ -388,7 +401,7 @@ main {
 }
 
 .group_media-list {
-  overflow-y: scroll;
+  overflow-x: scroll;
   white-space: nowrap;
   max-width: 90vw;
 

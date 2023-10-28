@@ -1,3 +1,5 @@
+import attach from '../assets/icons/file_upload.png'
+
 export const MessageInputField = (props) => {
   const tx = document.getElementsByTagName("textarea");
   for (let i = 0; i < tx.length; i++) {
@@ -29,7 +31,9 @@ export const MessageInputField = (props) => {
     <div className="message-input">
       <form id='input_form' onSubmit={submitInput}>
         <textarea id="text_input" name="text_input" placeholder="Message" rows='1'></textarea>
-        <label htmlFor="file_upload" className="file-upload_button"></label>
+        <label htmlFor="file_upload" className="file-upload_button">
+          <img src={attach} alt='attach file' />
+        </label>
         <input type='file' id='file_upload' name='file_upload' />
         <input name='author' style={{display: "none"}} value={localStorage.user_id} readOnly />
         <input name='conversation' style={{display: "none"}} value={props.conversationID} readOnly />

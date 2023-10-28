@@ -121,13 +121,14 @@ main {
   position: sticky;
   width: 100%;
   background-color: #ededed00;
-  bottom: 64px;
+  bottom: 10vh;
   z-index: 4; }
   .message-input #input_form {
     display: flex;
     gap: 8px;
     padding: 8px;
-    align-items: center; }
+    align-items: center;
+    justify-content: space-between; }
     .message-input #input_form input[type='text'], .message-input #input_form textarea {
       padding: 8px;
       width: 100%;
@@ -140,10 +141,13 @@ main {
       display: none; }
     .message-input #input_form .file-upload_button {
       background-color: #ffffff;
-      min-height: 24px;
-      min-width: 24px;
-      background: url("./assets/icons/file_upload.png");
-      background-size: contain; }
+      height: 38px;
+      min-width: 38px;
+      border-radius: 8px;
+      padding: 8px; }
+      .message-input #input_form .file-upload_button img {
+        width: 100%;
+        height: 100%; }
     .message-input #input_form button {
       min-height: 48px;
       min-width: 48px;
@@ -267,7 +271,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px; }
+  gap: 24px; }
   .user-profile .user_name,
   .user-profile .group-name,
   .group-info .user_name,
@@ -277,6 +281,12 @@ main {
   .user-profile .user_status,
   .group-info .user_status {
     font-style: italic; }
+  .user-profile .admin,
+  .group-info .admin {
+    display: flex;
+    gap: 8px;
+    text-decoration: none;
+    color: #222222; }
 
 .group-info_section {
   font-weight: 700; }
@@ -299,7 +309,7 @@ main {
   margin-top: 8px; }
 
 .group_media-list {
-  overflow-y: scroll;
+  overflow-x: scroll;
   white-space: nowrap;
   max-width: 90vw; }
   .group_media-list div {

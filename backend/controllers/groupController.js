@@ -12,7 +12,7 @@ exports.user_groups_get = asyncHandler(async (req, res, next) => {
 
 // GET group by ID
 exports.get_groupById = asyncHandler(async (req, res, next) => {
-  const group = await Group.findById(req.params.id).populate('users', 'username avatar');
+  const group = await Group.findById(req.params.id).populate('users', 'username avatar').populate('admin', 'username avatar');
   res.json(group);
 })
 
@@ -28,8 +28,8 @@ exports.create_group = asyncHandler(async (req, res, next) => {
   users.push(user3);
   const group = new Group({
     users: users,
-    title: 'Test group',
-    admin: user1,
+    title: 'Test group 2',
+    admin: user2,
     lastMessage: '',
     image: '',
   })
