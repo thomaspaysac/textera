@@ -19,7 +19,7 @@ export const GroupInfo = () => {
     setGroup(res);
     // Fetch media
     //const mediaReq = await fetch('http://localhost:3000/messages/group/' + id + '/media');
-    const mediaReq = await fetch('https://textera-production.up.railway.app/group/' + id + '/media');
+    const mediaReq = await fetch('https://textera-production.up.railway.app/messages/group/' + id + '/media');
     const mediaRes = await mediaReq.json();
     setMedia(mediaRes);
   }
