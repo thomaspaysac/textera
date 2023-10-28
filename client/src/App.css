@@ -299,7 +299,7 @@ main {
   margin-top: 8px; }
 
 .group_media-list {
-  overflow: scroll;
+  overflow-y: scroll;
   white-space: nowrap;
   max-width: 90vw; }
   .group_media-list div {
