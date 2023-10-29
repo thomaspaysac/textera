@@ -37,7 +37,9 @@ router.get('/login', userController.login_get);
 
 router.post('/login', userController.login_post);
 
-router.post('/verify', verifyToken, userController.verify_user);
+router.get('/username/:username', userController.user_username_get);
+
+//router.post('/verify', verifyToken, userController.verify_user);
 
 router.get('/:id', userController.user_profile_get);
 

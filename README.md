@@ -8,5 +8,10 @@ Priorités:
 - [ ] Création de salons
 
 Finitions:
+- [ ] Error page
 - [ ] Models cleanup
 - [ ] Input sanitization & validation
+- [ ] Feedback pour : ajout de contact / envoi de message
+
+Bugs:
+Error au logout

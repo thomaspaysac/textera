@@ -14,9 +14,15 @@ const User = require('../models/user');
 
 // GET user profile JSON
 exports.user_profile_get = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.params.id).select('-password');
   res.json(user);
 });
+
+// GET user by username
+exports.user_username_get = asyncHandler(async (req, res, next) => {
+  const user = await User.find({ username: req.params.username }).select('username');
+  res.json(user);
+})
 
 // GET user contacts
 exports.get_contacts = asyncHandler(async (req, res, next) => {
@@ -134,15 +140,25 @@ exports.login_post = asyncHandler(async (req, res, next) => {
 
 // POST Add contact
 exports.add_contact = asyncHandler(async (req, res, next) => {
-  // get both users
+  // Prevent user from adding itself
+  if (req.params.user === req.params.contact) {
+    const err = "You can't add yourself to your contacts.";
+    res.status(403).json(err);
+  }
+  // Get both users
   const user = await User.findById(req.params.user);
   const contact = await User.findById(req.params.contact);
-  // Add users to each other's contacts
-  user.contacts.push(contact);
-  contact.contacts.push(user);
-  await user.save();
-  await contact.save();
-  res.end();
+  if (user.contacts.includes(contact._id) || user._id === contact._id) {
+    const err = 'You already have this user in your contacts.';
+    res.status(403).json(err);
+  } else {
+    // Add users to each other's contacts
+    user.contacts.push(contact);
+    contact.contacts.push(user);
+    await user.save();
+    await contact.save();
+    res.status(200).end();
+  }
 })
 
 

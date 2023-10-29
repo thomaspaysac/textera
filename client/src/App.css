@@ -318,6 +318,8 @@ main {
 
 .contacts-page {
   padding-top: 16px; }
+  .contacts-page .add-contact_link {
+    align-self: center; }
   .contacts-page .contacts-list {
     display: flex;
     flex-direction: column;

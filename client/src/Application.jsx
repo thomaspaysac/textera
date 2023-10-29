@@ -14,6 +14,7 @@ import { UserProfile } from "./pages/UserProfile"
 import { Conversation } from "./pages/Conversation"
 import { Group } from "./pages/Group"
 import { GroupInfo } from "./pages/GroupInfo"
+import { AddContactPage } from "./pages/AddContact";
 
 export const Routing = () => {
   return (
@@ -23,6 +24,7 @@ export const Routing = () => {
         <Route exact path="/" element={<ConversationsList/>} />
         <Route path="/groups" element={<GroupsList />} />
         <Route path="/contacts" element={<ContactsPage />} />
+        <Route path='/contacts/add' element={<AddContactPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />

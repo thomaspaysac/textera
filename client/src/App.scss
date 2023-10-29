@@ -415,6 +415,10 @@ main {
 .contacts-page {
   padding-top: 16px;
 
+  .add-contact_link {
+    align-self: center;
+  }
+
   .contacts-list {
     display: flex;
     flex-direction: column;
