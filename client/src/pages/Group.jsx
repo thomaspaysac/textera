@@ -51,7 +51,6 @@ export const Group = () => {
         <div className='messages-list'>
         {
           messages.map((el) => {
-            console.log(el.author)
             if (el.author._id === localStorage.user_id) {
               return (
                 <MessageSingle key={el.id} group={true} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'own'} />

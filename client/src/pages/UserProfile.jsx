@@ -17,6 +17,13 @@ export const UserProfile = () => {
     setUser(res);
   }
 
+  const addToContacts = async () => {
+    const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + id, {
+      //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + id, {
+      method: 'POST',
+    })
+  }
+
   useEffect(() => {
     fetchUser();
   }, [])
@@ -37,6 +44,7 @@ export const UserProfile = () => {
           <AvatarBig imageUrl={user.avatar} />
           <div className="user_name">{user.username}</div>
           <div className="user_status">{user.status}</div>
+          <button onClick={addToContacts}>+ Add to contacts</button>
         </div>
       </Layout>
   )
