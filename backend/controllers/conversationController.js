@@ -17,11 +17,17 @@ exports.get_convById = asyncHandler(async (req, res, next) => {
   res.json(conv);
 })
 
+// GET conversation by users
+exports.get_conv_byUsers = asyncHandler(async (req, res, next) => {
+  const conv = await Conversation.find({users: { $all: [req.params.user1, req.params.user2] }});
+  res.json(conv);
+})
+
 // test functions
 exports.create_conv = asyncHandler(async (req, res, next) => {
   const users = [];
-  const user1 = await User.findById('6531038900a6fb5d566f0be2');
-  const user2 = await User.findById('653103fee34793b9b2491f19');
+  const user1 = await User.findById(req.body.user1);
+  const user2 = await User.findById(req.body.user2);
   users.push(user1);
   users.push(user2);
   const conversation = new Conversation({

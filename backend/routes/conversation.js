@@ -8,7 +8,10 @@ router.post('/create', convController.create_conv);
 
 router.get('/user/:id', convController.user_conv_get);
 
+router.get('/users/:user1/:user2', convController.get_conv_byUsers)
+
 router.get('/:id', convController.get_convById);
+
 
 
 module.exports = router;
