@@ -22,10 +22,14 @@ exports.conversation_media_get = asyncHandler(async (req, res, next) => {
 
 // GET all messages from one group
 exports.group_messages_get = asyncHandler(async (req, res, next) => {
-  const messages = await Message.find({ group: req.params.id })
+  try {
+    const messages = await Message.find({ group: req.params.id })
     .sort({ createdAt: 1 })
     .populate('author', 'username avatar');
-  res.json(messages);
+    res.json(messages);
+  } catch {
+    res.sendStatus(404);
+  }
 })
 
 // GET all media from one group

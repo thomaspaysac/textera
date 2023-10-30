@@ -12,15 +12,16 @@ import { UserProfile } from "./pages/UserProfile"
 import { Conversation } from "./pages/Conversation"
 import { Group } from "./pages/Group"
 import { GroupInfo } from "./pages/GroupInfo"
+import { ErrorPage } from "./pages/ErrorPage"
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <ConversationsList />
+    element: <ConversationsList />,
   },
   {
     path: '/groups',
-    element: <GroupsList />
+    element: <GroupsList />,
   },
   {
     path: '/contacts',

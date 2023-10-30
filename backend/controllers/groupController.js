@@ -13,7 +13,11 @@ exports.user_groups_get = asyncHandler(async (req, res, next) => {
 // GET group by ID
 exports.get_groupById = asyncHandler(async (req, res, next) => {
   const group = await Group.findById(req.params.id).populate('users', 'username avatar').populate('admin', 'username avatar');
-  res.json(group);
+  if (!group) {
+    res.sendStatus(404);
+  } else {
+    res.json(group);
+  }
 })
 
 

@@ -23,8 +23,8 @@ export const UserProfile = () => {
   }
 
   const addToContacts = async () => {
-    const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + id, {
-      //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + id, {
+    await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + id, {
+    //await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + id, {
       method: 'POST',
     })
   }
