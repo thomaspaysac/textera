@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export const AddContactPage = () => {
   const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState()
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const addContact = async (e) => {
     e.preventDefault();
@@ -23,8 +23,9 @@ export const AddContactPage = () => {
       })
       if(req.status !== 200) {
         const err = await req.json();
-        setError(true);
+        //setError(true);
         setErrorMessage(err);
+        e.target.reset();
       } else {
         console.log('user added')
       }
@@ -33,12 +34,12 @@ export const AddContactPage = () => {
   }
 
   const errorContainer = () => {
-    if (!error) {
+    if (!errorMessage) {
       return null
     }
 
     return (
-      <div>
+      <div className="error-container">
         {errorMessage}
       </div>
     )
@@ -49,7 +50,7 @@ export const AddContactPage = () => {
       <div className="content add-contact_page">
         Enter user info to add to your contacts
         <form id="add-contact_form" onSubmit={addContact}>
-          <div>
+          <div className="input-group">
             <label htmlFor="username">Username:</label>
             <input type='text' id='username' name="username" />
           </div>

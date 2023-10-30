@@ -39,14 +39,15 @@ export const UserProfile = () => {
       user1: localStorage.user_id,
       user2: user._id,
     };
-    await fetch('http://localhost:3000/conversation/create', {
+    const req = await fetch('http://localhost:3000/conversation/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(users),
-    });
-    navigateTo('/');
+    })
+    const res = await req.json();
+    navigateTo('/conv/' + res._id);
   }
 
   useEffect(() => {

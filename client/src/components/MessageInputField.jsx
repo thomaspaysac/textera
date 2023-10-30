@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import attach from '../assets/icons/file_upload.png'
 
 export const MessageInputField = (props) => {
@@ -15,16 +16,13 @@ export const MessageInputField = (props) => {
   const submitInput = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    // http://localhost:3000/messages/create
-    // https://textera-production.up.railway.app/messages/create
-    const req = await fetch('http://localhost:3000/messages/create', {
+    await fetch('http://localhost:3000/messages/create', {
+    //const req = await fetch('https://textera-production.up.railway.app/messages/create', {
       method: 'POST',
       body: formData,
-      /*headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data),*/
     })
+    .then(e.target.reset())
+    .then(props.onSend())
   }
 
   return (

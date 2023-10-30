@@ -32,7 +32,6 @@ export const LoginPage = () => {
   }
 
   return (
-    
       <Layout>
         <h2 className="page-title">Log in</h2>
         <form id='login_form' className="form" onSubmit={login}>

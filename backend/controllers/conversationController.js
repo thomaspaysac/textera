@@ -35,6 +35,7 @@ exports.create_conv = asyncHandler(async (req, res, next) => {
     lastMessage: '',
   })
   await conversation.save();
+  res.json(conversation);
   res.status(200);
 })
 

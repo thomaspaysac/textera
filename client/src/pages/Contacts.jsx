@@ -28,7 +28,7 @@ export const ContactsPage = () => {
 
     return (
       <div className="contacts-list">
-        <Link to='/contacts/add' className="add-contact_link"><button>Add a new contact</button></Link>
+        <Link to='/contacts/add' className="add-contact_link"><button>Add new contact</button></Link>
         <div className="contacts-length">
           {contacts.length} contacts
         </div>

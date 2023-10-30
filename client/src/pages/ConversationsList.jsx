@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Layout } from "../components/Layout"
 import { ConversationOverview } from "../components/ConversationOverview";
+import { NewConvButton } from "../components/NewConvButton";
 
 export const ConversationsList = () => {
   const [conversations, setConversations] = useState();
@@ -36,6 +37,7 @@ export const ConversationsList = () => {
       <Layout>
         <h2>Conversations</h2>
         <div>No conversations</div>
+        <NewConvButton />
       </Layout>
     </>
     )
@@ -47,6 +49,7 @@ export const ConversationsList = () => {
         <div className="content conversation-list">
           {conversationsList()}
         </div>
+        <NewConvButton link={'/contacts'} />
       </Layout>
     </>
   )

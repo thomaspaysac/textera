@@ -8,6 +8,7 @@ import { MessageSingle } from "../components/MessageSingle";
 export const Conversation = () => {
   const [messages, setMessages] = useState();
   const [correspondant, setCorrespondant] = useState();
+  const [update, setUpdate] = useState(0);
   const { id } = useParams();
   const messagesEndRef = useRef(null)
 
@@ -28,9 +29,13 @@ export const Conversation = () => {
     messagesEndRef.current?.scrollIntoView(/*{ behavior: "smooth", block:"end" }*/)
   }
 
+  const updateComponent = () => {
+    setUpdate(update + 1);
+  }
+
   useEffect(() => {
     fetchConv();
-  }, [])
+  }, [update])
 
   useEffect(() => {
     scrollToBottom();
@@ -61,7 +66,7 @@ export const Conversation = () => {
         </div>
         <div className="content-end" ref={messagesEndRef}></div>
       </div>
-      <MessageInputField conversationID={id} groupID={undefined} />
+      <MessageInputField conversationID={id} groupID={undefined} onSend={updateComponent} />
     </Layout>
   )
 }
