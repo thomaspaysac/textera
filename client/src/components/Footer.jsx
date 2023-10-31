@@ -19,7 +19,7 @@ export const Footer = () => {
     } else {
       setActiveTab(loc.state.tab);
     }
-  }, [])
+  }, [loc.state])
 
 
   if (localStorage.logged_in) {
