@@ -5,6 +5,9 @@ import { AvatarSmall } from "../components/AvatarSmall";
 import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
 
+import conversationIcon from '../assets/icons/conversation_black.png'
+import conversation_newIcon from '../assets/icons/conversation_new.png'
+
 export const UserProfile = () => {
   const [user, setUser] = useState();
   const [contacts, setContacts] = useState([]);
@@ -67,14 +70,19 @@ export const UserProfile = () => {
   const ConversationPrompt = () => {
     if (contacts.includes(user._id) && conversation.length === 0) {
       return (
-        <div onClick={createConversation}>
-          Start a new conversation
+        <div className="conversation-button">
+          <button className="conversation-button" onClick={createConversation}>
+            <img src={conversation_newIcon}/> Start a new conversation
+          </button>
         </div>
+        
       )
     } else if (contacts.includes(user._id)) {
       return (
-        <Link to={`/conv/${conversation[0]._id}`}>
-          Go to conversation
+        <Link to={`/conv/${conversation[0]._id}`} className="conversation-button">
+          <button >
+            <img src={conversationIcon} /> Go to conversation
+          </button>
         </Link>
       )
     }

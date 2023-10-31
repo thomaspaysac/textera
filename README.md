@@ -15,6 +15,7 @@ Finitions:
 - [ ] Feedback pour : ajout de contact / envoi de message
 - [ ] Recherche d'utilisateur: la rendre case insensitive
 - [ ] Loading des pages : harmoniser / animations
+- [ ] Vérifier envoi de fichiers pour autoriser seulement les images
 
 Bugs:
 - [ ] Error au logout
