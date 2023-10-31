@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Layout } from "../components/Layout";
 import { GroupOverview } from "../components/GroupOverview";
+import { NewConvButton } from "../components/NewConvButton";
 
 export const GroupsList = () => {
   const [groups, setGroups] = useState();
@@ -36,6 +37,7 @@ export const GroupsList = () => {
       <Layout>
         <h2>Groups</h2>
         <div>No group</div>
+        <NewConvButton link={'/newgroup'} />
       </Layout>
     </>
     )
@@ -47,6 +49,7 @@ export const GroupsList = () => {
         <div className="content groups-list">
           {groupsList()}
         </div>
+        <NewConvButton link={'/group/create'} />
       </Layout>
     </>
   )

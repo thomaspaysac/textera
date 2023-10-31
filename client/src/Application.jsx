@@ -15,6 +15,7 @@ import { Conversation } from "./pages/Conversation"
 import { Group } from "./pages/Group"
 import { GroupInfo } from "./pages/GroupInfo"
 import { AddContactPage } from "./pages/AddContact";
+import { GroupCreatePage } from "./pages/GroupCreate";
 
 export const Routing = () => {
   return (
@@ -30,6 +31,7 @@ export const Routing = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/user/:id" element={<UserProfile />} />
         <Route path="/conv/:id" element={<Conversation />} />
+        <Route exact path="/group/create" element={<GroupCreatePage />} />
         <Route path="/group/:id" element={<Group />} />
         <Route path="/group/:id/details" element={<GroupInfo />} />
       </Routes>

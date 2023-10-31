@@ -12,6 +12,7 @@ import { UserProfile } from "./pages/UserProfile"
 import { Conversation } from "./pages/Conversation"
 import { Group } from "./pages/Group"
 import { GroupInfo } from "./pages/GroupInfo"
+import { GroupCreatePage } from "./pages/GroupCreate"
 import { ErrorPage } from "./pages/ErrorPage"
 
 const router = createBrowserRouter([
@@ -48,13 +49,17 @@ const router = createBrowserRouter([
     element: <Conversation />
   },
   {
+    exactPath: '/group/create',
+    element: <GroupCreatePage />,
+  },
+  {
     path: '/group/:id',
     element: <Group />
   },
   {
     path: '/group/:id/details',
     element: <GroupInfo />
-  }
+  },
 ])
 
 

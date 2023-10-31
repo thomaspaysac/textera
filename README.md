@@ -19,4 +19,3 @@ Finitions:
 
 Bugs:
 - [ ] Error au logout
-- [ ] Footer highlight

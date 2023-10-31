@@ -23,7 +23,8 @@ exports.get_groupById = asyncHandler(async (req, res, next) => {
 
 // test functions
 exports.create_group = asyncHandler(async (req, res, next) => {
-  const users = [];
+  console.log(req.body);
+  /*const users = [];
   const user1 = await User.findById('6531038900a6fb5d566f0be2');
   const user2 = await User.findById('653103fee34793b9b2491f19');
   const user3 = await User.findById('65318e150d029949f5b5b1b9');
@@ -38,7 +39,7 @@ exports.create_group = asyncHandler(async (req, res, next) => {
     image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
   })
   await group.save();
-  res.end;
+  res.end;*/
 })
 
 exports.get_group = asyncHandler(async (req, res, next) => {

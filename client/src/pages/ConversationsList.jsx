@@ -37,7 +37,7 @@ export const ConversationsList = () => {
       <Layout>
         <h2>Conversations</h2>
         <div>No conversations</div>
-        <NewConvButton />
+        <NewConvButton link={'/contacts'} />
       </Layout>
     </>
     )
