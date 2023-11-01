@@ -2,10 +2,10 @@ Priorités:
 - [X] Création de compte
 - [X] Authentification
 - [X] Ajout d'amis : par la page de profil utilisateur, et par nom d'utilisateur
-- [ ] Création de conversations
+- [X] Création de conversations
 - [X] Envoi de messages textuels
 - [X] Envoi de fichiers
-- [ ] Création de salons
+- [X] Création de groupes
 - [ ] Sécurité : vérifier que l'utilisateur fait partie de la conversation / du groupe avant de fetch les données.
 
 Finitions:

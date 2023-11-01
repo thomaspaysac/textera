@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import attach from '../assets/icons/file_upload.png'
+import imageUpload from '../assets/icons/image_upload_black.png'
 
 export const MessageInputField = (props) => {
   const tx = document.getElementsByTagName("textarea");
@@ -30,7 +31,7 @@ export const MessageInputField = (props) => {
       <form id='input_form' onSubmit={submitInput}>
         <textarea id="text_input" name="text_input" placeholder="Message" rows='1'></textarea>
         <label htmlFor="file_upload" className="file-upload_button">
-          <img src={attach} alt='attach file' />
+          <img src={imageUpload} alt='attach file' />
         </label>
         <input type='file' id='file_upload' name='file_upload' />
         <input name='author' style={{display: "none"}} value={localStorage.user_id} readOnly />
