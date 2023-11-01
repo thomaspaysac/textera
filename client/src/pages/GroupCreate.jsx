@@ -2,10 +2,12 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout"
+import { AvatarVerySmall } from "../components/AvatarVerySmall";
 
 export const GroupCreatePage = () => {
   const [contacts, setContacts] = useState();
   const [users, setUsers] = useState([localStorage.user_id]);
+  const [usernames, setUsernames] = useState([{id: localStorage.user_id, username : localStorage.username, avatar: localStorage.avatar}]);
 
   const navigateTo = useNavigate();
 
@@ -39,23 +41,43 @@ export const GroupCreatePage = () => {
 
   const addUser = () => {
     const option = document.getElementById('usersSelect');
-    const temp = users.slice();
-    setUsers([...temp, option.value]);
+    const userData = {
+      username: option.options[option.selectedIndex].getAttribute('data-username'),
+      avatar: option.options[option.selectedIndex].getAttribute('data-avatar'),
+    }
+    //const username = option.options[option.selectedIndex].getAttribute('data-username');
+    const tempUsers = users.slice();
+    setUsers([...tempUsers, option.value]);
+    const tempUsernames = usernames.slice();
+    setUsernames([...tempUsernames, userData]);
   }
 
   const removeUser = (n) => {
     const temp = users.slice();
     temp.splice(n, 1);
     setUsers([...temp]);
+    const tempUsernames = usernames.slice();
+    tempUsernames.splice(n, 1);
+    setUsernames([...tempUsernames]);
   }
 
-  const usersList = (n) => {
-    return (
-      <div key={n}>
-        {users[n]}
-        <input type="button" onClick={() => removeUser(n)} value="Remove" />
+  const usersList = (el, i) => {
+    if (el.id === localStorage.user_id) {
+      return (
+        <div key={el.id}>
+          <AvatarVerySmall imageUrl={usernames[i].avatar} />
+          {usernames[i].username}
+        </div>
+      )
+    } else {
+      return (
+      <div key={el.id}>
+        <AvatarVerySmall imageUrl={usernames[i].avatar} />
+        {usernames[i].username}
+        <input type="button" onClick={() => removeUser(i)} value="Remove" />
       </div>
     )
+      }
   }
 
   if (!contacts) {
@@ -65,9 +87,10 @@ export const GroupCreatePage = () => {
   return (
     <Layout>
       <div className="content group-create-page">
+        <h2 onClick={() => console.log(usernames)}>Create a new group</h2>
         <form id="group-create_form" onSubmit={createGroup}>
           <div>
-            <label htmlFor="title" onClick={()=>console.log(users) }>Group name:</label>
+            <label htmlFor="title">Group name:</label>
             <input type="text" id="title" name="title" />
           </div>
           <div>
@@ -83,7 +106,7 @@ export const GroupCreatePage = () => {
                     return null
                   } else {
                     return (
-                      <option key={el._id} value={el._id}>{el.username}</option>
+                      <option key={el._id} data-username={el.username} data-avatar={el.avatar} value={el._id}>{el.username}</option>
                     )
                   }
                 })
@@ -93,12 +116,10 @@ export const GroupCreatePage = () => {
           </div>
           <button type="submit">Create group</button>
         </form>
-
-        
         {
-          users.map((el, i) => {
+          usernames.map((el, i) => {
             return (
-              usersList(i)
+              usersList(el, i)
             )
           })
         }

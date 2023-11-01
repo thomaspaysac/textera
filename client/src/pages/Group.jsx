@@ -52,8 +52,6 @@ export const Group = () => {
     fetchGroup();
   }, [update])
 
-
-
   if (error) {
     return (
       <ErrorPage error={'Group not found'} />
