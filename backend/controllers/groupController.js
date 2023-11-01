@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const firebaseFn = require('../firebaseFunctions');
 
 const Group = require('../models/group');
 const User = require('../models/user');
@@ -24,6 +25,16 @@ exports.get_groupById = asyncHandler(async (req, res, next) => {
 // test functions
 exports.create_group = asyncHandler(async (req, res, next) => {
   console.log(req.body);
+  const group = new Group({
+    title: req.body.title,
+    users: req.body.users,
+    image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
+  });
+  if (req.file) {
+    imageUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+    group.image = imageUrl;
+  }
+  await group.save();
   /*const users = [];
   const user1 = await User.findById('6531038900a6fb5d566f0be2');
   const user2 = await User.findById('653103fee34793b9b2491f19');

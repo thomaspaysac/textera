@@ -20,12 +20,14 @@ export const GroupCreatePage = () => {
   const createGroup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+    //const data = Object.fromEntries(formData.entries());
+    const data = [];
+    data[0] = users;
     console.log(data);
     const req = await fetch(`http://localhost:3000/group/create`, {
       //const req = await fetch(`https://textera-production.up.railway.app/group/create`, {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify(data),
       });
   }
 
@@ -59,8 +61,12 @@ export const GroupCreatePage = () => {
       <div className="content group-create-page">
         <form id="group-create_form" onSubmit={createGroup}>
           <div>
-            <label htmlFor="title">Group name:</label>
+            <label htmlFor="title" onClick={()=>console.log(users) }>Group name:</label>
             <input type="text" id="title" name="title" />
+          </div>
+          <div>
+            <label htmlFor="avatar">Group image: </label>
+            <input type='file' id='image' name='image' />
           </div>
           <div>
             <label htmlFor="usersSelect">Add users:</label>
@@ -77,8 +83,8 @@ export const GroupCreatePage = () => {
                 })
               }
             </select>
-            <input name='users' style={{display: "none"}} value={users} readOnly />
             <input type='button' onClick={() => addUser()} value='add user' />
+            <input name='users' style={{display: "none"}} value={users} readOnly />
           </div>
           <button type="submit">Create group</button>
         </form>
