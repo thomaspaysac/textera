@@ -11,6 +11,8 @@ export const Group = () => {
   const [groupInfo, setGroupInfo] = useState();
   const [error, setError] = useState(false);
   const [user, setUser] = useState();
+  const [update, setUpdate] = useState(0);
+
   const { id } = useParams();
   const messagesEndRef = useRef(null)
 
@@ -38,13 +40,19 @@ export const Group = () => {
     messagesEndRef.current?.scrollIntoView(/*{ behavior: "smooth", block:"end" }*/)
   }
 
-  useEffect(() => {
-    fetchGroup();
-  }, [])
+  const updateComponent = () => {
+    setUpdate(update + 1);
+  }
 
   useEffect(() => {
     scrollToBottom();
   })
+
+  useEffect(() => {
+    fetchGroup();
+  }, [update])
+
+
 
   if (error) {
     return (
@@ -81,7 +89,7 @@ export const Group = () => {
         </div>
         <div className="content-end" ref={messagesEndRef}></div>
       </div>
-      <MessageInputField groupID={id} conversationID={undefined} />
+      <MessageInputField groupID={id} conversationID={undefined} onSend={updateComponent} />
     </Layout>
   )
 }

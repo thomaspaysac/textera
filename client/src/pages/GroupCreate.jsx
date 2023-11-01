@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout"
 
 export const GroupCreatePage = () => {
   const [contacts, setContacts] = useState();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([localStorage.user_id]);
+
+  const navigateTo = useNavigate();
 
   const fetchContacts = async () => {
     const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/contacts');
@@ -20,15 +23,18 @@ export const GroupCreatePage = () => {
   const createGroup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    //const data = Object.fromEntries(formData.entries());
-    const data = [];
-    data[0] = users;
-    console.log(data);
+    formData.append('admin', localStorage.user_id);
+    users.forEach((el, i) => {
+      formData.append('users[]', users[i])
+      }
+    )
     const req = await fetch(`http://localhost:3000/group/create`, {
       //const req = await fetch(`https://textera-production.up.railway.app/group/create`, {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: formData,
       });
+    const res = await req.json();
+    navigateTo('/group/' + res);
   }
 
   const addUser = () => {
@@ -84,7 +90,6 @@ export const GroupCreatePage = () => {
               }
             </select>
             <input type='button' onClick={() => addUser()} value='add user' />
-            <input name='users' style={{display: "none"}} value={users} readOnly />
           </div>
           <button type="submit">Create group</button>
         </form>

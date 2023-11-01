@@ -24,10 +24,11 @@ exports.get_groupById = asyncHandler(async (req, res, next) => {
 
 // test functions
 exports.create_group = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   const group = new Group({
     title: req.body.title,
     users: req.body.users,
+    admin: req.body.admin,
+    lastMessage: '',
     image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
   });
   if (req.file) {
@@ -35,22 +36,8 @@ exports.create_group = asyncHandler(async (req, res, next) => {
     group.image = imageUrl;
   }
   await group.save();
-  /*const users = [];
-  const user1 = await User.findById('6531038900a6fb5d566f0be2');
-  const user2 = await User.findById('653103fee34793b9b2491f19');
-  const user3 = await User.findById('65318e150d029949f5b5b1b9');
-  users.push(user1);
-  users.push(user2);
-  users.push(user3);
-  const group = new Group({
-    users: users,
-    title: 'Test group 2',
-    admin: user2,
-    lastMessage: '',
-    image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
-  })
-  await group.save();
-  res.end;*/
+  res.json(group._id);
+  res.status(200);
 })
 
 exports.get_group = asyncHandler(async (req, res, next) => {
