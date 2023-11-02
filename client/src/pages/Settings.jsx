@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
 
 import { Layout } from "../components/Layout"
 import { AvatarBig } from "../components/AvatarBig";
@@ -50,13 +51,17 @@ export const SettingsPage = () => {
             <div className="user_status">{user.status}</div>
           </div>
           <div className="actions">
-            <button>
-              <img src={imageIcon} alt="" />Change avatar
-            </button>
-            <button>
-              <img src={statusIcon} alt="" />Change status
-            </button>
-            <button onClick={logout}>
+            <Link to='/settings/edit/avatar' state={{user: user}}>
+              <button>
+                <img src={imageIcon} alt="" />Change avatar
+              </button>
+            </Link>
+            <Link to='/settings/edit/status' state={{user: user}}>
+              <button>
+                <img src={statusIcon} alt="" />Change status
+              </button>
+            </Link>
+            <button className="logout-button" onClick={logout}>
               <img src={logoutIcon} alt="" />
               Log out
             </button>

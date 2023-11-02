@@ -1,6 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 
+import Header from "./components/Header"
+import { Footer } from "./components/Footer"
 import { Homepage } from "./pages/Homepage"
 import { SignupPage } from "./pages/Signup"
 import { LoginPage } from "./pages/Login"
@@ -12,60 +14,32 @@ import { UserProfile } from "./pages/UserProfile"
 import { Conversation } from "./pages/Conversation"
 import { Group } from "./pages/Group"
 import { GroupInfo } from "./pages/GroupInfo"
-import { GroupCreatePage } from "./pages/GroupCreate"
-import { ErrorPage } from "./pages/ErrorPage"
+import { AddContactPage } from "./pages/AddContact";
+import { GroupCreatePage } from "./pages/GroupCreate";
+import { ChangeAvatarPage } from "./pages/ChangeAvatar"
+import { ChangeStatusPage } from "./pages/ChangeStatus"
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <ConversationsList />,
-  },
-  {
-    path: '/groups',
-    element: <GroupsList />,
-  },
-  {
-    path: '/contacts',
-    element: <ContactsPage />
-  },
-  {
-    path: '/settings',
-    element: <SettingsPage />
-  },
-  {
-    path: '/signup',
-    element: <SignupPage />
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '/user/:id',
-    element: <UserProfile />,
-  },
-  {
-    path: '/conv/:id',
-    element: <Conversation />
-  },
-  {
-    exactPath: '/group/create',
-    element: <GroupCreatePage />,
-  },
-  {
-    path: '/group/:id',
-    element: <Group />
-  },
-  {
-    path: '/group/:id/details',
-    element: <GroupInfo />
-  },
-])
-
-
-
-export const App = () => {
+export const Routing = () => {
   return (
-    <RouterProvider router={router} />  
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<ConversationsList/>} />
+        <Route path="/groups" element={<GroupsList />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+        <Route path='/contacts/add' element={<AddContactPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/settings/edit/avatar" element={<ChangeAvatarPage />} />
+        <Route path="/settings/edit/status" element={<ChangeStatusPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="/conv/:id" element={<Conversation />} />
+        <Route exact path="/group/create" element={<GroupCreatePage />} />
+        <Route path="/group/:id" element={<Group />} />
+        <Route path="/group/:id/details" element={<GroupInfo />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   )
 }

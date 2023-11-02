@@ -165,11 +165,39 @@ exports.add_contact = asyncHandler(async (req, res, next) => {
   }
 })
 
+// PATCH change user avatar
+exports.change_avatar = asyncHandler(async (req, res, next) => {
+  const errors = []
+  // Validate file type
+  const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+  if (req.file && filetypeCheck.test(req.file.mimetype)) {
+    avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+    // Get user
+    const user = await User.findById(req.body.userID);
+    user.avatar = avatarUrl;
+    await user.save();
+    res.status(200).json({errors, newAvatar: avatarUrl})
+  } else {
+    errors.push('Wrong file type');
+    res.status(500).json({errors});
+  }
+})
+
+// PATCH delete user avatar
+exports.delete_avatar = asyncHandler(async (req, res, next) => {
+  try {
+    const user = await User.findById(req.body.userID);
+    user.avatar = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc";
+    await user.save();
+    res.sendStatus(200);  
+  } catch {
+    res.status(500);
+  }
+})
 
 
 // Verify JWT
 exports.verify_user = asyncHandler(async (req, res, next) => {
-  console.log(req.token);
   res.end();
   /*jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) =>{
     if (err) {

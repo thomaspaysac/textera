@@ -672,6 +672,11 @@ main {
     flex-direction: column;
     gap: 16px;
 
+    a {
+      text-decoration: none;
+      color: #000000;
+    }
+
     button {
       display: flex;
       align-items: center;
@@ -682,14 +687,35 @@ main {
       font-size: 1rem;
       height: 40px;
 
-      &:last-child {
-        font-weight: 700;
-      }
-
       img {
         max-height: 100%;
         max-width: 100%;
       }
     }
+
+    .logout-button {
+      font-weight: 700;
+    }
+  }
+}
+
+// EDIT INFO PAGE
+.change-avatar-page {
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  form {
+    display: flex;
+    gap: 8px;
+  }
+
+  button {
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+    height: 40px;
   }
 }
