@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Layout } from "../components/Layout";
 import { ErrorContainer } from "../components/ErrorContainer";
+import imageIcon from '../assets/icons/image_upload.png'
+
 
 export const SignupPage = () => {
   const [error, setError] = useState();
@@ -25,26 +27,32 @@ export const SignupPage = () => {
 
   return (
       <Layout>
-        <h2 className="page-title">Sign up</h2>
-        <form id='signup_form' className='form' onSubmit={signup}>
-          <div>
-            <label htmlFor="username">Username: </label>
-            <input type='text' id='username' name='username' />
-          </div>
-          <div>
-            <label htmlFor="password">Password: </label>
-            <input type='password' id='password' name='password' />
-          </div>
-          <div>
-            <label htmlFor='password_confirm'>Confirm password: </label>
-            <input type="password" id="password_confirm" name="password_confirm" />
-          </div>
-          <div>
-            <label htmlFor="avatar">Avatar: </label>
-            <input type='file' id='avatar' name='avatar' accept="image/*" />
-          </div>
-          <button type='submit' className="button_primary">Sign up</button>
-        </form>
+        <div className="content signup-page">
+          <h2 className="page-title">Sign up</h2>
+          <form id='signup_form' className='form' onSubmit={signup}>
+            <div className="input-group">
+              <label htmlFor="username">Username: </label>
+              <input type='text' id='username' name='username' />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password: </label>
+              <input type='password' id='password' name='password' />
+            </div>
+            <div className="input-group">
+              <label htmlFor='password_confirm'>Confirm password: </label>
+              <input type="password" id="password_confirm" name="password_confirm" />
+            </div>
+            <div>
+              <button type="button">
+                <label htmlFor="avatar">
+                  <img src={imageIcon} alt="" /> Upload an avatar 
+                </label>
+              </button>
+              <input type='file' id='avatar' name='avatar' accept="image/*" style={{display: 'none'}} />
+            </div>
+            <button type='submit' className="button_primary">Sign up</button>
+          </form>
+        </div>
       </Layout>
   )
 }

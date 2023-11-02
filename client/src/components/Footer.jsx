@@ -25,7 +25,7 @@ export const Footer = () => {
   if (localStorage.logged_in) {
     return (
       <footer>
-        <Link to='/' state={{tab: 'messages'}}>
+        <Link to='/conv' state={{tab: 'messages'}}>
         <div className={`footer-button ${activeTab === 'messages' ? ' active' : ''}`}>
           <div className='footer-icon'>
             <img src={conversations} alt='messages tab' />

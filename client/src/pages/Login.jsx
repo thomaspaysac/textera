@@ -28,24 +28,26 @@ export const LoginPage = () => {
       localStorage.setItem('avatar', res.userInfo.avatar);
       localStorage.setItem('status', res.userInfo.status);
       localStorage.setItem('logged_in', true);
-      navigateTo('/');
+      navigateTo('/conv');
     }
   }
 
   return (
       <Layout>
-        <h2 className="page-title">Log in</h2>
-        <form id='login_form' className="form" onSubmit={login}>
-          <div>
-            <label htmlFor="username">Username: </label>
-            <input type='text' id='username' name='username' />
-          </div>
-          <div>
-            <label htmlFor="password">Password: </label>
-            <input type='password' id='password' name='password'/>
-          </div>
-          <button type='submit' className="button_primary">Log in</button>
-        </form>
+        <div className="content login-page">
+          <h2 className="page-title">Log in</h2>
+          <form id='login_form' className="form" onSubmit={login}>
+            <div className="input-group">
+              <label htmlFor="username">Username: </label>
+              <input type='text' id='username' name='username' />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password: </label>
+              <input type='password' id='password' name='password'/>
+            </div>
+            <button type='submit' className="button_primary">Log in</button>
+          </form>
+        </div>
       </Layout>
     
   )

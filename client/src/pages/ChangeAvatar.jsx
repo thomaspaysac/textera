@@ -69,7 +69,7 @@ export const ChangeAvatarPage = () => {
         <AvatarBig imageUrl={localStorage.avatar} />
         <form onSubmit={submitImage}>
           <button type="button"><label htmlFor="avatar">
-          <img src={imageIcon} alt="" />Change avatar</label></button>
+            <img src={imageIcon} alt="" />Change avatar</label></button>
           <input type="file" id="avatar" name="avatar" accept="image/*" style={{display: 'none'}} />
           <button type="submit">Save</button> 
         </form>

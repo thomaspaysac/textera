@@ -200,7 +200,6 @@ exports.delete_avatar = asyncHandler(async (req, res, next) => {
 
 // PATCH change user status
 exports.change_status = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   const errors = []
   try {
     const user = await User.findById(req.body.userID);

@@ -1,8 +1,10 @@
 import { Layout } from "../components/Layout"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AddContactPage = () => {
   const [errorMessage, setErrorMessage] = useState(null)
+  const navigateTo = useNavigate();
 
   const addContact = async (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ export const AddContactPage = () => {
         //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + contactRes[0]._id, {
         method: 'POST',
       })
+      navigateTo('/contacts');
       if(req.status !== 200) {
         const err = await req.json();
         setErrorMessage(err);

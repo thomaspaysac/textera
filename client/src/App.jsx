@@ -24,7 +24,8 @@ export const Routing = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route exact path="/" element={<ConversationsList/>} />
+        <Route exact path="/" element={<Homepage />} />
+        <Route exact path="/conv" element={<ConversationsList />} />
         <Route path="/groups" element={<GroupsList />} />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path='/contacts/add' element={<AddContactPage />} />
