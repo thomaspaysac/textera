@@ -105,7 +105,7 @@ export const UserProfile = () => {
       <Layout>
         <div className="content user-profile">
           <AvatarBig imageUrl={user.avatar} />
-          <div className="user_name" onClick={() => console.log(contacts.includes(user._id))}>{user.username}</div>
+          <div className="user_name">{user.username}</div>
           <div className="user_status">{user.status}</div>
           <AddContactButton />
           <ConversationPrompt />

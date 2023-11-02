@@ -32,8 +32,11 @@ exports.create_group = asyncHandler(async (req, res, next) => {
     image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
   });
   if (req.file) {
-    imageUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-    group.image = imageUrl;
+    const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+    if (filetypeCheck.test(req.file.mimetype)) {
+      imageUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+      group.image = imageUrl;
+    }
   }
   await group.save();
   res.json(group._id);

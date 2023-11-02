@@ -81,7 +81,6 @@ exports.signup_post = [
       if (req.file) {
         const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
         if (filetypeCheck.test(req.file.mimetype)) {
-          fileUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
           avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
           user.avatar = avatarUrl;  
         }

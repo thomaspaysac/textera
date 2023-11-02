@@ -643,3 +643,53 @@ main {
   }
 }
 
+// Settings page
+.settings-page {
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    .user_name {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .user_status {
+      font-style: italic;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 1rem;
+      height: 40px;
+
+      &:last-child {
+        font-weight: 700;
+      }
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}

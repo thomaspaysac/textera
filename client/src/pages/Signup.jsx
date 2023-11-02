@@ -41,7 +41,7 @@ export const SignupPage = () => {
           </div>
           <div>
             <label htmlFor="avatar">Avatar: </label>
-            <input type='file' id='avatar' name='avatar' />
+            <input type='file' id='avatar' name='avatar' accept="image/*" />
           </div>
           <button type='submit' className="button_primary">Sign up</button>
         </form>

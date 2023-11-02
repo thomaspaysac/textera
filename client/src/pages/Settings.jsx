@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react"
 
 import { Layout } from "../components/Layout"
-import { AvatarSmall } from "../components/AvatarSmall";
+import { AvatarBig } from "../components/AvatarBig";
+
+import imageIcon from '../assets/icons/image_upload.png'
+import statusIcon from '../assets/icons/status.png'
+import logoutIcon from '../assets/icons/logout.png'
+
 
 export const SettingsPage = () => {
   const [user, setUser] = useState();
@@ -38,11 +43,24 @@ export const SettingsPage = () => {
 
   return (  
       <Layout>
-        <div>{user.username}</div>
-        <div>{user.status}</div>
-        <AvatarSmall imageUrl={user.avatar} />
-        <div>
-          <button onClick={logout}>Log out</button>
+        <div className="content settings-page">
+          <div className="user-info">
+            <AvatarBig imageUrl={user.avatar} />
+            <div className="user_name">{user.username}</div>
+            <div className="user_status">{user.status}</div>
+          </div>
+          <div className="actions">
+            <button>
+              <img src={imageIcon} alt="" />Change avatar
+            </button>
+            <button>
+              <img src={statusIcon} alt="" />Change status
+            </button>
+            <button onClick={logout}>
+              <img src={logoutIcon} alt="" />
+              Log out
+            </button>
+          </div>
         </div>
       </Layout>
     

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout"
 import { AvatarSmall } from "../components/AvatarSmall";
-import attach from '../assets/icons/image_upload.png'
+import imageIcon from '../assets/icons/image_upload.png'
 
 export const GroupCreatePage = () => {
   const [contacts, setContacts] = useState();
@@ -95,9 +95,9 @@ export const GroupCreatePage = () => {
         <form id="group-create_form" onSubmit={createGroup}>
           <div className="group-info_form">
             <label htmlFor="image" className="image-upload_button">
-              <img src={attach} alt='attach file' />
+              <img src={imageIcon} alt='group image' />
             </label>
-            <input type='file' id='image' name='image' style={{display: "none"}} />
+            <input type='file' id='image' name='image' accept="image/*" style={{display: "none"}} />
             <input type="text" id="title" name="title" placeholder="Group name" />
           </div>
           
