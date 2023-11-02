@@ -177,6 +177,9 @@ exports.change_avatar = asyncHandler(async (req, res, next) => {
     user.avatar = avatarUrl;
     await user.save();
     res.status(200).json({errors, newAvatar: avatarUrl})
+  } else if (!req.file) {
+    errors.push('Choose an image');
+    res.status(500).json({errors});
   } else {
     errors.push('Wrong file type');
     res.status(500).json({errors});

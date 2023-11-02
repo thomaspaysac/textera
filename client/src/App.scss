@@ -705,7 +705,12 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
+
+  .error-container {
+    color:#ff0000;
+    margin-bottom: 16px;
+  }
 
   form {
     display: flex;

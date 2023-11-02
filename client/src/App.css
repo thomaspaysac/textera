@@ -525,7 +525,10 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px; }
+  gap: 16px; }
+  .change-avatar-page .error-container {
+    color: #ff0000;
+    margin-bottom: 16px; }
   .change-avatar-page form {
     display: flex;
     gap: 8px; }

@@ -47,7 +47,7 @@ export const ChangeAvatarPage = () => {
       return null
     } else {
       return (
-        <div>
+        <div className="error-container">
           {
             errorMessage.map((el, i) => {
               return (
@@ -69,8 +69,8 @@ export const ChangeAvatarPage = () => {
           <input type="file" id="avatar" name="avatar" accept="image/*" style={{display: 'none'}} />
           <button type="submit">Save</button> 
         </form>
-        <button onClick={() => deleteAvatar()}>Delete avatar</button>
         <ErrorContainer />
+        <button onClick={() => deleteAvatar()}>Delete avatar</button>
       </div>
     </Layout>
   )
