@@ -124,7 +124,7 @@ exports.login_post = asyncHandler(async (req, res, next) => {
             expiresIn: "1d",
           }
         );*/
-        const userInfo = { _id: user._id, username: user.username, avatar: user.avatar }
+        const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status }
         /*res.status(200).json({
           status: 200,
           userInfo,
@@ -195,6 +195,21 @@ exports.delete_avatar = asyncHandler(async (req, res, next) => {
     res.sendStatus(200);  
   } catch {
     res.status(500);
+  }
+})
+
+// PATCH change user status
+exports.change_status = asyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  const errors = []
+  try {
+    const user = await User.findById(req.body.userID);
+    user.status = req.body.status;
+    await user.save();
+    res.status(200).json({ errors });
+  } catch {
+    errors.push('Unexpected error');
+    res.status(500).json({ errors });
   }
 })
 

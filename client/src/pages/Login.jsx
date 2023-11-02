@@ -26,6 +26,7 @@ export const LoginPage = () => {
       localStorage.setItem('username', res.userInfo.username);
       localStorage.setItem('user_id', res.userInfo._id);
       localStorage.setItem('avatar', res.userInfo.avatar);
+      localStorage.setItem('status', res.userInfo.status);
       localStorage.setItem('logged_in', true);
       navigateTo('/');
     }

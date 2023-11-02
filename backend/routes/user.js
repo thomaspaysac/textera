@@ -49,6 +49,8 @@ router.post('/:user/add/:contact', userController.add_contact);
 
 router.patch('/edit/avatar', upload.single('avatar'), userController.change_avatar);
 
+router.patch('/edit/status', userController.change_status);
+
 router.patch('/edit/avatar/delete', userController.delete_avatar);
 
 module.exports = router;

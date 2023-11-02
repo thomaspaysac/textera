@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout"
 import { AvatarBig } from "../components/AvatarBig";
@@ -11,6 +11,7 @@ import logoutIcon from '../assets/icons/logout.png'
 
 export const SettingsPage = () => {
   const [user, setUser] = useState();
+  const navigateTo = useNavigate();
 
   const logout = () => {
     if (window.confirm('Do you really want to log out ?')) {

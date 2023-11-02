@@ -58,7 +58,7 @@ export const UserProfile = () => {
   }, [])
 
   const AddContactButton = () => {
-    if (contacts.includes(user._id)) {
+    if (contacts.includes(user._id) || user._id === localStorage.user_id) {
       return null
     } 
     
