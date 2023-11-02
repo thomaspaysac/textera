@@ -79,8 +79,12 @@ exports.signup_post = [
     } else {
       res.json(errors.array());
       if (req.file) {
-        avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-        user.avatar = avatarUrl;
+        const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+        if (filetypeCheck.test(req.file.mimetype)) {
+          fileUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+          avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+          user.avatar = avatarUrl;  
+        }
       }
       bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         try {
