@@ -2,7 +2,6 @@ import { Layout } from "../components/Layout"
 import { useState } from "react";
 
 export const AddContactPage = () => {
-  const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
 
   const addContact = async (e) => {
@@ -14,7 +13,6 @@ export const AddContactPage = () => {
     const contactRes = await contactReq.json();
     if (contactRes.length === 0) {
       const err = 'User not found';
-      setError(true);
       setErrorMessage(err);
     } else {
       const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + contactRes[0]._id, {
@@ -23,13 +21,9 @@ export const AddContactPage = () => {
       })
       if(req.status !== 200) {
         const err = await req.json();
-        //setError(true);
         setErrorMessage(err);
         e.target.reset();
-      } else {
-        console.log('user added')
       }
-
     }
   }
 

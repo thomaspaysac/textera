@@ -147,6 +147,14 @@ main {
   background-color: #ededed00;
   bottom: 10vh;
   z-index: 4; }
+  .message-input .error-container {
+    position: absolute;
+    top: -24px;
+    right: 24px;
+    background-color: #ff0000;
+    border-radius: 8px;
+    padding: 4px;
+    color: #ffffff; }
   .message-input #input_form {
     display: flex;
     gap: 8px;

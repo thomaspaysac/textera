@@ -193,6 +193,16 @@ main {
   bottom: 10vh;
   z-index: 4;
 
+  .error-container {
+    position: absolute;
+    top: -24px;
+    right: 24px;
+    background-color: #ff0000;
+    border-radius: 8px;
+    padding: 4px;
+    color: #ffffff;
+  }
+
   #input_form {
     display: flex;
     gap: 8px;

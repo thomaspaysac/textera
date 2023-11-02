@@ -52,10 +52,20 @@ exports.message_create = asyncHandler(async (req, res, next) => {
       message.group = req.body.group;
     }
     if (req.file) {
-      fileUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-      message.file = fileUrl;
+      const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+      if (filetypeCheck.test(req.file.mimetype)) {
+        fileUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+        message.file = fileUrl;  
+        await message.save();
+        res.status(200)
+      } else {
+        const err = 'You can only send image files.'
+        res.status(500).json(err);
+      }
+    } else {
+      await message.save();
     }
-    await message.save();
+    // update conversation / group
     if (!!req.body.conversation) {
       const conversation = await Conversation.findById(req.body.conversation);
       conversation.lastMessage = req.body.text_input;
