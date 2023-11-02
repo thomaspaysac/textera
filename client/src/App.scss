@@ -714,7 +714,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 
   .error-container {
     color:#ff0000;
@@ -723,10 +723,51 @@ main {
 
   form {
     display: flex;
-    gap: 8px;
+    gap: 16px;
   }
 
   button {
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+    height: 40px;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 100%;
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .delete-avatar_button {
+    margin-top: auto;
+  }
+}
+
+.change-status-page {
+  padding-top: 24px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  
+    input[type="text"] {
+      padding: 4px;
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+
+  button {
+    margin-top: 16px;
     padding: 8px;
     border-radius: 4px;
     font-size: 1rem;

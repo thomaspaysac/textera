@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 
 import { Layout } from "../components/Layout"
 import { AvatarBig } from "../components/AvatarBig"
+import imageIcon from '../assets/icons/image_upload.png'
+
 
 export const ChangeAvatarPage = () => {
   const [errorMessage, setErrorMessage] = useState(null)
@@ -66,12 +68,13 @@ export const ChangeAvatarPage = () => {
       <div className="content change-avatar-page">
         <AvatarBig imageUrl={localStorage.avatar} />
         <form onSubmit={submitImage}>
-          <button type="button"><label htmlFor="avatar">Change avatar</label></button>
+          <button type="button"><label htmlFor="avatar">
+          <img src={imageIcon} alt="" />Change avatar</label></button>
           <input type="file" id="avatar" name="avatar" accept="image/*" style={{display: 'none'}} />
           <button type="submit">Save</button> 
         </form>
         <ErrorContainer />
-        <button onClick={() => deleteAvatar()}>Delete avatar</button>
+        <button className="delete-avatar_button" onClick={() => deleteAvatar()}>Delete avatar</button>
       </div>
     </Layout>
   )

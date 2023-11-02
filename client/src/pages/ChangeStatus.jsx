@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
-
 import { Layout } from "../components/Layout"
+
 
 export const ChangeStatusPage = () => {
   const navigateTo = useNavigate();
@@ -29,11 +29,11 @@ export const ChangeStatusPage = () => {
   
   return (
     <Layout>
-      <div className="content">
+      <div className="content change-status-page">
       <form onSubmit={submitStatus}>
-        <label htmlFor="status">Status: </label>
+        <label htmlFor="status">New status: </label>
         <input type='text' id="status" name="status" defaultValue={localStorage.status} />
-        <button type="submit">Change status</button>
+        <button type="submit">Save</button>
       </form>
       </div>
     </Layout>
