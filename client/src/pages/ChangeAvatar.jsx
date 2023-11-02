@@ -15,8 +15,8 @@ export const ChangeAvatarPage = () => {
     setErrorMessage(null);
     const formData = new FormData(e.target);
     formData.append('userID', localStorage.user_id);
-    const req = await fetch('http://localhost:3000/user/edit/avatar', {
-    //const req = await fetch('https://textera-production.up.railway.app/user/edit/avatar', {
+    //const req = await fetch('http://localhost:3000/user/edit/avatar', {
+    const req = await fetch('https://textera-production.up.railway.app/user/edit/avatar', {
       method: 'PATCH',
       body: formData
     })
@@ -32,8 +32,8 @@ export const ChangeAvatarPage = () => {
   const deleteAvatar = async () => {
     if (window.confirm('Do you really want to delete your avatar?')) {
       const data = { userID: localStorage.user_id };
-      await fetch('http://localhost:3000/user/edit/avatar/delete', {
-      //await fetch('https://textera-production.up.railway.app/user/edit/avatar/delete', {
+      //await fetch('http://localhost:3000/user/edit/avatar/delete', {
+      await fetch('https://textera-production.up.railway.app/user/edit/avatar/delete', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

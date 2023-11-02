@@ -16,23 +16,23 @@ export const UserProfile = () => {
   const navigateTo = useNavigate();
 
   const fetchUsers = async () => {
-    const userReq = await fetch('http://localhost:3000/user/' + id);
-    //const req = await fetch('https://textera-production.up.railway.app/user/' + id);
+    //const userReq = await fetch('http://localhost:3000/user/' + id);
+    const userReq = await fetch('https://textera-production.up.railway.app/user/' + id);
     const userRes = await userReq.json()
     setUser(userRes);
-    const ownReq = await fetch('http://localhost:3000/user/' + localStorage.user_id);
-    //const req = await fetch('https://textera-production.up.railway.app/user/' + id);
+    //const ownReq = await fetch('http://localhost:3000/user/' + localStorage.user_id);
+    const ownReq = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
     const ownRes = await ownReq.json()
     setContacts(ownRes.contacts);
-    const convReq = await fetch('http://localhost:3000/conversation/users/' + localStorage.user_id + '/' + id)
-    //const convReq = await fetch('https://textera-production.up.railway.app/conversation/users/' + localStorage.user_id + '/' + id);
+    //const convReq = await fetch('http://localhost:3000/conversation/users/' + localStorage.user_id + '/' + id)
+    const convReq = await fetch('https://textera-production.up.railway.app/conversation/users/' + localStorage.user_id + '/' + id);
     const convRes = await convReq.json();
     setConversation(convRes);
   }
 
   const addToContacts = async () => {
-    await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + id, {
-    //await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + id, {
+    //await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + id, {
+    await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + id, {
       method: 'POST',
     })
   }

@@ -19,13 +19,13 @@ export const Group = () => {
   const fetchGroup = async () => {
     // Get all messages in group
     try {
-      const req = await fetch('http://localhost:3000/messages/group/' + id);
-      //const req = await fetch('https://textera-production.up.railway.app/messages/group/' + id);
+      //const req = await fetch('http://localhost:3000/messages/group/' + id);
+      const req = await fetch('https://textera-production.up.railway.app/messages/group/' + id);
       const res = await req.json();
       setMessages(res);
       // Get group data
-      const groupReq = await fetch('http://localhost:3000/group/' + id)
-      //const groupReq = await fetch('https://textera-production.up.railway.app/group/' + id)
+      //const groupReq = await fetch('http://localhost:3000/group/' + id)
+      const groupReq = await fetch('https://textera-production.up.railway.app/group/' + id)
       const groupRes = await groupReq.json();
       setGroupInfo(groupRes);
       groupRes.users.forEach((el) => {

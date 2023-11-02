@@ -21,8 +21,8 @@ export const GroupsList = () => {
   }
 
   const fetchGroups = async () => {
-    const req = await fetch('http://localhost:3000/group/user/' + localStorage.user_id);
-    //const req = await fetch('https://textera-production.up.railway.app/group/user/' + localStorage.user_id);
+    //const req = await fetch('http://localhost:3000/group/user/' + localStorage.user_id);
+    const req = await fetch('https://textera-production.up.railway.app/group/user/' + localStorage.user_id);
     const res = await req.json()
     setGroups(res);
   }
