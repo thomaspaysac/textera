@@ -185,7 +185,14 @@ main {
       min-width: 48px;
       border-radius: 50%;
       border: none;
-      background-color: #ffffff; }
+      background-color: #ffffff;
+      position: relative; }
+      .message-input #input_form button img {
+        position: absolute;
+        top: 12px;
+        left: 14px;
+        width: 24px;
+        height: 24px; }
 
 .conversation-list,
 .groups-list {

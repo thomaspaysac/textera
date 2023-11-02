@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import attach from '../assets/icons/file_upload.png'
+import sendIcon from '../assets/icons/send.png'
 import imageUpload from '../assets/icons/image_upload_black.png'
 
 export const MessageInputField = (props) => {
@@ -57,7 +57,9 @@ export const MessageInputField = (props) => {
         <input name='author' style={{display: "none"}} value={localStorage.user_id} readOnly />
         <input name='conversation' style={{display: "none"}} value={props.conversationID} readOnly />
         <input name='group' style={{display: "none"}} value={props.groupID} readOnly />
-        <button type="submit">Send</button>
+        <button type="submit">
+          <img src={sendIcon} alt="send message" />
+        </button>
         <ErrorContainer />
       </form>
     </div>
