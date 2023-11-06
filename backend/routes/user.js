@@ -39,7 +39,7 @@ router.post('/login', userController.login_post);
 
 router.get('/username/:username', userController.user_username_get);
 
-//router.post('/verify', verifyToken, userController.verify_user);
+router.post('/verify', verifyToken, userController.verify_user);
 
 router.get('/:id', userController.user_profile_get);
 

@@ -106,31 +106,25 @@ exports.login_get = asyncHandler(async (req, res, next) => {
 // POST login
 exports.login_post = asyncHandler(async (req, res, next) => {
   try {
-    passport.authenticate ('local', {session: false}, (err, user, userData) => {
+    passport.authenticate('local', {session: true}, (err, user, userData) => {
       if (err || !user) {
         const error = new Error('User does not exist')
         return res.status(403).json({
           userData
         })
       }
-      req.login (user, {session: false}, (err) => {
+      req.login (user, {session: true}, (err) => {
         if (err){
           next(err);
         }
-        /*const token = jwt.sign(
+        const token = jwt.sign(
           { _id: user._id, username: user.username, avatar: user.avatar },
           process.env.JWT_SECRET,
           {
             expiresIn: "1d",
           }
-        );*/
-        const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status }
-        /*res.status(200).json({
-          status: 200,
-          userInfo,
-          message: "login success",
-          token: token,
-        });*/
+        );
+        const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status, token }
         return res.status(200).json({userInfo});
       });
     }) (req, res, next);
@@ -216,7 +210,7 @@ exports.change_status = asyncHandler(async (req, res, next) => {
 // Verify JWT
 exports.verify_user = asyncHandler(async (req, res, next) => {
   res.end();
-  /*jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) =>{
+  jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) =>{
     if (err) {
       res.status(403);
     } else {
@@ -226,6 +220,6 @@ exports.verify_user = asyncHandler(async (req, res, next) => {
       }
         );
     }
-  })*/
+  })
 });
 

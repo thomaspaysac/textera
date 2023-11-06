@@ -7,8 +7,8 @@ export const ConversationsList = () => {
   const [conversations, setConversations] = useState();
 
   const fetchConversations = async () => {
-    //const req = await fetch('http://localhost:3000/conversation/user/' + localStorage.user_id);
-    const req = await fetch('https://textera-production.up.railway.app/conversation/user/' + localStorage.user_id);
+    const req = await fetch('http://localhost:3000/conversation/user/' + localStorage.user_id);
+    //const req = await fetch('https://textera-production.up.railway.app/conversation/user/' + localStorage.user_id);
     const res = await req.json()
     setConversations(res);
   }

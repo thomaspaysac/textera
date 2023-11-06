@@ -10,15 +10,15 @@ export const AddContactPage = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    //const contactReq = await fetch('http://localhost:3000/user/username/' + data.username);
-    const contactReq = await fetch('https://textera-production.up.railway.app/user/username/' + data.username);
+    const contactReq = await fetch('http://localhost:3000/user/username/' + data.username);
+    //const contactReq = await fetch('https://textera-production.up.railway.app/user/username/' + data.username);
     const contactRes = await contactReq.json();
     if (contactRes.length === 0) {
       const err = 'User not found';
       setErrorMessage(err);
     } else {
-      //const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + contactRes[0]._id, {
-        const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + contactRes[0]._id, {
+      const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + contactRes[0]._id, {
+      //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + contactRes[0]._id, {
         method: 'POST',
       })
       navigateTo('/contacts');

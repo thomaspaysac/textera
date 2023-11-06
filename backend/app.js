@@ -3,7 +3,8 @@ const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose')
 const path = require('path');
-const session = require('cookie-session');
+const session = require('express-session');
+//const session = require('cookie-session');
 const passport = require("passport");
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require("passport-local").Strategy;
@@ -69,7 +70,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({ secret: "sirius", resave: false, saveUninitialized: true, cookie: { secure: true }}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {

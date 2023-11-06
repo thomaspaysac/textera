@@ -10,8 +10,8 @@ export const ChangeStatusPage = () => {
     const formData = new FormData(e.target);
     formData.append('userID', localStorage.user_id);
     const data = Object.fromEntries(formData.entries());
-    //const req = await fetch('http://localhost:3000/user/edit/status', {
-    const req = await fetch('https://textera-production.up.railway.app/user/edit/status', {
+    const req = await fetch('http://localhost:3000/user/edit/status', {
+    //const req = await fetch('https://textera-production.up.railway.app/user/edit/status', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'

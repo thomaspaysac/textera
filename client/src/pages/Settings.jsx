@@ -23,8 +23,8 @@ export const SettingsPage = () => {
   }
 
   const fetchUserData = async () => {
-    //const req = await fetch('http://localhost:3000/user/' + localStorage.user_id);
-    const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
+    const req = await fetch('http://localhost:3000/user/' + localStorage.user_id);
+    //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
     const res = await req.json()
     setUser(res);
   }

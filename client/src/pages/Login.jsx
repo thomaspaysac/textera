@@ -11,8 +11,8 @@ export const LoginPage = () => {
     const form = document.getElementById('login_form');
     const data = {};
     new FormData(form).forEach((value, key) => data[key] = value);
-    //const req = await fetch(`http://localhost:3000/user/login`, {
-    const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
+    const req = await fetch(`http://localhost:3000/user/login`, {
+    //const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -23,6 +23,7 @@ export const LoginPage = () => {
       setError(true);
     } else {
       const res = await req.json();
+      console.log(res);
       localStorage.setItem('username', res.userInfo.username);
       localStorage.setItem('user_id', res.userInfo._id);
       localStorage.setItem('avatar', res.userInfo.avatar);

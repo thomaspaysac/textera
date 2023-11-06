@@ -7,8 +7,8 @@ export const ContactsPage = () => {
   const [contacts, setContacts] = useState();
 
   const fetchContacts = async () => {
-    //const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/contacts');
-    const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/contacts');
+    const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/contacts');
+    //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/contacts');
     const res = await req.json()
     setContacts(res);
   }

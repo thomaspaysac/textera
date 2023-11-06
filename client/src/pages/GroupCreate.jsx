@@ -13,8 +13,8 @@ export const GroupCreatePage = () => {
   const navigateTo = useNavigate();
 
   const fetchContacts = async () => {
-    //const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/contacts');
-    const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/contacts');
+    const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/contacts');
+    //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/contacts');
     const res = await req.json()
     setContacts(res);
   }
@@ -31,8 +31,8 @@ export const GroupCreatePage = () => {
       formData.append('users[]', usersID[i])
       }
     )
-    //const req = await fetch(`http://localhost:3000/group/create`, {
-    const req = await fetch(`https://textera-production.up.railway.app/group/create`, {
+    const req = await fetch(`http://localhost:3000/group/create`, {
+    //const req = await fetch(`https://textera-production.up.railway.app/group/create`, {
         method: 'POST',
         body: formData,
       });
