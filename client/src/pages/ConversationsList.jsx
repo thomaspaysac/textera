@@ -9,10 +9,14 @@ export const ConversationsList = () => {
   const userData = useContext(userContext);
 
   const fetchConversations = async () => {
-    const req = await fetch('http://localhost:3000/conversation/user/' + userData.user_metadata.uid);
-    //const req = await fetch('https://textera-production.up.railway.app/conversation/user/' + localStorage.user_id);
-    const res = await req.json()
-    setConversations(res);
+    if (!userData) {
+      return;
+    } else {
+      const req = await fetch('http://localhost:3000/conversation/user/' + userData.user_metadata.uid);
+      //const req = await fetch('https://textera-production.up.railway.app/conversation/user/' + localStorage.user_id);
+      const res = await req.json()
+      setConversations(res);
+    }
   }
 
   const conversationsList = () => {

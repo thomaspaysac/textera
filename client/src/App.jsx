@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import './App.css'
@@ -26,13 +26,15 @@ const supabaseUrl = "https://gliraufnczlivoqbxhzc.supabase.co";
 import { supabaseKey } from "./_private";
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-export const userContext = createContext();
-
-//const {userData, error} = await supabase.auth.getSession();
-
+export const userContext = createContext({});
 
 export const Routing = () => {
   const [userData, setUserData] = useState(undefined)
+  const [update, setUpdate] = useState(0);
+
+  const updateComponent = () => {
+    setUpdate(update + 1);
+  }
 
   const fetchUserData = async () => {
     console.log('fetching')
@@ -40,13 +42,29 @@ export const Routing = () => {
     if (!data.session) {
       setUserData(undefined);
     } else {
-      setUserData(data.session.user);  
+      setUserData(data.session.user);
+    }
+  }
+
+  const setLocals = async () => {
+    if (!userData) {
+      return;
+    } else {
+      const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid);
+      const res = await req.json();
+      localStorage.setItem('avatar', res.avatar);
+      localStorage.setItem('status', res.status);
     }
   }
 
   useEffect(() => {
-    fetchUserData()
+    fetchUserData();
   }, [])
+
+  useEffect(() => {
+    setLocals();
+    updateComponent();
+  }, [userData])
   
   return (
     <userContext.Provider value={userData}>

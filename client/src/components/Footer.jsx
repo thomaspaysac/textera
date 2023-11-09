@@ -12,6 +12,7 @@ import signup from '../assets/icons/signup.png'
 export const Footer = () => {
   const [activeTab, setActiveTab] = useState('messages');
   const userData = useContext(userContext);
+  const [update, setUpdate] = useState(userData);
 
   const loc = useLocation();
 
@@ -22,7 +23,6 @@ export const Footer = () => {
       setActiveTab(loc.state.tab);
     }
   }, [loc.state])
-
 
   if (userData) {
     return (

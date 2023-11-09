@@ -45,15 +45,8 @@ export const LoginPage = () => {
     await supabase.auth.signInWithPassword({
       email: data.username + "@email.com",
       password: data.password,
-    });
-    /*const req = await fetch(`http://localhost:3000/user/login`, {
-      //const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });*/
+    });  
+    navigateTo('/conv');
   }
 
   return (

@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 import { AvatarBig } from "../components/AvatarBig";
-import { AvatarSmall } from "../components/AvatarSmall";
 import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
 
