@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { userContext } from "../App";
 import { AvatarBig } from "../components/AvatarBig";
 import { AvatarSmall } from "../components/AvatarSmall";
 import { Link } from "react-router-dom";
@@ -9,6 +10,7 @@ import conversationIcon from '../assets/icons/conversation_black.png'
 import conversation_newIcon from '../assets/icons/conversation_new.png'
 
 export const UserProfile = () => {
+  const userData = useContext(userContext);
   const [user, setUser] = useState();
   const [contacts, setContacts] = useState([]);
   const [conversation, setConversation] = useState([]);
@@ -20,14 +22,14 @@ export const UserProfile = () => {
     //const userReq = await fetch('https://textera-production.up.railway.app/user/' + id);
     const userRes = await userReq.json()
     setUser(userRes);
-    const ownReq = await fetch('http://localhost:3000/user/' + localStorage.user_id);
+    /*const ownReq = await fetch('http://localhost:3000/user/' + localStorage.user_id);
     //const ownReq = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
     const ownRes = await ownReq.json()
     setContacts(ownRes.contacts);
     const convReq = await fetch('http://localhost:3000/conversation/users/' + localStorage.user_id + '/' + id)
     //const convReq = await fetch('https://textera-production.up.railway.app/conversation/users/' + localStorage.user_id + '/' + id);
     const convRes = await convReq.json();
-    setConversation(convRes);
+    setConversation(convRes);*/
   }
 
   const addToContacts = async () => {
@@ -105,8 +107,8 @@ export const UserProfile = () => {
   return (
       <Layout>
         <div className="content user-profile">
-          <AvatarBig imageUrl={user.avatar} />
-          <div className="user_name">{user.username}</div>
+          <AvatarBig imageUrl={user.avatar}/>
+          <div className="user_name" onClick={() => console.log(userData)}>{user.username}</div>
           <div className="user_status">{user.status}</div>
           <AddContactButton />
           <ConversationPrompt />

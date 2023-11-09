@@ -12,6 +12,10 @@ const firebaseFn = require('../firebaseFunctions');
 
 const User = require('../models/user');
 
+// SUPABASE config
+const supabaseInit = require('@supabase/supabase-js');
+const supabase = supabaseInit.createClient(process.env.SUPABASE_PROJECT, process.env.SUPABASE_KEY);
+
 // GET user profile JSON
 exports.user_profile_get = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-password');
@@ -68,6 +72,30 @@ exports.signup_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
+    // Send to Supabase for authentication
+    const { data, error } = await supabase.auth.signUp(
+      {
+        email: req.body.username + "@email.com",
+        password: req.body.password,
+        options: {
+          data: {
+            username: req.body.username,
+          }
+        }
+      }
+    )
+    const user = new User({
+      _id: data.user.id,
+      email: req.body.username + '@email.com',
+      username: req.body.username,
+      password: req.body.password,
+      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc",
+    });
+    await user.save();
+    const newUser = await User.findById(data.user.id);
+    console.log(newUser)
+    res.end();
+    /*const errors = validationResult(req);
     const user = new User({
       username: req.body.username,
       password: req.body.password,
@@ -94,7 +122,7 @@ exports.signup_post = [
           return next(err);
         };
       })
-    }
+    }*/
   })
 ]
 
@@ -104,7 +132,20 @@ exports.login_get = asyncHandler(async (req, res, next) => {
 })
 
 // POST login
+<<<<<<< Updated upstream
 exports.login_post = asyncHandler(async (req, res, next) => {
+=======
+/*exports.login_post = 
+  passport.authenticate("local", {
+    successRedirect: "/success",
+    failureRedirect: "/failure"
+  });*/
+
+
+
+// POST login (Passport)
+/*exports.login_post = function (req, res, next) {
+>>>>>>> Stashed changes
   try {
     passport.authenticate('local', {session: true}, (err, user, userData) => {
       if (err || !user) {
@@ -124,8 +165,15 @@ exports.login_post = asyncHandler(async (req, res, next) => {
             expiresIn: "1d",
           }
         );
+<<<<<<< Updated upstream
         const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status, token }
         return res.status(200).json({userInfo});
+=======
+        const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status }
+        //return res.status(200).json({userInfo});
+        res.redirect('/test');
+        //return res.status(200)//.json(req.user);
+>>>>>>> Stashed changes
       });
     }) (req, res, next);
   } catch (err) {
@@ -133,7 +181,27 @@ exports.login_post = asyncHandler(async (req, res, next) => {
       err
     })
   }
+<<<<<<< Updated upstream
 });
+=======
+};*/
+
+// POST Login (Supabase)
+exports.login_post = asyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  await supabase.auth.signInWithPassword({
+    email: req.body.username + "@email.com",
+    password: req.body.password,
+  })
+  // Get user ID in Supabase
+  /*const {data, error} = await supabase.auth.getSession();
+  const userID = data.id;
+  console.log(userID);*/
+  
+  // If first time log in, create user data in MongoDB with Supabase ID
+  res.status(200);
+})
+>>>>>>> Stashed changes
 
 // POST Add contact
 exports.add_contact = asyncHandler(async (req, res, next) => {

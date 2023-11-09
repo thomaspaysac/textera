@@ -20,6 +20,24 @@ import { ChangeAvatarPage } from "./pages/ChangeAvatar"
 import { ChangeStatusPage } from "./pages/ChangeStatus"
 
 export const Routing = () => {
+<<<<<<< Updated upstream
+=======
+  const [userData, setUserData] = useState({user: 'test', password: 'blia'})
+
+  const fetchUserData = async () => {
+    const {data, error} = await supabase.auth.getSession();
+    if (!data.session) {
+      setUserData(undefined);
+    } else {
+      setUserData(data.session.user);
+    }
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+  
+>>>>>>> Stashed changes
   return (
     <BrowserRouter>
       <Header />

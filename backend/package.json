@@ -8,6 +8,7 @@
     "serverstart": "SET DEBUG=backend:* & npm run devstart"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.38.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "~1.4.4",
