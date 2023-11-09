@@ -33,7 +33,7 @@ export const UserProfile = () => {
   }
 
   const addToContacts = async () => {
-    await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + id, {
+    await fetch('http://localhost:3000/user/' + userData.user_metadata.uid + '/add/' + id, {
     //await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + id, {
       method: 'POST',
     })
@@ -41,7 +41,7 @@ export const UserProfile = () => {
 
   const createConversation = async () => {
     const users = {
-      user1: localStorage.user_id,
+      user1: userData.user_metadata.uid,
       user2: user._id,
     };
     const req = await fetch('http://localhost:3000/conversation/create', {

@@ -18,7 +18,7 @@ export const SettingsPage = () => {
 
   const logout = async () => {
     if (window.confirm('Do you really want to log out ?')) {
-      //localStorage.clear();
+      localStorage.clear();
       await supabase.auth.signOut();
       navigateTo('/');
     } else {

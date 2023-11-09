@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useParams } from "react-router-dom"
+import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { ConversationHeader } from "../components/ConversationHeader";
 import { MessageInputField } from "../components/MessageInputField";
@@ -9,6 +10,7 @@ export const Conversation = () => {
   const [messages, setMessages] = useState();
   const [correspondant, setCorrespondant] = useState();
   const [update, setUpdate] = useState(0);
+  const userData = useContext(userContext);
   const { id } = useParams();
   const messagesEndRef = useRef(null)
 
@@ -21,7 +23,7 @@ export const Conversation = () => {
     //const convReq = await fetch('https://textera-production.up.railway.app/conversation/' + id)
     const convRes = await convReq.json();
     convRes.users.forEach((el) => {
-      return el._id === localStorage.user_id ? null : setCorrespondant(el);
+      return el._id === userData.user_metadata.uid ? null : setCorrespondant(el);
     })
   }
 
@@ -52,7 +54,7 @@ export const Conversation = () => {
         <div className='messages-list'>
         {
           messages.map((el) => {
-            if (el.author._id === localStorage.user_id) {
+            if (el.author._id === userData.user_metadata.uid) {
               return (
                 <MessageSingle key={el.id} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'own'} />
               )

@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { userContext } from "../App";
 import { AvatarSmall } from "./AvatarSmall";
 import logo from '../assets/logo.png';
 
 const UserContainer = () => {
+  const userData = useContext(userContext);
   const navigateTo = useNavigate();
 
   const logout = () => {
@@ -14,18 +17,17 @@ const UserContainer = () => {
     }
   }
 
-  if (localStorage.logged_in) {
+  if (userData) {
     return (
       <div className="user-container">
         <AvatarSmall imageUrl={localStorage.avatar} />
-        <div className="header_expanded">{localStorage.username}</div>
+        <div className="header_expanded">{userData.user_metadata.username}</div>
         <button className="header_expanded" onClick={logout}>Logout</button>
       </div>
     )
   }
-
+  
   return null;
-
 }
 
 const Header = () => {

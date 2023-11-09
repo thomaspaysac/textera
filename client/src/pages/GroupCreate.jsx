@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom";
-
+import { userContext } from "../App";
 import { Layout } from "../components/Layout"
 import { AvatarSmall } from "../components/AvatarSmall";
 import imageIcon from '../assets/icons/image_upload.png'
 
 export const GroupCreatePage = () => {
+  const userData = useContext(userContext);
   const [contacts, setContacts] = useState();
-  const [usersID, setUsersID] = useState([localStorage.user_id]);
-  const [usersInfo, setUsersInfo] = useState([{id: localStorage.user_id, username : localStorage.username, avatar: localStorage.avatar}]);
+  const [usersID, setUsersID] = useState([userData.user_metadata.uid]);
+  const [usersInfo, setUsersInfo] = useState([{id: userData.user_metadata.uid, username : userData.user_metadata.username, avatar: localStorage.avatar}]);
 
   const navigateTo = useNavigate();
 
   const fetchContacts = async () => {
-    const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/contacts');
+    const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid + '/contacts');
     //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/contacts');
     const res = await req.json()
     setContacts(res);
@@ -26,7 +27,7 @@ export const GroupCreatePage = () => {
   const createGroup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    formData.append('admin', localStorage.user_id);
+    formData.append('admin', userData.user_metadata.uid);
     usersID.forEach((el, i) => {
       formData.append('users[]', usersID[i])
       }

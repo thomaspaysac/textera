@@ -1,14 +1,17 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom"
+import { userContext } from "../App";
 import { Layout } from "../components/Layout"
 
 
 export const ChangeStatusPage = () => {
+  const userData = useContext(userContext);
   const navigateTo = useNavigate();
 
   const submitStatus = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    formData.append('userID', localStorage.user_id);
+    formData.append('userID', userData.user_metadata.uid);
     const data = Object.fromEntries(formData.entries());
     const req = await fetch('http://localhost:3000/user/edit/status', {
     //const req = await fetch('https://textera-production.up.railway.app/user/edit/status', {

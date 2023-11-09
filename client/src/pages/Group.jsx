@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useParams } from "react-router-dom"
+import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { GroupHeader } from "../components/GroupHeader";
 import { MessageInputField } from "../components/MessageInputField";
@@ -12,6 +13,7 @@ export const Group = () => {
   const [error, setError] = useState(false);
   const [user, setUser] = useState();
   const [update, setUpdate] = useState(0);
+  const userData = useContext(userContext);
 
   const { id } = useParams();
   const messagesEndRef = useRef(null)
@@ -29,7 +31,7 @@ export const Group = () => {
       const groupRes = await groupReq.json();
       setGroupInfo(groupRes);
       groupRes.users.forEach((el) => {
-        return el._id !== localStorage.user_id ? null : setUser(el);
+        return el._id !== userData.user_metadata.uid ? null : setUser(el);
       })
     } catch {
       setError(true);
@@ -73,7 +75,7 @@ export const Group = () => {
         <div className='messages-list'>
         {
           messages.map((el) => {
-            if (el.author._id === localStorage.user_id) {
+            if (el.author._id === userData.user_metadata.uid) {
               return (
                 <MessageSingle key={el.id} group={true} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'own'} />
               )

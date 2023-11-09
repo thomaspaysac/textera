@@ -1,9 +1,12 @@
-import { Layout } from "../components/Layout"
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { userContext } from "../App";
+import { Layout } from "../components/Layout"
+
 
 export const AddContactPage = () => {
   const [errorMessage, setErrorMessage] = useState(null)
+  const userData = useContext(userContext);
   const navigateTo = useNavigate();
 
   const addContact = async (e) => {
@@ -17,7 +20,7 @@ export const AddContactPage = () => {
       const err = 'User not found';
       setErrorMessage(err);
     } else {
-      const req = await fetch('http://localhost:3000/user/' + localStorage.user_id + '/add/' + contactRes[0]._id, {
+      const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid + '/add/' + contactRes[0]._id, {
       //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + contactRes[0]._id, {
         method: 'POST',
       })

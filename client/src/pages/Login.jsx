@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { supabase } from "../App";
 
 export const LoginPage = () => {
   const [error, setError] = useState();
   const navigateTo = useNavigate();
+  const userData = useContext(userContext);
 
   /*const login = async (e) => {
     e.preventDefault();
@@ -43,7 +45,7 @@ export const LoginPage = () => {
     await supabase.auth.signInWithPassword({
       email: data.username + "@email.com",
       password: data.password,
-    })
+    });
     /*const req = await fetch(`http://localhost:3000/user/login`, {
       //const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
         method: 'POST',

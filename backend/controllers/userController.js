@@ -87,8 +87,6 @@ exports.signup_post = [
       }
     )
     console.log(data.user.user_metadata);
-    /*const mongooseId = new mongoose.Types.ObjectId(id);
-    console.log(mongooseId);*/
     const user = new User({
       _id: data.user.user_metadata.uid,
       email: req.body.username + '@email.com',
@@ -97,8 +95,6 @@ exports.signup_post = [
       avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc",
     });
     await user.save();
-    /*const newUser = await User.findById(data.user.id);
-    console.log(newUser)*/
     res.end();
     /*const errors = validationResult(req);
     const user = new User({
