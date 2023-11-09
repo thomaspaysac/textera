@@ -1,4 +1,6 @@
+import { useState, useEffect, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
 import './App.css'
 
 import Header from "./components/Header"
@@ -18,10 +20,18 @@ import { AddContactPage } from "./pages/AddContact";
 import { GroupCreatePage } from "./pages/GroupCreate";
 import { ChangeAvatarPage } from "./pages/ChangeAvatar"
 import { ChangeStatusPage } from "./pages/ChangeStatus"
+import { TestAuth } from "./pages/TestAuth";
+
+const supabaseUrl = "https://gliraufnczlivoqbxhzc.supabase.co";
+import { supabaseKey } from "./_private";
+export const supabase = createClient(supabaseUrl, supabaseKey);
+
+export const userContext = createContext();
+
+//const {userData, error} = await supabase.auth.getSession();
+
 
 export const Routing = () => {
-<<<<<<< Updated upstream
-=======
   const [userData, setUserData] = useState({user: 'test', password: 'blia'})
 
   const fetchUserData = async () => {
@@ -37,12 +47,13 @@ export const Routing = () => {
     fetchUserData()
   }, [])
   
->>>>>>> Stashed changes
   return (
+    <userContext.Provider value={userData}>
     <BrowserRouter>
       <Header />
       <Routes>
         <Route exact path="/" element={<Homepage />} />
+        <Route exact path="/auth" element={<TestAuth />} />
         <Route exact path="/conv" element={<ConversationsList />} />
         <Route path="/groups" element={<GroupsList />} />
         <Route path="/contacts" element={<ContactsPage />} />
@@ -52,6 +63,7 @@ export const Routing = () => {
         <Route path="/settings/edit/status" element={<ChangeStatusPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route exact path="/user/verify" element={<Homepage />} />
         <Route path="/user/:id" element={<UserProfile />} />
         <Route path="/conv/:id" element={<Conversation />} />
         <Route exact path="/group/create" element={<GroupCreatePage />} />
@@ -60,5 +72,7 @@ export const Routing = () => {
       </Routes>
       <Footer />
     </BrowserRouter>
+    </userContext.Provider>
+
   )
 }

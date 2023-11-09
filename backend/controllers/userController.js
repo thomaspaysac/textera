@@ -131,21 +131,8 @@ exports.login_get = asyncHandler(async (req, res, next) => {
   res.render('login');
 })
 
-// POST login
-<<<<<<< Updated upstream
-exports.login_post = asyncHandler(async (req, res, next) => {
-=======
-/*exports.login_post = 
-  passport.authenticate("local", {
-    successRedirect: "/success",
-    failureRedirect: "/failure"
-  });*/
-
-
-
 // POST login (Passport)
 /*exports.login_post = function (req, res, next) {
->>>>>>> Stashed changes
   try {
     passport.authenticate('local', {session: true}, (err, user, userData) => {
       if (err || !user) {
@@ -165,15 +152,12 @@ exports.login_post = asyncHandler(async (req, res, next) => {
             expiresIn: "1d",
           }
         );
-<<<<<<< Updated upstream
         const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status, token }
         return res.status(200).json({userInfo});
-=======
         const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status }
         //return res.status(200).json({userInfo});
         res.redirect('/test');
         //return res.status(200)//.json(req.user);
->>>>>>> Stashed changes
       });
     }) (req, res, next);
   } catch (err) {
@@ -181,9 +165,7 @@ exports.login_post = asyncHandler(async (req, res, next) => {
       err
     })
   }
-<<<<<<< Updated upstream
 });
-=======
 };*/
 
 // POST Login (Supabase)
@@ -201,7 +183,6 @@ exports.login_post = asyncHandler(async (req, res, next) => {
   // If first time log in, create user data in MongoDB with Supabase ID
   res.status(200);
 })
->>>>>>> Stashed changes
 
 // POST Add contact
 exports.add_contact = asyncHandler(async (req, res, next) => {
@@ -290,4 +271,3 @@ exports.verify_user = asyncHandler(async (req, res, next) => {
     }
   })
 });
-

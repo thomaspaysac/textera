@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout } from "../components/Layout";
+import { supabase } from "../App";
 
 export const LoginPage = () => {
   const [error, setError] = useState();
   const navigateTo = useNavigate();
 
-  const login = async (e) => {
+  /*const login = async (e) => {
     e.preventDefault();
     const form = document.getElementById('login_form');
     const data = {};
@@ -31,8 +32,6 @@ export const LoginPage = () => {
       localStorage.setItem('logged_in', true);
       navigateTo('/conv');
     }
-<<<<<<< Updated upstream
-=======
   }*/
 
   // Supabase login
@@ -53,7 +52,6 @@ export const LoginPage = () => {
         },
         body: JSON.stringify(data),
       });*/
->>>>>>> Stashed changes
   }
 
   return (

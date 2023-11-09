@@ -9,7 +9,7 @@ export const SignupPage = () => {
   const [error, setError] = useState();
   const navigateTo = useNavigate();
   
-  const signup = async (e) => {
+  /*const signup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const req = await fetch(`http://localhost:3000/user/signup`, {
@@ -23,8 +23,6 @@ export const SignupPage = () => {
     } else {
       navigateTo('/login');
     }
-<<<<<<< Updated upstream
-=======
   }*/
 
   // Supabase signup
@@ -36,7 +34,6 @@ export const SignupPage = () => {
       method: 'POST',
       body: formData,
     });
->>>>>>> Stashed changes
   }
 
   return (
