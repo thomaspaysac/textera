@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { GroupOverview } from "../components/GroupOverview";
 import { NewConvButton } from "../components/NewConvButton";
 
 export const GroupsList = () => {
   const [groups, setGroups] = useState();
+  const userData = useContext(userContext);
 
   const groupsList = () => {
     return(
@@ -21,7 +23,7 @@ export const GroupsList = () => {
   }
 
   const fetchGroups = async () => {
-    const req = await fetch('http://localhost:3000/group/user/' + localStorage.user_id);
+    const req = await fetch('http://localhost:3000/group/user/' + userData.user_metadata.uid);
     //const req = await fetch('https://textera-production.up.railway.app/group/user/' + localStorage.user_id);
     const res = await req.json()
     setGroups(res);

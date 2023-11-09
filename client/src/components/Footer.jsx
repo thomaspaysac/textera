@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { userContext } from '../App'
 
 import conversations from '../assets/icons/conversation.png'
 import contacts from '../assets/icons/contacts.png'
@@ -10,6 +11,7 @@ import signup from '../assets/icons/signup.png'
 
 export const Footer = () => {
   const [activeTab, setActiveTab] = useState('messages');
+  const userData = useContext(userContext);
 
   const loc = useLocation();
 
@@ -22,7 +24,7 @@ export const Footer = () => {
   }, [loc.state])
 
 
-  if (localStorage.logged_in) {
+  if (userData) {
     return (
       <footer>
         <Link to='/conv' state={{tab: 'messages'}}>

@@ -25,11 +25,11 @@ export const UserProfile = () => {
     /*const ownReq = await fetch('http://localhost:3000/user/' + localStorage.user_id);
     //const ownReq = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
     const ownRes = await ownReq.json()
-    setContacts(ownRes.contacts);
-    const convReq = await fetch('http://localhost:3000/conversation/users/' + localStorage.user_id + '/' + id)
+    setContacts(ownRes.contacts);*/
+    const convReq = await fetch('http://localhost:3000/conversation/users/' + userData.user_metadata.uid + '/' + id)
     //const convReq = await fetch('https://textera-production.up.railway.app/conversation/users/' + localStorage.user_id + '/' + id);
     const convRes = await convReq.json();
-    setConversation(convRes);*/
+    setConversation(convRes);
   }
 
   const addToContacts = async () => {
@@ -61,7 +61,7 @@ export const UserProfile = () => {
   }, [])
 
   const AddContactButton = () => {
-    if (contacts.includes(user._id) || user._id === localStorage.user_id) {
+    if (user.contacts.includes(userData.user_metadata.uid) || user._id === userData.user_metadata.uid) {
       return null
     } 
     
@@ -71,7 +71,7 @@ export const UserProfile = () => {
   }
 
   const ConversationPrompt = () => {
-    if (contacts.includes(user._id) && conversation.length === 0) {
+    if (user.contacts.includes(userData.user_metadata.uid) && conversation.length === 0) {
       return (
         <div className="conversation-button">
           <button className="conversation-button" onClick={createConversation}>
@@ -80,7 +80,7 @@ export const UserProfile = () => {
         </div>
         
       )
-    } else if (contacts.includes(user._id)) {
+    } else if (user.contacts.includes(user._id)) {
       return (
         <Link to={`/conv/${conversation[0]._id}`} className="conversation-button">
           <button >
@@ -108,7 +108,7 @@ export const UserProfile = () => {
       <Layout>
         <div className="content user-profile">
           <AvatarBig imageUrl={user.avatar}/>
-          <div className="user_name" onClick={() => console.log(userData)}>{user.username}</div>
+          <div className="user_name">{user.username}</div>
           <div className="user_status">{user.status}</div>
           <AddContactButton />
           <ConversationPrompt />

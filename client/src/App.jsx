@@ -32,7 +32,7 @@ export const userContext = createContext();
 
 
 export const Routing = () => {
-  const [userData, setUserData] = useState({user: 'test', password: 'blia'})
+  const [userData, setUserData] = useState(undefined)
 
   const fetchUserData = async () => {
     const {data, error} = await supabase.auth.getSession();
@@ -49,29 +49,29 @@ export const Routing = () => {
   
   return (
     <userContext.Provider value={userData}>
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route exact path="/" element={<Homepage />} />
-        <Route exact path="/auth" element={<TestAuth />} />
-        <Route exact path="/conv" element={<ConversationsList />} />
-        <Route path="/groups" element={<GroupsList />} />
-        <Route path="/contacts" element={<ContactsPage />} />
-        <Route path='/contacts/add' element={<AddContactPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/settings/edit/avatar" element={<ChangeAvatarPage />} />
-        <Route path="/settings/edit/status" element={<ChangeStatusPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route exact path="/user/verify" element={<Homepage />} />
-        <Route path="/user/:id" element={<UserProfile />} />
-        <Route path="/conv/:id" element={<Conversation />} />
-        <Route exact path="/group/create" element={<GroupCreatePage />} />
-        <Route path="/group/:id" element={<Group />} />
-        <Route path="/group/:id/details" element={<GroupInfo />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Homepage />} />
+          <Route exact path="/auth" element={<TestAuth />} />
+          <Route exact path="/conv" element={<ConversationsList />} />
+          <Route path="/groups" element={<GroupsList />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path='/contacts/add' element={<AddContactPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/settings/edit/avatar" element={<ChangeAvatarPage />} />
+          <Route path="/settings/edit/status" element={<ChangeStatusPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route exact path="/user/verify" element={<Homepage />} />
+          <Route path="/user/:id" element={<UserProfile />} />
+          <Route path="/conv/:id" element={<Conversation />} />
+          <Route exact path="/group/create" element={<GroupCreatePage />} />
+          <Route path="/group/:id" element={<Group />} />
+          <Route path="/group/:id/details" element={<GroupInfo />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </userContext.Provider>
 
   )
