@@ -37,7 +37,6 @@ export const Routing = () => {
   }
 
   const fetchUserData = async () => {
-    console.log('fetching')
     const {data, error} = await supabase.auth.getSession();
     if (!data.session) {
       setUserData(undefined);

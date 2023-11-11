@@ -16,3 +16,4 @@ Finitions:
 - [ ] Recherche d'utilisateur: la rendre case insensitive
 - [ ] Loading des pages : harmoniser / animations
 - [ ] Vérifier envoi de fichiers pour autoriser seulement les images
+- [ ] Refactor vérification des champs pour le signup et login

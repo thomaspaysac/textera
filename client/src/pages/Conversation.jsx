@@ -15,11 +15,23 @@ export const Conversation = () => {
   const messagesEndRef = useRef(null)
 
   const fetchConv = async () => {
-    const req = await fetch('http://localhost:3000/messages/conv/' + id);
+    if (!userData) {
+      return null
+    }
+    const req = await fetch('http://localhost:3000/messages/conv/' + id, {
+      headers: {
+        "Authorization": userData.user_metadata.uid,
+      }
+    });
     //const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id);
     const res = await req.json();
     setMessages(res);
-    const convReq = await fetch('http://localhost:3000/conversation/' + id)
+    const convReq = await fetch('http://localhost:3000/conversation/' + id, 
+    {
+      headers: {
+        "Authorization": userData.user_metadata.uid,
+      }
+    })
     //const convReq = await fetch('https://textera-production.up.railway.app/conversation/' + id)
     const convRes = await convReq.json();
     convRes.users.forEach((el) => {
@@ -37,7 +49,7 @@ export const Conversation = () => {
 
   useEffect(() => {
     fetchConv();
-  }, [update])
+  }, [update, userData])
 
   useEffect(() => {
     scrollToBottom();

@@ -86,7 +86,6 @@ exports.signup_post = [
         }
       }
     )
-    console.log(data.user.user_metadata);
     const user = new User({
       _id: data.user.user_metadata.uid,
       email: req.body.username + '@email.com',
@@ -171,7 +170,6 @@ exports.login_get = asyncHandler(async (req, res, next) => {
 
 // POST Login (Supabase)
 exports.login_post = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   await supabase.auth.signInWithPassword({
     email: req.body.username + "@email.com",
     password: req.body.password,

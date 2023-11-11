@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('../multer');
 const groupController = require('../controllers/groupController');
 
-router.get('/', groupController.get_group);
+//router.get('/', groupController.get_group);
 
 router.post('/create', multer.upload.single('image'), groupController.create_group);
 

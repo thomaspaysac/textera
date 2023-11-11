@@ -25,7 +25,11 @@ export const UserProfile = () => {
     //const ownReq = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
     const ownRes = await ownReq.json()
     setContacts(ownRes.contacts);*/
-    const convReq = await fetch('http://localhost:3000/conversation/users/' + userData.user_metadata.uid + '/' + id)
+    const convReq = await fetch('http://localhost:3000/conversation/users/' + userData.user_metadata.uid + '/' + id, {
+      headers: {
+        "Authorization": userData.user_metadata.uid,
+      }
+    })
     //const convReq = await fetch('https://textera-production.up.railway.app/conversation/users/' + localStorage.user_id + '/' + id);
     const convRes = await convReq.json();
     setConversation(convRes);
@@ -79,7 +83,7 @@ export const UserProfile = () => {
         </div>
         
       )
-    } else if (user.contacts.includes(user._id)) {
+    } else if (user.contacts.includes(userData.user_metadata.uid)) {
       return (
         <Link to={`/conv/${conversation[0]._id}`} className="conversation-button">
           <button >

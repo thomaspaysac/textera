@@ -26,7 +26,11 @@ export const GroupsList = () => {
     if (!userData) {
       return
     }
-    const req = await fetch('http://localhost:3000/group/user/' + userData.user_metadata.uid);
+    const req = await fetch('http://localhost:3000/group/user/' + userData.user_metadata.uid, {
+      headers: {
+        "Authorization": userData.user_metadata.uid,
+      }
+    });
     //const req = await fetch('https://textera-production.up.railway.app/group/user/' + localStorage.user_id);
     const res = await req.json()
     setGroups(res);

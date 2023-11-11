@@ -19,6 +19,9 @@ export const Group = () => {
   const messagesEndRef = useRef(null)
 
   const fetchGroup = async () => {
+    if (!userData) {
+      return
+    }
     // Get all messages in group
     try {
       const req = await fetch('http://localhost:3000/messages/group/' + id);
@@ -26,7 +29,11 @@ export const Group = () => {
       const res = await req.json();
       setMessages(res);
       // Get group data
-      const groupReq = await fetch('http://localhost:3000/group/' + id)
+      const groupReq = await fetch('http://localhost:3000/group/' + id, {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      })
       //const groupReq = await fetch('https://textera-production.up.railway.app/group/' + id)
       const groupRes = await groupReq.json();
       setGroupInfo(groupRes);
@@ -52,7 +59,7 @@ export const Group = () => {
 
   useEffect(() => {
     fetchGroup();
-  }, [update])
+  }, [update, userData])
 
   if (error) {
     return (

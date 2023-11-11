@@ -4,25 +4,36 @@ const firebaseFn = require('../firebaseFunctions');
 const Group = require('../models/group');
 const User = require('../models/user');
 
-// GET user's groups
-exports.user_groups_get = asyncHandler(async (req, res, next) => {
-  const groups = await Group.find({ users: req.params.id })
-    .sort({ updatedAt: -1 });
-  res.json(groups);
-})
 
-// GET group by ID
-exports.get_groupById = asyncHandler(async (req, res, next) => {
-  const group = await Group.findById(req.params.id).populate('users', 'username avatar').populate('admin', 'username avatar');
-  if (!group) {
-    res.sendStatus(404);
+// GET One user's groups // SECURED
+exports.user_groups_get = asyncHandler(async (req, res, next) => {
+  if (req.headers.authorization !== req.params.id) {
+    res.status(403)
   } else {
-    res.json(group);
+    const groups = await Group.find({ users: req.params.id })
+    .sort({ updatedAt: -1 });
+    res.status(200).json(groups);
   }
 })
 
 
-// test functions
+// GET Group by ID // SECURED
+exports.get_groupById = asyncHandler(async (req, res, next) => {
+  const group = await Group.findById(req.params.id).populate('users', 'username avatar').populate('admin', 'username avatar');
+  if (!group) {
+    res.sendStatus(404);
+  }
+  const usersIds = [];
+  group.users.forEach((el) => usersIds.push(el._id.toString()))
+  if (usersIds.includes(req.headers.authorization)) {
+    res.json(group);
+  } else {
+    res.status(403);
+  }
+})
+
+
+// POST Create group
 exports.create_group = asyncHandler(async (req, res, next) => {
   const group = new Group({
     title: req.body.title,
@@ -43,8 +54,13 @@ exports.create_group = asyncHandler(async (req, res, next) => {
   res.status(200);
 })
 
+
+/*
+TEST FUNCTIONS
+
+GET All groups
 exports.get_group = asyncHandler(async (req, res, next) => {
   const group = await Group.find().populate('users', 'username').populate('admin', 'username');
   res.json(group);
 })
-
+*/
