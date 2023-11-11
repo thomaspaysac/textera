@@ -8,7 +8,7 @@ const User = require('../models/user');
 exports.user_conv_get = asyncHandler(async (req, res, next) => {
   console.log()
   if (req.headers.authorization !== req.params.id) {
-    res.status(403);
+    res.sendStatus(403);
   } else {
     const conv = await Conversation.find({ users: req.params.id })
     .sort({ updatedAt: -1 })
@@ -26,7 +26,7 @@ exports.get_convById = asyncHandler(async (req, res, next) => {
   if (usersIds.includes(req.headers.authorization)) {
     res.status(200).json(conv);
   } else {
-    res.status(403);
+    res.sendStatus(403);
   }
 })
 
@@ -37,7 +37,7 @@ exports.get_conv_byUsers = asyncHandler(async (req, res, next) => {
     const conv = await Conversation.find({users: { $all: [req.params.user1, req.params.user2] }});
     res.status(200).json(conv);  
   } else {
-    res.status(403);
+    res.sendStatus(403);
   }
 })
 

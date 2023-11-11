@@ -6,12 +6,23 @@ const Conversation = require('../models/conversation')
 const Group = require('../models/group');
 const User = require('../models/user');
 
-// GET all messages from one conversation
+// GET all messages from one conversation // SECURED
 exports.conversation_messages_get = asyncHandler(async (req, res, next) => {
   const messages = await Message.find({ conversation: req.params.id })
     .sort({ createdAt: 1 })
     .populate('author', 'username');
-  res.json(messages);
+  if (!messages) {
+    res.sendStatus(404)
+  } else {
+    const conv = await Conversation.findById(req.params.id).populate('users', 'username avatar');
+    const usersIds = [];
+    conv.users.forEach((el) => usersIds.push(el._id.toString()))
+    if (usersIds.includes(req.headers.authorization)) {
+      res.status(200).json({messages, conv});
+    } else {
+      res.sendStatus(403);
+    }
+  }
 })
 
 // GET all media from one conversation

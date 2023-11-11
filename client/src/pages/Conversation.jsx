@@ -25,18 +25,10 @@ export const Conversation = () => {
     });
     //const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id);
     const res = await req.json();
-    setMessages(res);
-    const convReq = await fetch('http://localhost:3000/conversation/' + id, 
-    {
-      headers: {
-        "Authorization": userData.user_metadata.uid,
-      }
-    })
-    //const convReq = await fetch('https://textera-production.up.railway.app/conversation/' + id)
-    const convRes = await convReq.json();
-    convRes.users.forEach((el) => {
+    res.conv.users.forEach((el) => {
       return el._id === userData.user_metadata.uid ? null : setCorrespondant(el);
     })
+    setMessages(res.messages);
   }
 
   const scrollToBottom = () => {

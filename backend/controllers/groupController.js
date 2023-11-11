@@ -8,7 +8,7 @@ const User = require('../models/user');
 // GET One user's groups // SECURED
 exports.user_groups_get = asyncHandler(async (req, res, next) => {
   if (req.headers.authorization !== req.params.id) {
-    res.status(403)
+    res.sendStatus(403)
   } else {
     const groups = await Group.find({ users: req.params.id })
     .sort({ updatedAt: -1 });
@@ -28,7 +28,7 @@ exports.get_groupById = asyncHandler(async (req, res, next) => {
   if (usersIds.includes(req.headers.authorization)) {
     res.json(group);
   } else {
-    res.status(403);
+    res.sendStatus(403);
   }
 })
 
