@@ -47,6 +47,7 @@ export const LoginPage = () => {
       password: data.password,
     });  
     navigateTo('/conv');
+    location.reload();
   }
 
   return (

@@ -21,12 +21,16 @@ export const SettingsPage = () => {
       localStorage.clear();
       await supabase.auth.signOut();
       navigateTo('/');
+      location.reload();
     } else {
       return;
     }
   }
 
   const fetchUserData = async () => {
+    if (!userData) {
+      return
+    }
     const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid);
     //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
     const res = await req.json()
@@ -35,9 +39,9 @@ export const SettingsPage = () => {
 
   useEffect (() => {
     fetchUserData();
-  }, [])
+  }, [userData])
 
-  if (!user) {
+  if (!user || !userData) {
     return (
       <Layout>
         <div>

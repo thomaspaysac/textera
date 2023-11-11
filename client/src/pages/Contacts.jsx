@@ -9,6 +9,9 @@ export const ContactsPage = () => {
   const userData = useContext(userContext);
 
   const fetchContacts = async () => {
+    if (!userData) {
+      return
+    }
     const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid + '/contacts');
     //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/contacts');
     const res = await req.json()
@@ -17,7 +20,7 @@ export const ContactsPage = () => {
 
   useEffect(() => {
     fetchContacts();
-  }, [])
+  }, [userData])
 
   const contactsList = () => {
     if (!contacts) {

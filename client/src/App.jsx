@@ -43,6 +43,7 @@ export const Routing = () => {
       setUserData(undefined);
     } else {
       setUserData(data.session.user);
+      //updateComponent();
     }
   }
 
@@ -63,7 +64,6 @@ export const Routing = () => {
 
   useEffect(() => {
     setLocals();
-    updateComponent();
   }, [userData])
   
   return (

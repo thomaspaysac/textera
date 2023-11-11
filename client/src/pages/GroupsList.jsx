@@ -23,6 +23,9 @@ export const GroupsList = () => {
   }
 
   const fetchGroups = async () => {
+    if (!userData) {
+      return
+    }
     const req = await fetch('http://localhost:3000/group/user/' + userData.user_metadata.uid);
     //const req = await fetch('https://textera-production.up.railway.app/group/user/' + localStorage.user_id);
     const res = await req.json()
@@ -31,7 +34,7 @@ export const GroupsList = () => {
 
   useEffect(() => {
     fetchGroups()
-  }, [])
+  }, [userData])
 
   if (!groups) {
     return (

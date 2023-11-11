@@ -35,7 +35,7 @@ export const ConversationsList = () => {
 
   useEffect(() => {
     fetchConversations();
-  }, [])
+  }, [userData])
 
   if (!conversations || !conversations.length) {
     return (
