@@ -25,10 +25,18 @@ exports.conversation_messages_get = asyncHandler(async (req, res, next) => {
   }
 })
 
-// GET all media from one conversation
+// GET all media from one conversation // SECURED
 exports.conversation_media_get = asyncHandler(async (req, res, next) => {
   const media = await Message.find({ conversation: req.params.id, file: {$exists: true} });
-  res.json(media);
+  const conv = await Conversation.findById(req.params.id).populate('users', 'username avatar');
+    const usersIds = [];
+    conv.users.forEach((el) => usersIds.push(el._id.toString()))
+    if (usersIds.includes(req.headers.authorization)) {
+      res.status(200).json(media);
+    } else {
+      res.sendStatus(403);
+    }
+  //res.json(media);
 })
 
 // GET all messages from one group
