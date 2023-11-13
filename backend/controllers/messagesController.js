@@ -6,7 +6,7 @@ const Conversation = require('../models/conversation')
 const Group = require('../models/group');
 const User = require('../models/user');
 
-// GET all messages from one conversation // SECURED
+// GET all messages from one conversation and conversation info // SECURED
 exports.conversation_messages_get = asyncHandler(async (req, res, next) => {
   const messages = await Message.find({ conversation: req.params.id })
     .sort({ createdAt: 1 })
@@ -36,10 +36,9 @@ exports.conversation_media_get = asyncHandler(async (req, res, next) => {
     } else {
       res.sendStatus(403);
     }
-  //res.json(media);
 })
 
-// GET all messages from one group
+// GET all messages from one group and group info // SECURED
 exports.group_messages_get = asyncHandler(async (req, res, next) => {
   const messages = await Message.find({ group: req.params.id })
     .sort({ createdAt: 1 })
@@ -58,10 +57,18 @@ exports.group_messages_get = asyncHandler(async (req, res, next) => {
   }
 })
 
-// GET all media from one group
+// GET all media from one group // SECURED
 exports.group_media_get = asyncHandler(async (req, res, next) => {
   const media = await Message.find({ group: req.params.id, file: {$exists: true} });
-  res.json(media);
+  const group = await Group.findById(req.params.id).populate('users', 'username avatar');
+  const usersIds = [];
+  group.users.forEach((el) => usersIds.push(el._id.toString()))
+  if (usersIds.includes(req.headers.authorization)) {
+    res.status(200).json(media);
+  } else {
+    res.sendStatus(403);
+  }
+
 })
 
 // POST message create

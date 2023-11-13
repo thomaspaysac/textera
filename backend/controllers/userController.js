@@ -72,6 +72,10 @@ exports.signup_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.json(errors.array());
+      return;
+    } else {
     // Send to Supabase for authentication
     const id = new mongoose.Types.ObjectId();
     const { data, error } = await supabase.auth.signUp(
@@ -93,8 +97,17 @@ exports.signup_post = [
       password: req.body.password,
       avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc",
     });
+    if (req.file) {
+      const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+      if (filetypeCheck.test(req.file.mimetype)) {
+        avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+        user.avatar = avatarUrl;  
+      }
+    }
     await user.save();
     res.end();
+
+    }
     /*const errors = validationResult(req);
     const user = new User({
       username: req.body.username,
@@ -131,56 +144,17 @@ exports.login_get = asyncHandler(async (req, res, next) => {
   res.render('login');
 })
 
-// POST login (Passport)
-/*exports.login_post = function (req, res, next) {
-  try {
-    passport.authenticate('local', {session: true}, (err, user, userData) => {
-      if (err || !user) {
-        const error = new Error('User does not exist')
-        return res.status(403).json({
-          userData
-        })
-      }
-      req.login (user, {session: true}, (err) => {
-        if (err){
-          next(err);
-        }
-        const token = jwt.sign(
-          { _id: user._id, username: user.username, avatar: user.avatar },
-          process.env.JWT_SECRET,
-          {
-            expiresIn: "1d",
-          }
-        );
-        const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status, token }
-        return res.status(200).json({userInfo});
-        const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status }
-        //return res.status(200).json({userInfo});
-        res.redirect('/test');
-        //return res.status(200)//.json(req.user);
-      });
-    }) (req, res, next);
-  } catch (err) {
-    res.status(403).json({
-      err
-    })
-  }
-});
-};*/
-
 // POST Login (Supabase)
 exports.login_post = asyncHandler(async (req, res, next) => {
-  await supabase.auth.signInWithPassword({
-    email: req.body.username + "@email.com",
-    password: req.body.password,
-  })
-  // Get user ID in Supabase
-  /*const {data, error} = await supabase.auth.getSession();
-  const userID = data.id;
-  console.log(userID);*/
-  
-  // If first time log in, create user data in MongoDB with Supabase ID
-  res.status(200);
+  try {
+    await supabase.auth.signInWithPassword({
+      email: req.body.username + "@email.com",
+      password: req.body.password,
+    })
+    res.status(200);
+  } catch {
+    res.sendStatus(500);
+  }
 })
 
 // POST Add contact

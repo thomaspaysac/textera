@@ -29,11 +29,38 @@ export const SignupPage = () => {
   const signup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    await fetch(`http://localhost:3000/user/signup`, {
+    const req = await fetch(`http://localhost:3000/user/signup`, {
     //const req = await fetch(`https://textera-production.up.railway.app/user/signup`, {
       method: 'POST',
       body: formData,
     });
+    const errors = await req.json();
+    if (errors.length > 0) {
+      setError(errors);
+      console.log(errors)
+    } else {
+      navigateTo('/login');
+    }
+  }
+
+  const ErrorContainer = () => {
+    if (!error) {
+      return null
+    } else {
+      return (
+        <div className="error-container">
+          <ul>
+            {
+              error.map((el, i) => {
+                return (
+                  <li key={'error' + i}>{el.msg}</li>
+                )
+              })
+            }
+          </ul>
+        </div>
+      )
+    }
   }
 
   return (
@@ -63,6 +90,7 @@ export const SignupPage = () => {
             </div>
             <button type='submit' className="button_primary">Sign up</button>
           </form>
+          <ErrorContainer />
         </div>
       </Layout>
   )

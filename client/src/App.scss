@@ -238,8 +238,16 @@ main {
   }
 
   .error-container {
-    text-align: center;
     color: #ff0000;
+
+    ul {
+      margin-left: 16px;
+      padding: 0;
+      li {
+        margin: 0;
+        padding: 0;
+      }
+    }
   }
 }
 
