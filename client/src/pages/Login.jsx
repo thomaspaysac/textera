@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { supabase } from "../App";
+import { ErrorContainer } from "../components/ErrorContainer";
 
 export const LoginPage = () => {
-  const [error, setError] = useState();
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigateTo = useNavigate();
   const userData = useContext(userContext);
 
@@ -42,12 +43,28 @@ export const LoginPage = () => {
     const form = document.getElementById('login_form');
     const data = {};
     new FormData(form).forEach((value, key) => data[key] = value);
-    await supabase.auth.signInWithPassword({
+    const { fn, error } = await supabase.auth.signInWithPassword({
       email: data.username + "@email.com",
       password: data.password,
-    });  
-    navigateTo('/conv');
-    location.reload();
+    });
+    if (error) {
+      setErrorMessage('There was an error: check your username and password.');
+    } else {
+      navigateTo('/conv');
+      location.reload();
+    }
+  }
+
+  const ErrorContainer = () => {
+    if (!errorMessage) {
+      return null
+    }
+
+    return (
+      <div className="error-container">
+        {errorMessage}
+      </div>
+    )
   }
 
   return (
@@ -65,6 +82,7 @@ export const LoginPage = () => {
             </div>
             <button type='submit' className="button_primary">Log in</button>
           </form>
+          <ErrorContainer />
         </div>
       </Layout>
     

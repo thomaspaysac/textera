@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 import { AvatarSmall } from "./AvatarSmall";
@@ -16,6 +16,10 @@ const UserContainer = () => {
       return;
     }
   }
+
+  useEffect(() => {
+
+  }, [userData])
 
   if (userData) {
     return (
