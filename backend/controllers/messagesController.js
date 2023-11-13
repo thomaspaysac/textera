@@ -41,13 +41,20 @@ exports.conversation_media_get = asyncHandler(async (req, res, next) => {
 
 // GET all messages from one group
 exports.group_messages_get = asyncHandler(async (req, res, next) => {
-  try {
-    const messages = await Message.find({ group: req.params.id })
+  const messages = await Message.find({ group: req.params.id })
     .sort({ createdAt: 1 })
     .populate('author', 'username avatar');
-    res.json(messages);
-  } catch {
+  if (!messages) {
     res.sendStatus(404);
+  } else {
+    const group = await Group.findById(req.params.id).populate('users', 'username avatar').populate('admin', 'username avatar');
+    const usersIds = [];
+    group.users.forEach((el) => usersIds.push(el._id.toString()))
+    if (usersIds.includes(req.headers.authorization)) {
+      res.status(200).json({ messages, group });
+    } else {
+      res.sendStatus(403);
+    }
   }
 })
 

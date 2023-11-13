@@ -22,22 +22,18 @@ export const Group = () => {
     if (!userData) {
       return
     }
-    // Get all messages in group
+    // Get all messages in group and group info
     try {
-      const req = await fetch('http://localhost:3000/messages/group/' + id);
-      //const req = await fetch('https://textera-production.up.railway.app/messages/group/' + id);
-      const res = await req.json();
-      setMessages(res);
-      // Get group data
-      const groupReq = await fetch('http://localhost:3000/group/' + id, {
+      const req = await fetch('http://localhost:3000/messages/group/' + id, {
         headers: {
           "Authorization": userData.user_metadata.uid,
         }
-      })
-      //const groupReq = await fetch('https://textera-production.up.railway.app/group/' + id)
-      const groupRes = await groupReq.json();
-      setGroupInfo(groupRes);
-      groupRes.users.forEach((el) => {
+      });
+      //const req = await fetch('https://textera-production.up.railway.app/messages/group/' + id);
+      const res = await req.json();
+      setMessages(res.messages);
+      setGroupInfo(res.group);
+      res.group.users.forEach((el) => {
         return el._id !== userData.user_metadata.uid ? null : setUser(el);
       })
     } catch {
