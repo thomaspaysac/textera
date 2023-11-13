@@ -72,6 +72,7 @@ exports.signup_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
+    console.log(errors)
     if (!errors.isEmpty()) {
       res.json(errors.array());
       return;
@@ -105,37 +106,8 @@ exports.signup_post = [
       }
     }
     await user.save();
-    res.end();
-
+    res.status(200).json(errors);
     }
-    /*const errors = validationResult(req);
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password,
-      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc",
-    });
-    if (!errors.isEmpty()) {
-      res.json(errors.array());
-      return;
-    } else {
-      res.json(errors.array());
-      if (req.file) {
-        const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
-        if (filetypeCheck.test(req.file.mimetype)) {
-          avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-          user.avatar = avatarUrl;  
-        }
-      }
-      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-        try {
-          user.password = hashedPassword;
-          await user.save();
-          res.end();
-        } catch(err) {
-          return next(err);
-        };
-      })
-    }*/
   })
 ]
 
