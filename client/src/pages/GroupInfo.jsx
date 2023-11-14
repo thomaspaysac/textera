@@ -49,6 +49,20 @@ export const GroupInfo = () => {
     )
   }
 
+  const EditGroupButton = () => {
+    if (!group.admin.username || !userData) {
+      return null
+    } else if (group.admin.username === userData.user_metadata.username) {
+      return (
+        <Link to={`/group/${group.id}/edit`}>
+          <button>
+            Edit group 
+          </button>
+        </Link>
+      )
+    }
+  }
+
   const MediaList = () => {
     if (media.length === 0) {
       return (
@@ -81,6 +95,7 @@ export const GroupInfo = () => {
               <strong>Admin:</strong> <AvatarVerySmall imageUrl={group.admin.avatar} /> {group.admin.username}
             </Link>
           </div>
+          <EditGroupButton />
           <div className="group_users-list">
             <div className="group-info_section">{group.users.length} members</div>
             <div>

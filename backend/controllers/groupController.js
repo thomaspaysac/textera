@@ -35,7 +35,8 @@ exports.get_groupById = asyncHandler(async (req, res, next) => {
 
 // POST Create group
 exports.create_group = asyncHandler(async (req, res, next) => {
-  const group = new Group({
+  console.log(req.body)
+  /*const group = new Group({
     title: req.body.title,
     users: req.body.users,
     admin: req.body.admin,
@@ -51,7 +52,14 @@ exports.create_group = asyncHandler(async (req, res, next) => {
   }
   await group.save();
   res.json(group._id);
-  res.status(200);
+  res.status(200);*/
+})
+
+
+// POST Edit group
+exports.edit_group = asyncHandler(async (req, res, next) => {
+  console.log(req.body)
+  //const group = await Group.findById(req.params.id);
 })
 
 

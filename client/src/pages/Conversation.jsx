@@ -14,6 +14,10 @@ export const Conversation = () => {
   const { id } = useParams();
   const messagesEndRef = useRef(null)
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView(/*{ behavior: "smooth", block:"end" }*/)
+  }
+
   const fetchConv = async () => {
     if (!userData) {
       return null
@@ -31,9 +35,6 @@ export const Conversation = () => {
     setMessages(res.messages);
   }
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView(/*{ behavior: "smooth", block:"end" }*/)
-  }
 
   const updateComponent = () => {
     setUpdate(update + 1);
@@ -45,7 +46,7 @@ export const Conversation = () => {
 
   useEffect(() => {
     scrollToBottom();
-  })
+  }, [messages])
 
   if (!messages || !correspondant) {
     return null;

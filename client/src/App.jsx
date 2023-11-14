@@ -16,11 +16,11 @@ import { UserProfile } from "./pages/UserProfile"
 import { Conversation } from "./pages/Conversation"
 import { Group } from "./pages/Group"
 import { GroupInfo } from "./pages/GroupInfo"
+import { GroupEditPage } from "./pages/GroupEdit";
 import { AddContactPage } from "./pages/AddContact";
 import { GroupCreatePage } from "./pages/GroupCreate";
 import { ChangeAvatarPage } from "./pages/ChangeAvatar"
 import { ChangeStatusPage } from "./pages/ChangeStatus"
-import { TestAuth } from "./pages/TestAuth";
 
 const supabaseUrl = "https://gliraufnczlivoqbxhzc.supabase.co";
 import { supabaseKey } from "./_private";
@@ -71,7 +71,6 @@ export const Routing = () => {
         <Header />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/auth" element={<TestAuth />} />
           <Route exact path="/conv" element={<ConversationsList />} />
           <Route path="/groups" element={<GroupsList />} />
           <Route path="/contacts" element={<ContactsPage />} />
@@ -87,6 +86,7 @@ export const Routing = () => {
           <Route exact path="/group/create" element={<GroupCreatePage />} />
           <Route path="/group/:id" element={<Group />} />
           <Route path="/group/:id/details" element={<GroupInfo />} />
+          <Route path="/group/:id/edit" element={<GroupEditPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
