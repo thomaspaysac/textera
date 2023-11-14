@@ -18,10 +18,11 @@ const UserContainer = () => {
   }
 
   useEffect(() => {
-
   }, [userData])
 
-  if (userData) {
+  if (!userData) {
+    return null
+  } else {
     return (
       <div className="user-container">
         <AvatarSmall imageUrl={localStorage.avatar} />
@@ -30,8 +31,6 @@ const UserContainer = () => {
       </div>
     )
   }
-  
-  return null;
 }
 
 const Header = () => {
