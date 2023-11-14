@@ -134,7 +134,7 @@ exports.add_contact = asyncHandler(async (req, res, next) => {
   // Prevent user from adding itself
   if (req.params.user === req.params.contact) {
     const err = "You can't add yourself to your contacts.";
-    res.sendStatus(403).json(err);
+    res.status(400).json(err);
   } else {
     // Get both users
     const user = await User.findById(req.params.user);
@@ -143,7 +143,7 @@ exports.add_contact = asyncHandler(async (req, res, next) => {
       res.sendStatus(404);
     } else if (user.contacts.includes(contact._id) || user._id === contact._id) {
       const err = 'You already have this user in your contacts.';
-      res.sendStatus(403).json(err);
+      res.status(400).json(err);
     } else {
       // Add users to each other's contacts
       user.contacts.push(contact);
