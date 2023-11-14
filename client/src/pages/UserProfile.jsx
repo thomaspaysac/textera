@@ -7,39 +7,40 @@ import { Layout } from "../components/Layout";
 
 import conversationIcon from '../assets/icons/conversation_black.png'
 import conversation_newIcon from '../assets/icons/conversation_new.png'
+import addIcon from '../assets/icons/add.png'
 
 export const UserProfile = () => {
   const userData = useContext(userContext);
   const [user, setUser] = useState();
-  const [contacts, setContacts] = useState([]);
   const [conversation, setConversation] = useState([]);
   const { id } = useParams();
   const navigateTo = useNavigate();
 
   const fetchUsers = async () => {
-    const userReq = await fetch('http://localhost:3000/user/' + id);
-    //const userReq = await fetch('https://textera-production.up.railway.app/user/' + id);
-    const userRes = await userReq.json()
-    setUser(userRes);
-    /*const ownReq = await fetch('http://localhost:3000/user/' + localStorage.user_id);
-    //const ownReq = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
-    const ownRes = await ownReq.json()
-    setContacts(ownRes.contacts);*/
-    const convReq = await fetch('http://localhost:3000/conversation/users/' + userData.user_metadata.uid + '/' + id, {
-      headers: {
-        "Authorization": userData.user_metadata.uid,
-      }
-    })
-    //const convReq = await fetch('https://textera-production.up.railway.app/conversation/users/' + localStorage.user_id + '/' + id);
-    const convRes = await convReq.json();
-    setConversation(convRes);
+    if (!userData) {
+      return;
+    } else {
+      const userReq = await fetch('http://localhost:3000/user/' + id);
+      //const userReq = await fetch('https://textera-production.up.railway.app/user/' + id);
+      const userRes = await userReq.json()
+      setUser(userRes);
+      const convReq = await fetch('http://localhost:3000/conversation/users/' + userData.user_metadata.uid + '/' + id, {
+      //const convReq = await fetch('https://textera-production.up.railway.app/conversation/users/' + localStorage.user_id + '/' + id, {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      })
+      const convRes = await convReq.json();
+      setConversation(convRes);  
+    }
   }
 
   const addToContacts = async () => {
     await fetch('http://localhost:3000/user/' + userData.user_metadata.uid + '/add/' + id, {
     //await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/add' + id, {
       method: 'POST',
-    })
+    });
+    navigateTo('/contacts');
   }
 
   const createConversation = async () => {
@@ -61,7 +62,7 @@ export const UserProfile = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [])
+  }, [userData])
 
   const AddContactButton = () => {
     if (user.contacts.includes(userData.user_metadata.uid) || user._id === userData.user_metadata.uid) {
@@ -69,7 +70,11 @@ export const UserProfile = () => {
     } 
     
     return (
-      <button onClick={addToContacts}>+ Add to contacts</button>
+      <div className="conversation-button">
+        <button onClick={addToContacts} className="">
+         <img src={addIcon} alt ="" />Add to contacts
+        </button>
+      </div>
     )
   }
 
@@ -77,8 +82,8 @@ export const UserProfile = () => {
     if (user.contacts.includes(userData.user_metadata.uid) && conversation.length === 0) {
       return (
         <div className="conversation-button">
-          <button className="conversation-button" onClick={createConversation}>
-            <img src={conversation_newIcon}/> Start a new conversation
+          <button onClick={createConversation}>
+            <img src={conversation_newIcon} alt="" /> Start a new conversation
           </button>
         </div>
         
@@ -87,7 +92,7 @@ export const UserProfile = () => {
       return (
         <Link to={`/conv/${conversation[0]._id}`} className="conversation-button">
           <button >
-            <img src={conversationIcon} /> Go to conversation
+            <img src={conversationIcon} alt="" /> Go to conversation
           </button>
         </Link>
       )
