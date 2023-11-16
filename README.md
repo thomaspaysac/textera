@@ -6,14 +6,14 @@ Priorités:
 - [X] Envoi de messages textuels
 - [X] Envoi de fichiers
 - [X] Création de groupes
-- [ ] Sécurité : vérifier que l'utilisateur fait partie de la conversation / du groupe avant de fetch les données.
+- [X] Sécurité : vérifier que l'utilisateur fait partie de la conversation / du groupe avant de fetch les données.
 
 Finitions:
 - [ ] Error page
 - [ ] Models cleanup
 - [ ] Input sanitization & validation
 - [ ] Feedback pour : ajout de contact / envoi de message
-- [ ] Recherche d'utilisateur: la rendre case insensitive
+- [X] Recherche d'utilisateur: la rendre case insensitive
 - [ ] Loading des pages : harmoniser / animations
-- [ ] Vérifier envoi de fichiers pour autoriser seulement les images
+- [X] Vérifier envoi de fichiers pour autoriser seulement les images
 - [ ] Refactor vérification des champs pour le signup et login

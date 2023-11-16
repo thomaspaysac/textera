@@ -9,22 +9,6 @@ export const SignupPage = () => {
   const [error, setError] = useState();
   const navigateTo = useNavigate();
   
-  /*const signup = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const req = await fetch(`http://localhost:3000/user/signup`, {
-    //const req = await fetch(`https://textera-production.up.railway.app/user/signup`, {
-      method: 'POST',
-      body: formData,
-    });
-    const errors = await req.json();
-    if (errors.length > 0) {
-      setError(errors);
-    } else {
-      navigateTo('/login');
-    }
-  }*/
-
   // Supabase signup
   const signup = async (e) => {
     e.preventDefault();
@@ -37,7 +21,6 @@ export const SignupPage = () => {
     const errors = await req.json();
     if (errors.length > 0) {
       setError(errors);
-      console.log(errors)
     } else {
       navigateTo('/login');
     }
@@ -88,7 +71,7 @@ export const SignupPage = () => {
               </button>
               <input type='file' id='avatar' name='avatar' accept="image/*" style={{display: 'none'}} />
             </div>
-            <button type='submit' className="button_primary">Sign up</button>
+            <button type='submit' className="button_primary"><b>Sign up</b></button>
           </form>
           <ErrorContainer />
         </div>

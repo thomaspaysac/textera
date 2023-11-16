@@ -21,6 +21,7 @@ import { AddContactPage } from "./pages/AddContact";
 import { GroupCreatePage } from "./pages/GroupCreate";
 import { ChangeAvatarPage } from "./pages/ChangeAvatar"
 import { ChangeStatusPage } from "./pages/ChangeStatus"
+import { ErrorPage } from "./pages/ErrorPage";
 
 const supabaseUrl = "https://gliraufnczlivoqbxhzc.supabase.co";
 import { supabaseKey } from "./_private";
@@ -87,6 +88,7 @@ export const Routing = () => {
           <Route path="/group/:id" element={<Group />} />
           <Route path="/group/:id/details" element={<GroupInfo />} />
           <Route path="/group/:id/edit" element={<GroupEditPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
