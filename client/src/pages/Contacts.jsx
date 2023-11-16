@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { AvatarSmall } from "../components/AvatarSmall";
+import { NewConvButton } from "../components/NewConvButton";
+import addIcon from '../assets/icons/add.png'
 
 export const ContactsPage = () => {
   const [contacts, setContacts] = useState();
@@ -33,7 +35,6 @@ export const ContactsPage = () => {
 
     return (
       <div className="contacts-list">
-        <Link to='/contacts/add' className="add-contact_link"><button>Add new contact</button></Link>
         <div className="contacts-length">
           {contacts.length} contacts
         </div>
@@ -56,6 +57,7 @@ export const ContactsPage = () => {
       <div className="content contacts-page">
         {contactsList()}
       </div>
+      <NewConvButton link={'/contacts/add'} />
     </Layout>
   )
 }

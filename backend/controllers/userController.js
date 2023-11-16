@@ -72,7 +72,6 @@ exports.signup_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
-    console.log(errors)
     if (!errors.isEmpty()) {
       res.json(errors.array());
       return;

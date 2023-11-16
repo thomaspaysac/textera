@@ -88,7 +88,7 @@ export const Routing = () => {
           <Route path="/group/:id" element={<Group />} />
           <Route path="/group/:id/details" element={<GroupInfo />} />
           <Route path="/group/:id/edit" element={<GroupEditPage />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage error={'Page not found'} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const ConversationSchema = new Schema ({
   users: { type: [mongoose.Schema.ObjectId], ref: 'User' },
   lastMessage: { type: String },
-  //type: { type: String, enum: ['single', 'group'] }
 },
 { 
   timestamps: true,

@@ -10,7 +10,8 @@ html {
 
 body {
   height: 100vh;
-  background-color: #fcfcfc; }
+  background-color: #fcfcfc;
+  font-size: 1.1rem; }
 
 header {
   background-color: #222222;
@@ -133,10 +134,10 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 1.5rem; }
+    font-size: 2rem; }
     .homepage .heading :last-child {
       font-weight: 700;
-      font-size: 2rem; }
+      font-size: 2.5rem; }
   .homepage img {
     width: clamp(100px, 100%, 280px); }
 
@@ -202,7 +203,7 @@ main {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   background-color: #ededed;
   text-decoration: none;
   color: #000000;
@@ -234,7 +235,7 @@ main {
       border-radius: 8px;
       border: none;
       background-color: #ffffff;
-      font-size: 1rem;
+      font-size: 1.1rem;
       resize: none; }
     .message-input #input_form input[type='file'] {
       display: none; }
@@ -266,7 +267,7 @@ main {
   padding-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px; }
+  gap: 24px; }
 
 .conversation-overview_link,
 .group-overview_link {
@@ -289,7 +290,7 @@ main {
   gap: 4px; }
   .conversation-overview_content .last-message,
   .group-overview_content .last-message {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #707070; }
 
 .conversation-overview_metadata,
@@ -302,10 +303,11 @@ main {
   .conversation-overview_metadata .group_name,
   .group-overview_metadata .conversation_name,
   .group-overview_metadata .group_name {
+    font-size: 1.2rem;
     font-weight: 700; }
   .conversation-overview_metadata .last-update,
   .group-overview_metadata .last-update {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #707070; }
 
 .messages-list {
@@ -319,13 +321,14 @@ main {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 1rem; }
+  font-size: 1.1rem; }
   .message-single .message-single_author {
     font-weight: 700;
     color: #222222; }
   .message-single .message_timestamp {
     align-self: end;
-    font-size: 0.7rem; }
+    font-size: 0.8rem;
+    color: #707070; }
   .message-single .message_file {
     width: 100%; }
     .message-single .message_file img {
@@ -434,7 +437,19 @@ main {
   .contacts-page .contacts-list {
     display: flex;
     flex-direction: column;
-    gap: 8px; }
+    gap: 24px;
+    font-size: 1.2rem; }
+    .contacts-page .contacts-list a {
+      text-decoration: none; }
+    .contacts-page .contacts-list button {
+      font-size: 1.3rem;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px; }
+      .contacts-page .contacts-list button img {
+        max-height: 25px;
+        max-width: 100%; }
     .contacts-page .contacts-list .contacts-length {
       align-self: center;
       color: #777777; }
@@ -468,7 +483,7 @@ main {
   .add-contact_page form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
     width: 100%; }
   .add-contact_page .input-group {
     display: flex;
@@ -479,9 +494,10 @@ main {
     width: 100%;
     border-radius: 4px;
     border: 1px solid #777777;
-    font-size: 1rem; }
+    font-size: 1.1rem; }
   .add-contact_page button {
-    padding: 8px; }
+    padding: 8px;
+    font-size: 1.2rem; }
   .add-contact_page .error-container {
     text-align: center;
     color: #ff0000; }
@@ -500,7 +516,7 @@ main {
       .group-create-page #group-create_form .users-options label {
         flex-shrink: 0; }
       .group-create-page #group-create_form .users-options select {
-        font-size: 1rem;
+        font-size: 1.1rem;
         padding: 4px;
         width: 100%; }
       .group-create-page #group-create_form .users-options input[type="button"] {
@@ -518,7 +534,7 @@ main {
       width: 100%;
       height: 100%;
       padding: 4px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       border-radius: 4px; }
   .group-create-page .image-upload_button {
     background-color: #efefef;
@@ -551,7 +567,8 @@ main {
     display: flex;
     justify-content: center; }
     .group-create-page .submit-button_container button {
-      font-size: 1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
       width: 100%;
       padding: 8px;
       border-radius: 4px; }
@@ -571,11 +588,12 @@ main {
       font-size: 1.5rem;
       font-weight: 700; }
     .settings-page .user-info .user_status {
+      font-size: 1.1rem;
       font-style: italic; }
   .settings-page .actions {
     display: flex;
     flex-direction: column;
-    gap: 16px; }
+    gap: 24px; }
     .settings-page .actions a {
       text-decoration: none;
       color: #000000; }
@@ -583,13 +601,12 @@ main {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 8px;
+      gap: 12px;
+      padding: 12px;
       border-radius: 4px;
-      font-size: 1rem;
-      height: 40px; }
+      font-size: 1.2rem; }
       .settings-page .actions button img {
-        max-height: 100%;
+        max-height: 24px;
         max-width: 100%; }
     .settings-page .actions .logout-button {
       font-weight: 700; }
@@ -609,20 +626,20 @@ main {
   .change-avatar-page button {
     padding: 8px;
     border-radius: 4px;
-    font-size: 1rem;
-    height: 40px; }
+    font-size: 1.2rem; }
     .change-avatar-page button label {
       display: flex;
       align-items: center;
       gap: 8px;
       height: 100%; }
       .change-avatar-page button label img {
-        max-height: 100%;
+        max-height: 24px;
         max-width: 100%; }
   .change-avatar-page .delete-avatar_button {
     margin-top: auto; }
 
 .change-status-page {
+  font-size: 1.1rem;
   padding-top: 24px; }
   .change-status-page form {
     display: flex;
@@ -632,12 +649,11 @@ main {
     .change-status-page form input[type="text"] {
       padding: 4px;
       width: 100%;
-      font-size: 1rem; }
+      font-size: 1.1rem; }
   .change-status-page button {
     margin-top: 16px;
     padding: 8px;
     border-radius: 4px;
-    font-size: 1rem;
-    height: 40px; }
+    font-size: 1.2rem; }
 
 /*# sourceMappingURL=App.css.map */

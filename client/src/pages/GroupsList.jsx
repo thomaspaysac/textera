@@ -46,7 +46,7 @@ export const GroupsList = () => {
       <Layout>
         <h2>Groups</h2>
         <div>No group</div>
-        <NewConvButton link={'/newgroup'} />
+        <NewConvButton link={'/group/create'} />
       </Layout>
     </>
     )
