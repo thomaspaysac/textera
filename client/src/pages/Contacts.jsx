@@ -4,7 +4,6 @@ import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { AvatarSmall } from "../components/AvatarSmall";
 import { NewConvButton } from "../components/NewConvButton";
-import addIcon from '../assets/icons/add.png'
 
 export const ContactsPage = () => {
   const [contacts, setContacts] = useState();

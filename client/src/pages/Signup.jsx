@@ -64,7 +64,7 @@ export const SignupPage = () => {
               <input type="password" id="password_confirm" name="password_confirm" />
             </div>
             <div>
-              <button type="button">
+              <button className="upload-avatar" type="button">
                 <label htmlFor="avatar">
                   <img src={imageIcon} alt="" /> Upload an avatar 
                 </label>

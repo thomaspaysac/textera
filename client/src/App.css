@@ -10,11 +10,11 @@ html {
 
 body {
   height: 100vh;
-  background-color: #fcfcfc;
+  background-color: #ffffff;
   font-size: 1.1rem; }
 
 header {
-  background-color: #222222;
+  background-color: #2c2b5b;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -28,7 +28,7 @@ header {
       width: 100%; }
   header .user-container {
     display: flex;
-    color: #efefef; }
+    color: #ffffff; }
   @media (max-width: 480px) {
     header .header_expanded {
       display: none; } }
@@ -38,13 +38,14 @@ footer {
   bottom: 0;
   width: 100%;
   height: 9vh;
-  background-color: #222222;
+  background-color: #2c2b5b;
   display: flex;
   justify-content: space-around; }
   footer a {
-    width: 100%; }
+    width: 100%;
+    text-decoration: none; }
   footer .active {
-    background-color: #444444;
+    background-color: #5B5B84;
     font-weight: 700; }
   footer .footer-button {
     display: flex;
@@ -53,7 +54,7 @@ footer {
     align-items: center;
     gap: 2px;
     padding: 4px;
-    color: #efefef;
+    color: #ffffff;
     height: 100%;
     font-size: 0.9rem;
     border-radius: 8px;
@@ -108,7 +109,9 @@ main {
 
 .newConvButton {
   border-radius: 50%;
-  border: 1px solid #444444;
+  border: 1px solid #5B5B84;
+  background-color: #2c2b5b;
+  color: #ffffff;
   padding: 24px;
   height: 50px;
   width: 50px;
@@ -116,8 +119,8 @@ main {
   vertical-align: middle;
   position: fixed;
   z-index: 3;
-  right: 8px;
-  bottom: 10vh;
+  right: 10px;
+  bottom: 11vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,9 +158,10 @@ main {
     .login-page form button,
     .signup-page form button {
       padding: 8px;
+      background-color: #2c2b5b;
+      color: #ffffff;
       border-radius: 4px;
-      font-size: 1rem;
-      height: 40px; }
+      font-size: 1.1rem; }
       .login-page form button label,
       .signup-page form button label {
         display: flex;
@@ -166,8 +170,12 @@ main {
         height: 100%; }
         .login-page form button label img,
         .signup-page form button label img {
-          max-height: 100%;
+          max-height: 24px;
           max-width: 100%; }
+    .login-page form .upload-avatar,
+    .signup-page form .upload-avatar {
+      background-color: #ededed;
+      color: #000000; }
     .login-page form .input-group,
     .signup-page form .input-group {
       display: flex;
@@ -212,7 +220,6 @@ main {
 .message-input {
   position: sticky;
   width: 100%;
-  background-color: #ededed00;
   bottom: 10vh;
   z-index: 4; }
   .message-input .error-container {
@@ -253,7 +260,7 @@ main {
       min-width: 48px;
       border-radius: 50%;
       border: none;
-      background-color: #ffffff;
+      background-color: #2c2b5b;
       position: relative; }
       .message-input #input_form button img {
         position: absolute;
@@ -460,9 +467,11 @@ main {
       text-decoration: none;
       color: #222222; }
 
-.conversation-button {
+.conversation-button,
+.add-contact_button {
   text-decoration: none; }
-  .conversation-button button {
+  .conversation-button button,
+  .add-contact_button button {
     padding: 12px;
     border-radius: 4px;
     border: none;
@@ -471,8 +480,13 @@ main {
     display: flex;
     align-items: center;
     gap: 8px; }
-  .conversation-button img {
+  .conversation-button img,
+  .add-contact_button img {
     height: 24px; }
+
+.add-contact_button button {
+  background-color: #2c2b5b;
+  color: #ffffff; }
 
 .add-contact_page {
   padding-top: 16px;
@@ -604,11 +618,15 @@ main {
       gap: 12px;
       padding: 12px;
       border-radius: 4px;
-      font-size: 1.2rem; }
+      font-size: 1.2rem;
+      border: 2px solid #2c2b5b; }
       .settings-page .actions button img {
         max-height: 24px;
         max-width: 100%; }
     .settings-page .actions .logout-button {
+      background-color: #2c2b5b;
+      color: #ffffff;
+      border: none;
       font-weight: 700; }
 
 .change-avatar-page {

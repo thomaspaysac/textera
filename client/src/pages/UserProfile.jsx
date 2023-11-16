@@ -70,7 +70,7 @@ export const UserProfile = () => {
     } 
     
     return (
-      <div className="conversation-button">
+      <div className="add-contact_button">
         <button onClick={addToContacts} className="">
          <img src={addIcon} alt ="" />Add to contacts
         </button>
