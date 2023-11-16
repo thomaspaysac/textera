@@ -9,7 +9,7 @@ router.post('/create', multer.upload.single('image'), groupController.create_gro
 
 router.get('/user/:id', groupController.user_groups_get);
 
-router.post('/edit/:id', groupController.edit_group);
+router.post('/edit/:id', multer.upload.single('image'), groupController.edit_group);
 
 router.get('/:id', groupController.get_groupById);
 

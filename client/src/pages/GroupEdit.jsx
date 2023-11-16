@@ -58,7 +58,6 @@ export const GroupEditPage = () => {
   const editGroup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    formData.append('admin', userData.user_metadata.uid);
     usersID.forEach((el, i) => {
       formData.append('users[]', usersID[i])
       }
@@ -68,7 +67,8 @@ export const GroupEditPage = () => {
         method: 'POST',
         body: formData,
       });
-    //navigateTo('/group/' + res);
+    const res = await req.json();
+    navigateTo('/group/' + res);
   }
 
   const addUser = () => {
