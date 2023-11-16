@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { userContext } from '../App';
 import sendIcon from '../assets/icons/send.png'
 import imageUpload from '../assets/icons/image_upload_black.png'
 
 export const MessageInputField = (props) => {
   const [errorMessage, setErrorMessage] = useState(null)
+  const userData = useContext(userContext);
 
   const tx = document.getElementsByTagName("textarea");
   for (let i = 0; i < tx.length; i++) {
@@ -54,7 +56,7 @@ export const MessageInputField = (props) => {
           <img src={imageUpload} alt='attach file' />
         </label>
         <input type='file' id='file_upload' name='file_upload' accept="image/*" />
-        <input name='author' style={{display: "none"}} value={localStorage.user_id} readOnly />
+        <input name='author' style={{display: "none"}} value={userData.user_metadata.uid} readOnly />
         <input name='conversation' style={{display: "none"}} value={props.conversationID} readOnly />
         <input name='group' style={{display: "none"}} value={props.groupID} readOnly />
         <button type="submit">

@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-
+import { userContext } from "../App"
 import { Layout } from "../components/Layout"
 import { AvatarBig } from "../components/AvatarBig"
 import imageIcon from '../assets/icons/image_upload.png'
@@ -8,13 +8,14 @@ import imageIcon from '../assets/icons/image_upload.png'
 
 export const ChangeAvatarPage = () => {
   const [errorMessage, setErrorMessage] = useState(null)
+  const userData = useContext(userContext);
   const navigateTo = useNavigate();
 
   const submitImage = async (e) => {
     e.preventDefault();
     setErrorMessage(null);
     const formData = new FormData(e.target);
-    formData.append('userID', localStorage.user_id);
+    formData.append('userID', userData.user_metadata.uid);
     const req = await fetch('http://localhost:3000/user/edit/avatar', {
     //const req = await fetch('https://textera-production.up.railway.app/user/edit/avatar', {
       method: 'PATCH',
@@ -31,7 +32,7 @@ export const ChangeAvatarPage = () => {
 
   const deleteAvatar = async () => {
     if (window.confirm('Do you really want to delete your avatar?')) {
-      const data = { userID: localStorage.user_id };
+      const data = { userID: userData.user_metadata.uid };
       await fetch('http://localhost:3000/user/edit/avatar/delete', {
       //await fetch('https://textera-production.up.railway.app/user/edit/avatar/delete', {
         method: 'PATCH',

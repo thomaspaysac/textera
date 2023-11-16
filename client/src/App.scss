@@ -236,6 +236,19 @@ main {
       margin-top: 16px;
     }
   }
+
+  .error-container {
+    color: #ff0000;
+
+    ul {
+      margin-left: 16px;
+      padding: 0;
+      li {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
 }
 
 // CONVERSATIONS

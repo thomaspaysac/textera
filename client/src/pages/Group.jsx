@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useParams } from "react-router-dom"
+import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { GroupHeader } from "../components/GroupHeader";
 import { MessageInputField } from "../components/MessageInputField";
@@ -12,24 +13,28 @@ export const Group = () => {
   const [error, setError] = useState(false);
   const [user, setUser] = useState();
   const [update, setUpdate] = useState(0);
+  const userData = useContext(userContext);
 
   const { id } = useParams();
   const messagesEndRef = useRef(null)
 
   const fetchGroup = async () => {
-    // Get all messages in group
+    if (!userData) {
+      return
+    }
+    // Get all messages in group and group info
     try {
-      const req = await fetch('http://localhost:3000/messages/group/' + id);
+      const req = await fetch('http://localhost:3000/messages/group/' + id, {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      });
       //const req = await fetch('https://textera-production.up.railway.app/messages/group/' + id);
       const res = await req.json();
-      setMessages(res);
-      // Get group data
-      const groupReq = await fetch('http://localhost:3000/group/' + id)
-      //const groupReq = await fetch('https://textera-production.up.railway.app/group/' + id)
-      const groupRes = await groupReq.json();
-      setGroupInfo(groupRes);
-      groupRes.users.forEach((el) => {
-        return el._id !== localStorage.user_id ? null : setUser(el);
+      setMessages(res.messages);
+      setGroupInfo(res.group);
+      res.group.users.forEach((el) => {
+        return el._id !== userData.user_metadata.uid ? null : setUser(el);
       })
     } catch {
       setError(true);
@@ -50,7 +55,7 @@ export const Group = () => {
 
   useEffect(() => {
     fetchGroup();
-  }, [update])
+  }, [update, userData])
 
   if (error) {
     return (
@@ -73,7 +78,7 @@ export const Group = () => {
         <div className='messages-list'>
         {
           messages.map((el) => {
-            if (el.author._id === localStorage.user_id) {
+            if (el.author._id === userData.user_metadata.uid) {
               return (
                 <MessageSingle key={el.id} group={true} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'own'} />
               )

@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom"
+import { useEffect, useContext } from "react"
+import { userContext } from "../App"
 import { AvatarSmall } from "./AvatarSmall"
-import { useEffect } from "react"
 
 export const ConversationOverview = ({ message }) => {
+  const userData = useContext(userContext);
+
   const conversationImage = (user) => {
-    if (user._id === localStorage.user_id) {
+    if (user._id === userData.user_metadata.uid) {
       return null
     } else {
       return (
@@ -14,7 +17,7 @@ export const ConversationOverview = ({ message }) => {
   }
 
   const usersList = (user) => {
-    if (user._id === localStorage.user_id) {
+    if (user._id === userData.user_metadata.uid) {
       return null
     } else {
       return (

@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useParams } from "react-router-dom"
+import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { ConversationHeader } from "../components/ConversationHeader";
 import { MessageInputField } from "../components/MessageInputField";
@@ -9,25 +10,31 @@ export const Conversation = () => {
   const [messages, setMessages] = useState();
   const [correspondant, setCorrespondant] = useState();
   const [update, setUpdate] = useState(0);
+  const userData = useContext(userContext);
   const { id } = useParams();
   const messagesEndRef = useRef(null)
-
-  const fetchConv = async () => {
-    const req = await fetch('http://localhost:3000/messages/conv/' + id);
-    //const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id);
-    const res = await req.json();
-    setMessages(res);
-    const convReq = await fetch('http://localhost:3000/conversation/' + id)
-    //const convReq = await fetch('https://textera-production.up.railway.app/conversation/' + id)
-    const convRes = await convReq.json();
-    convRes.users.forEach((el) => {
-      return el._id === localStorage.user_id ? null : setCorrespondant(el);
-    })
-  }
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView(/*{ behavior: "smooth", block:"end" }*/)
   }
+
+  const fetchConv = async () => {
+    if (!userData) {
+      return null
+    }
+    const req = await fetch('http://localhost:3000/messages/conv/' + id, {
+      headers: {
+        "Authorization": userData.user_metadata.uid,
+      }
+    });
+    //const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id);
+    const res = await req.json();
+    res.conv.users.forEach((el) => {
+      return el._id === userData.user_metadata.uid ? null : setCorrespondant(el);
+    })
+    setMessages(res.messages);
+  }
+
 
   const updateComponent = () => {
     setUpdate(update + 1);
@@ -35,11 +42,11 @@ export const Conversation = () => {
 
   useEffect(() => {
     fetchConv();
-  }, [update])
+  }, [update, userData])
 
   useEffect(() => {
     scrollToBottom();
-  })
+  }, [messages])
 
   if (!messages || !correspondant) {
     return null;
@@ -52,7 +59,7 @@ export const Conversation = () => {
         <div className='messages-list'>
         {
           messages.map((el) => {
-            if (el.author._id === localStorage.user_id) {
+            if (el.author._id === userData.user_metadata.uid) {
               return (
                 <MessageSingle key={el.id} content={el.content} file={el.file} timestamp={el.timestampFormatted} author={'own'} />
               )

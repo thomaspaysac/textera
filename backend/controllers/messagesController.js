@@ -6,36 +6,69 @@ const Conversation = require('../models/conversation')
 const Group = require('../models/group');
 const User = require('../models/user');
 
-// GET all messages from one conversation
+// GET all messages from one conversation and conversation info // SECURED
 exports.conversation_messages_get = asyncHandler(async (req, res, next) => {
   const messages = await Message.find({ conversation: req.params.id })
     .sort({ createdAt: 1 })
     .populate('author', 'username');
-  res.json(messages);
-})
-
-// GET all media from one conversation
-exports.conversation_media_get = asyncHandler(async (req, res, next) => {
-  const media = await Message.find({ conversation: req.params.id, file: {$exists: true} });
-  res.json(media);
-})
-
-// GET all messages from one group
-exports.group_messages_get = asyncHandler(async (req, res, next) => {
-  try {
-    const messages = await Message.find({ group: req.params.id })
-    .sort({ createdAt: 1 })
-    .populate('author', 'username avatar');
-    res.json(messages);
-  } catch {
-    res.sendStatus(404);
+  if (!messages) {
+    res.sendStatus(404)
+  } else {
+    const conv = await Conversation.findById(req.params.id).populate('users', 'username avatar');
+    const usersIds = [];
+    conv.users.forEach((el) => usersIds.push(el._id.toString()))
+    if (usersIds.includes(req.headers.authorization)) {
+      res.status(200).json({messages, conv});
+    } else {
+      res.sendStatus(403);
+    }
   }
 })
 
-// GET all media from one group
+// GET all media from one conversation // SECURED
+exports.conversation_media_get = asyncHandler(async (req, res, next) => {
+  const media = await Message.find({ conversation: req.params.id, file: {$exists: true} });
+  const conv = await Conversation.findById(req.params.id).populate('users', 'username avatar');
+    const usersIds = [];
+    conv.users.forEach((el) => usersIds.push(el._id.toString()))
+    if (usersIds.includes(req.headers.authorization)) {
+      res.status(200).json(media);
+    } else {
+      res.sendStatus(403);
+    }
+})
+
+// GET all messages from one group and group info // SECURED
+exports.group_messages_get = asyncHandler(async (req, res, next) => {
+  const messages = await Message.find({ group: req.params.id })
+    .sort({ createdAt: 1 })
+    .populate('author', 'username avatar');
+  if (!messages) {
+    res.sendStatus(404);
+  } else {
+    const group = await Group.findById(req.params.id).populate('users', 'username avatar').populate('admin', 'username avatar');
+    const usersIds = [];
+    group.users.forEach((el) => usersIds.push(el._id.toString()))
+    if (usersIds.includes(req.headers.authorization)) {
+      res.status(200).json({ messages, group });
+    } else {
+      res.sendStatus(403);
+    }
+  }
+})
+
+// GET all media from one group // SECURED
 exports.group_media_get = asyncHandler(async (req, res, next) => {
   const media = await Message.find({ group: req.params.id, file: {$exists: true} });
-  res.json(media);
+  const group = await Group.findById(req.params.id).populate('users', 'username avatar');
+  const usersIds = [];
+  group.users.forEach((el) => usersIds.push(el._id.toString()))
+  if (usersIds.includes(req.headers.authorization)) {
+    res.status(200).json(media);
+  } else {
+    res.sendStatus(403);
+  }
+
 })
 
 // POST message create

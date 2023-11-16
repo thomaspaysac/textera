@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "../App";
+import { userContext } from "../App";
 
 import { Layout } from "../components/Layout"
 import { AvatarBig } from "../components/AvatarBig";
@@ -11,19 +13,25 @@ import logoutIcon from '../assets/icons/logout.png'
 
 export const SettingsPage = () => {
   const [user, setUser] = useState();
+  const userData = useContext(userContext);
   const navigateTo = useNavigate();
 
-  const logout = () => {
+  const logout = async () => {
     if (window.confirm('Do you really want to log out ?')) {
       localStorage.clear();
+      await supabase.auth.signOut();
       navigateTo('/');
+      location.reload();
     } else {
       return;
     }
   }
 
   const fetchUserData = async () => {
-    const req = await fetch('http://localhost:3000/user/' + localStorage.user_id);
+    if (!userData) {
+      return
+    }
+    const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid);
     //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
     const res = await req.json()
     setUser(res);
@@ -31,9 +39,9 @@ export const SettingsPage = () => {
 
   useEffect (() => {
     fetchUserData();
-  }, [])
+  }, [userData])
 
-  if (!user) {
+  if (!user || !userData) {
     return (
       <Layout>
         <div>

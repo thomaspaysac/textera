@@ -178,6 +178,17 @@ main {
     .login-page form button,
     .signup-page form button {
       margin-top: 16px; }
+  .login-page .error-container,
+  .signup-page .error-container {
+    color: #ff0000; }
+    .login-page .error-container ul,
+    .signup-page .error-container ul {
+      margin-left: 16px;
+      padding: 0; }
+      .login-page .error-container ul li,
+      .signup-page .error-container ul li {
+        margin: 0;
+        padding: 0; }
 
 .conversation-page {
   background: url("./assets/v748-toon-106.jpg");

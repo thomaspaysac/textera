@@ -9,6 +9,7 @@ export const SignupPage = () => {
   const [error, setError] = useState();
   const navigateTo = useNavigate();
   
+  // Supabase signup
   const signup = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -22,6 +23,26 @@ export const SignupPage = () => {
       setError(errors);
     } else {
       navigateTo('/login');
+    }
+  }
+
+  const ErrorContainer = () => {
+    if (!error) {
+      return null
+    } else {
+      return (
+        <div className="error-container">
+          <ul>
+            {
+              error.map((el, i) => {
+                return (
+                  <li key={'error' + i}>{el.msg}</li>
+                )
+              })
+            }
+          </ul>
+        </div>
+      )
     }
   }
 
@@ -50,8 +71,9 @@ export const SignupPage = () => {
               </button>
               <input type='file' id='avatar' name='avatar' accept="image/*" style={{display: 'none'}} />
             </div>
-            <button type='submit' className="button_primary">Sign up</button>
+            <button type='submit' className="button_primary"><b>Sign up</b></button>
           </form>
+          <ErrorContainer />
         </div>
       </Layout>
   )

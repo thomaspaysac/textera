@@ -1,16 +1,26 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { userContext } from "../App";
 import { Layout } from "../components/Layout"
 import { ConversationOverview } from "../components/ConversationOverview";
 import { NewConvButton } from "../components/NewConvButton";
 
 export const ConversationsList = () => {
   const [conversations, setConversations] = useState();
+  const userData = useContext(userContext);
 
   const fetchConversations = async () => {
-    const req = await fetch('http://localhost:3000/conversation/user/' + localStorage.user_id);
-    //const req = await fetch('https://textera-production.up.railway.app/conversation/user/' + localStorage.user_id);
-    const res = await req.json()
-    setConversations(res);
+    if (!userData) {
+      return;
+    } else {
+      const req = await fetch('http://localhost:3000/conversation/user/' + userData.user_metadata.uid, {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      });
+      //const req = await fetch('https://textera-production.up.railway.app/conversation/user/' + localStorage.user_id);
+      const res = await req.json()
+      setConversations(res);
+    }
   }
 
   const conversationsList = () => {
@@ -29,9 +39,9 @@ export const ConversationsList = () => {
 
   useEffect(() => {
     fetchConversations();
-  }, [])
+  }, [userData])
 
-  if (!conversations) {
+  if (!conversations || !conversations.length) {
     return (
       <>
       <Layout>

@@ -12,6 +12,10 @@ const firebaseFn = require('../firebaseFunctions');
 
 const User = require('../models/user');
 
+// SUPABASE config
+const supabaseInit = require('@supabase/supabase-js');
+const supabase = supabaseInit.createClient(process.env.SUPABASE_PROJECT, process.env.SUPABASE_KEY);
+
 // GET user profile JSON
 exports.user_profile_get = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-password');
@@ -68,32 +72,41 @@ exports.signup_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password,
-      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc",
-    });
+    console.log(errors)
     if (!errors.isEmpty()) {
       res.json(errors.array());
       return;
     } else {
-      res.json(errors.array());
-      if (req.file) {
-        const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
-        if (filetypeCheck.test(req.file.mimetype)) {
-          avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-          user.avatar = avatarUrl;  
+    // Send to Supabase for authentication
+    const id = new mongoose.Types.ObjectId();
+    const { data, error } = await supabase.auth.signUp(
+      {
+        email: req.body.username + "@email.com",
+        password: req.body.password,
+        options: {
+          data: {
+            username: req.body.username,
+            uid: id,
+          }
         }
       }
-      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-        try {
-          user.password = hashedPassword;
-          await user.save();
-          res.end();
-        } catch(err) {
-          return next(err);
-        };
-      })
+    )
+    const user = new User({
+      _id: data.user.user_metadata.uid,
+      email: req.body.username + '@email.com',
+      username: req.body.username,
+      password: req.body.password,
+      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc",
+    });
+    if (req.file) {
+      const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+      if (filetypeCheck.test(req.file.mimetype)) {
+        avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+        user.avatar = avatarUrl;  
+      }
+    }
+    await user.save();
+    res.status(200).json(errors);
     }
   })
 ]
@@ -103,51 +116,34 @@ exports.login_get = asyncHandler(async (req, res, next) => {
   res.render('login');
 })
 
-// POST login
+// POST Login (Supabase)
 exports.login_post = asyncHandler(async (req, res, next) => {
   try {
-    passport.authenticate('local', {session: true}, (err, user, userData) => {
-      if (err || !user) {
-        const error = new Error('User does not exist')
-        return res.status(403).json({
-          userData
-        })
-      }
-      req.login (user, {session: true}, (err) => {
-        if (err){
-          next(err);
-        }
-        const token = jwt.sign(
-          { _id: user._id, username: user.username, avatar: user.avatar },
-          process.env.JWT_SECRET,
-          {
-            expiresIn: "1d",
-          }
-        );
-        const userInfo = { _id: user._id, username: user.username, avatar: user.avatar, status: user.status, token }
-        return res.status(200).json({userInfo});
-      });
-    }) (req, res, next);
-  } catch (err) {
-    res.status(403).json({
-      err
+    await supabase.auth.signInWithPassword({
+      email: req.body.username + "@email.com",
+      password: req.body.password,
     })
+    res.status(200);
+  } catch {
+    res.sendStatus(500);
   }
-});
+})
 
 // POST Add contact
 exports.add_contact = asyncHandler(async (req, res, next) => {
   // Prevent user from adding itself
   if (req.params.user === req.params.contact) {
     const err = "You can't add yourself to your contacts.";
-    res.status(403).json(err);
+    res.status(400).json(err);
   } else {
     // Get both users
     const user = await User.findById(req.params.user);
     const contact = await User.findById(req.params.contact);
-    if (user.contacts.includes(contact._id) || user._id === contact._id) {
+    if (!user || !contact) {
+      res.sendStatus(404);
+    } else if (user.contacts.includes(contact._id) || user._id === contact._id) {
       const err = 'You already have this user in your contacts.';
-      res.status(403).json(err);
+      res.status(400).json(err);
     } else {
       // Add users to each other's contacts
       user.contacts.push(contact);
@@ -222,4 +218,3 @@ exports.verify_user = asyncHandler(async (req, res, next) => {
     }
   })
 });
-
