@@ -64,7 +64,7 @@ export const GroupEditPage = () => {
     )
     const req = await fetch(`http://localhost:3000/group/edit/` + id, {
     //const req = await fetch(`https://textera-production.up.railway.app/group/create`, {
-        method: 'POST',
+        method: 'PATCH',
         body: formData,
       });
     const res = await req.json();

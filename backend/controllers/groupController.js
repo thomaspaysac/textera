@@ -55,7 +55,7 @@ exports.create_group = asyncHandler(async (req, res, next) => {
 })
 
 
-// POST Edit group
+// PATCH Edit group
 exports.edit_group = asyncHandler(async (req, res, next) => {
   const group = await Group.findById(req.params.id);
   group.title = req.body.title;
