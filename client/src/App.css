@@ -101,7 +101,7 @@ main {
   min-height: 100%;
   margin: 0;
   background: url("./assets/v748-toon-106.jpg");
-  background-size: contain; }
+  background-size: cover; }
 
 .content {
   padding: 0 16px 64px 16px;

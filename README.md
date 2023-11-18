@@ -10,12 +10,11 @@ Priorités:
 
 Finitions:
 - [X] Error page
-- [ ] Models cleanup
-- [ ] Input sanitization & validation
+- [X] Models cleanup
+- [X] Input sanitization & validation
 - [ ] Feedback pour : ajout de contact / envoi de message
 - [X] Recherche d'utilisateur: la rendre case insensitive
 - [X] Harmoniser loading des pages
 - [X] Vérifier envoi de fichiers pour autoriser seulement les images
-- [ ] Refactor vérification des champs pour le signup et login
-- [ ] Media list des contacts
+- [X] Media list des contacts
 - [ ] Compte test

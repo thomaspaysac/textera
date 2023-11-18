@@ -95,7 +95,7 @@ exports.signup_post = [
       _id: data.user.user_metadata.uid,
       email: req.body.username + '@email.com',
       username: req.body.username,
-      password: req.body.password,
+      //password: req.body.password,
       avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4-8bfb-cb49b9cb8cdc",
     });
     if (req.file) {

@@ -123,7 +123,6 @@ export const GroupInfo = () => {
           <div className="group_media-section">
             <div className="group-info_section">Media</div>
             <MediaList />
-            
           </div>
         </div>
       </Layout>

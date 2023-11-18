@@ -5,6 +5,7 @@ import { AvatarBig } from "../components/AvatarBig";
 import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { ErrorPage } from "./ErrorPage";
+import { MediaThumbnail } from "../components/MediaThumbnail";
 
 import conversationIcon from '../assets/icons/conversation_black.png'
 import conversation_newIcon from '../assets/icons/conversation_new.png'
@@ -14,6 +15,7 @@ export const UserProfile = () => {
   const userData = useContext(userContext);
   const [user, setUser] = useState();
   const [conversation, setConversation] = useState([]);
+  const [media, setMedia] = useState();
   const [error, setError] = useState(false);
 
   const { id } = useParams();
@@ -38,6 +40,21 @@ export const UserProfile = () => {
       setConversation(convRes);
     } catch {
       setError(true)
+    }
+  }
+
+  const fetchMedia = async () => {
+    if (!conversation.length) {
+      return
+    } else {
+      const mediaReq = await fetch('http://localhost:3000/messages/conv/' + conversation[0]._id + '/media', {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      });
+      //const mediaReq = await fetch('https://textera-production.up.railway.app/messages/conv/' + conversation + '/media');
+      const mediaRes = await mediaReq.json();
+      setMedia(mediaRes);
     }
   }
 
@@ -70,6 +87,31 @@ export const UserProfile = () => {
     fetchUsers();
   }, [userData])
 
+  useEffect(() => {
+    fetchMedia();
+  }, [conversation])
+
+  const MediaList = () => {
+    if (!media || media.length === 0) {
+      return null
+    }
+
+    return (
+      <div className="group_media-section">
+        <div className="group-info_section">Media</div>
+          <div className="group_media-list">
+            {
+              media.map((el) => {
+                return (
+                  <MediaThumbnail imageUrl={el.file} key={el._id} />
+                )
+              })
+            }
+        </div>
+      </div>
+    )
+  }
+
   const AddContactButton = () => {
     if (user.contacts.includes(userData.user_metadata.uid) || user._id === userData.user_metadata.uid) {
       return null
@@ -96,11 +138,16 @@ export const UserProfile = () => {
       )
     } else if (user.contacts.includes(userData.user_metadata.uid)) {
       return (
+        <>
         <Link to={`/conv/${conversation[0]._id}`} className="conversation-button">
           <button >
             <img src={conversationIcon} alt="" /> Go to conversation
           </button>
         </Link>
+        <MediaList/>
+
+        </>
+        
       )
     }
   }
