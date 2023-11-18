@@ -64,11 +64,7 @@ export const Group = () => {
   }
 
   if (!messages || !groupInfo) {
-    return (
-      <Layout>
-        <h3>Loading...</h3>
-      </Layout>
-    );
+    return null
   }
 
   return (

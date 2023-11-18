@@ -5,6 +5,7 @@ import { userContext } from "../App";
 
 import { Layout } from "../components/Layout"
 import { AvatarBig } from "../components/AvatarBig";
+import { ErrorPage } from "./ErrorPage";
 
 import imageIcon from '../assets/icons/image_upload.png'
 import statusIcon from '../assets/icons/status.png'
@@ -13,6 +14,8 @@ import logoutIcon from '../assets/icons/logout.png'
 
 export const SettingsPage = () => {
   const [user, setUser] = useState();
+  const [error, setError] = useState(false);
+
   const userData = useContext(userContext);
   const navigateTo = useNavigate();
 
@@ -31,24 +34,28 @@ export const SettingsPage = () => {
     if (!userData) {
       return
     }
-    const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid);
-    //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
-    const res = await req.json()
-    setUser(res);
+    try {
+      const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid);
+      //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id);
+      const res = await req.json()
+      setUser(res);  
+    } catch {
+      setError(true);
+    }
   }
 
   useEffect (() => {
     fetchUserData();
   }, [userData])
 
-  if (!user || !userData) {
+  if (error) {
     return (
-      <Layout>
-        <div>
-          Loading...
-        </div>
-      </Layout>
+      <ErrorPage error={"Error, please try again"} />
     )
+  }
+
+  if (!user || !userData) {
+    return null
   }
 
   return (  

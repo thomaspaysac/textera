@@ -4,6 +4,7 @@ import { userContext } from "../App";
 import { AvatarBig } from "../components/AvatarBig";
 import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
+import { ErrorPage } from "./ErrorPage";
 
 import conversationIcon from '../assets/icons/conversation_black.png'
 import conversation_newIcon from '../assets/icons/conversation_new.png'
@@ -13,13 +14,16 @@ export const UserProfile = () => {
   const userData = useContext(userContext);
   const [user, setUser] = useState();
   const [conversation, setConversation] = useState([]);
+  const [error, setError] = useState(false);
+
   const { id } = useParams();
   const navigateTo = useNavigate();
 
   const fetchUsers = async () => {
     if (!userData) {
       return;
-    } else {
+    }
+    try {
       const userReq = await fetch('http://localhost:3000/user/' + id);
       //const userReq = await fetch('https://textera-production.up.railway.app/user/' + id);
       const userRes = await userReq.json()
@@ -31,7 +35,9 @@ export const UserProfile = () => {
         }
       })
       const convRes = await convReq.json();
-      setConversation(convRes);  
+      setConversation(convRes);
+    } catch {
+      setError(true)
     }
   }
 
@@ -99,18 +105,17 @@ export const UserProfile = () => {
     }
   }
 
-
-  if (!user) {
+  if (error) {
     return (
-        <Layout>
-          <div>
-            Looking for user...
-          </div>
-        </Layout>
+      <Layout>
+        <ErrorPage error={"User not found"} />
+      </Layout>
     )
   }
 
-  
+  if (!user) {
+    return null
+  }
 
   return (
       <Layout>

@@ -17,3 +17,5 @@ Finitions:
 - [ ] Loading des pages : harmoniser / animations
 - [X] Vérifier envoi de fichiers pour autoriser seulement les images
 - [ ] Refactor vérification des champs pour le signup et login
+- [ ] Media list des contacts
+- [ ] Compte test

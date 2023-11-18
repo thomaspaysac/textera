@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useEffect, useContext } from "react"
+import { useContext } from "react"
 import { userContext } from "../App"
 import { AvatarSmall } from "./AvatarSmall"
 

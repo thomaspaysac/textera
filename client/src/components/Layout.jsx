@@ -1,11 +1,8 @@
-import Header from "./Header"
-import { Footer } from "./Footer"
-
-export const Layout = (props) => {
+export const Layout = ({ children }) => {
   return (
     <>
       <main>
-        {props.children}
+        {children}
       </main>
     </>
   )

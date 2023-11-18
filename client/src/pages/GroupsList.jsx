@@ -41,14 +41,17 @@ export const GroupsList = () => {
   }, [userData])
 
   if (!groups) {
+    return null
+  }
+
+  if (!groups.length) {
     return (
-      <>
       <Layout>
-        <h2>Groups</h2>
-        <div>No group</div>
-        <NewConvButton link={'/group/create'} />
+        <div className="content empty">
+          <div>No group</div>
+          <NewConvButton link={'/group/create'} />
+        </div>
       </Layout>
-    </>
     )
   }
 

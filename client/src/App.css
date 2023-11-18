@@ -106,6 +106,10 @@ main {
   min-height: 80vh; }
   .content .content-end {
     margin-top: 88px; }
+  .content.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
 
 .newConvButton {
   border-radius: 50%;

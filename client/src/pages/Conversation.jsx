@@ -5,11 +5,14 @@ import { Layout } from "../components/Layout";
 import { ConversationHeader } from "../components/ConversationHeader";
 import { MessageInputField } from "../components/MessageInputField";
 import { MessageSingle } from "../components/MessageSingle";
+import { ErrorPage } from "./ErrorPage";
 
 export const Conversation = () => {
   const [messages, setMessages] = useState();
   const [correspondant, setCorrespondant] = useState();
   const [update, setUpdate] = useState(0);
+  const [error, setError] = useState(false);
+
   const userData = useContext(userContext);
   const { id } = useParams();
   const messagesEndRef = useRef(null)
@@ -22,17 +25,22 @@ export const Conversation = () => {
     if (!userData) {
       return null
     }
-    const req = await fetch('http://localhost:3000/messages/conv/' + id, {
-      headers: {
-        "Authorization": userData.user_metadata.uid,
-      }
-    });
-    //const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id);
-    const res = await req.json();
-    res.conv.users.forEach((el) => {
-      return el._id === userData.user_metadata.uid ? null : setCorrespondant(el);
-    })
-    setMessages(res.messages);
+    try {
+      const req = await fetch('http://localhost:3000/messages/conv/' + id, {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      });
+      //const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id);
+      const res = await req.json();
+      res.conv.users.forEach((el) => {
+        return el._id === userData.user_metadata.uid ? null : setCorrespondant(el);
+      })
+      setMessages(res.messages);
+    } catch {
+      setError(true)
+    }
+    
   }
 
 
@@ -47,6 +55,12 @@ export const Conversation = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages])
+
+  if (error) {
+    return (
+      <ErrorPage error={'Conversation not found'} />
+    )
+  }
 
   if (!messages || !correspondant) {
     return null;

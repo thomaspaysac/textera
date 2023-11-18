@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { userContext } from '../App';
 import sendIcon from '../assets/icons/send.png'
 import imageUpload from '../assets/icons/image_upload_black.png'

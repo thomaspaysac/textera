@@ -41,15 +41,18 @@ export const ConversationsList = () => {
     fetchConversations();
   }, [userData])
 
-  if (!conversations || !conversations.length) {
+  if (!conversations) {
+    return null
+  }
+
+  if (!conversations.length) {
     return (
-      <>
       <Layout>
-        <h2>Conversations</h2>
-        <div>No conversations</div>
-        <NewConvButton link={'/contacts'} />
+        <div className="content empty">
+          <div>No conversations</div>
+          <NewConvButton link={'/contacts'} />
+        </div>
       </Layout>
-    </>
     )
   }
 

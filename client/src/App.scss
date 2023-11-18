@@ -151,6 +151,12 @@ main {
   .content-end {
     margin-top: 88px;
   }
+
+  &.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .newConvButton {

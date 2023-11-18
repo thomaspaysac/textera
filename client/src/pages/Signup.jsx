@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Layout } from "../components/Layout";
-import { ErrorContainer } from "../components/ErrorContainer";
 import imageIcon from '../assets/icons/image_upload.png'
 
 

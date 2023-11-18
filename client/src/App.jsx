@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import './App.css'
@@ -81,7 +81,6 @@ export const Routing = () => {
           <Route path="/settings/edit/status" element={<ChangeStatusPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route exact path="/user/verify" element={<Homepage />} />
           <Route path="/user/:id" element={<UserProfile />} />
           <Route path="/conv/:id" element={<Conversation />} />
           <Route exact path="/group/create" element={<GroupCreatePage />} />

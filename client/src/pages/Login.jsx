@@ -1,41 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { supabase } from "../App";
-import { ErrorContainer } from "../components/ErrorContainer";
 
 export const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigateTo = useNavigate();
-  const userData = useContext(userContext);
-
-  /*const login = async (e) => {
-    e.preventDefault();
-    const form = document.getElementById('login_form');
-    const data = {};
-    new FormData(form).forEach((value, key) => data[key] = value);
-    const req = await fetch(`http://localhost:3000/user/login`, {
-    //const req = await fetch(`https://textera-production.up.railway.app/user/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data),
-    });
-    if (req.status !== 200) {
-      setError(true);
-    } else {
-      const res = await req.json();
-      console.log(res);
-      localStorage.setItem('username', res.userInfo.username);
-      localStorage.setItem('user_id', res.userInfo._id);
-      localStorage.setItem('avatar', res.userInfo.avatar);
-      localStorage.setItem('status', res.userInfo.status);
-      localStorage.setItem('logged_in', true);
-      navigateTo('/conv');
-    }
-  }*/
 
   // Supabase login
   const login = async (e) => {

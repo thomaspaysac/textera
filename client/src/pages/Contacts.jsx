@@ -25,11 +25,7 @@ export const ContactsPage = () => {
 
   const contactsList = () => {
     if (!contacts) {
-      return (
-        <>
-          Loading...
-        </>
-      )
+      return null
     }
 
     return (

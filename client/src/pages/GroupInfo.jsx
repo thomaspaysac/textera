@@ -1,52 +1,59 @@
 import { useState, useEffect, useContext } from "react";
 import { userContext } from "../App";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import { AvatarBig } from "../components/AvatarBig";
 import { AvatarSmall } from "../components/AvatarSmall";
 import { AvatarVerySmall } from "../components/AvatarVerySmall";
 import { MediaThumbnail } from "../components/MediaThumbnail";
 import { Layout } from "../components/Layout";
-import { Link } from "react-router-dom";
+import { ErrorPage } from "./ErrorPage";
 
 
 export const GroupInfo = () => {
   const [group, setGroup] = useState();
   const [media, setMedia] = useState();
+  const [error, setError] = useState(false);
   const userData = useContext(userContext);
   const { id } = useParams();
 
   const fetchGroup = async () => {
-    const req = await fetch('http://localhost:3000/group/' + id, {
-      headers: {
-        "Authorization": userData.user_metadata.uid,
-      }
-    });
-    //const req = await fetch('https://textera-production.up.railway.app/group/' + id);
-    const res = await req.json()
-    setGroup(res);
-    // Fetch media
-    const mediaReq = await fetch('http://localhost:3000/messages/group/' + id + '/media', {
-      headers: {
-        "Authorization": userData.user_metadata.uid,
-      }
-    });
-    //const mediaReq = await fetch('https://textera-production.up.railway.app/messages/group/' + id + '/media');
-    const mediaRes = await mediaReq.json();
-    setMedia(mediaRes);
+    try {
+      const req = await fetch('http://localhost:3000/group/' + id, {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      });
+      //const req = await fetch('https://textera-production.up.railway.app/group/' + id);
+      const res = await req.json()
+      setGroup(res);
+      // Fetch media
+      const mediaReq = await fetch('http://localhost:3000/messages/group/' + id + '/media', {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      });
+      //const mediaReq = await fetch('https://textera-production.up.railway.app/messages/group/' + id + '/media');
+      const mediaRes = await mediaReq.json();
+      setMedia(mediaRes);
+    } catch {
+      setError(true)
+    }
   }
 
   useEffect(() => {
     fetchGroup();
   }, [])
 
-  if (!group || !media) {
+  if (error) {
     return (
-        <Layout>
-          <div>
-            Loading...
-          </div>
-        </Layout>
+      <ErrorPage error={"Group not found"} />
     )
+  }
+
+  if (!group || !media) {
+    return null
   }
 
   const EditGroupButton = () => {
