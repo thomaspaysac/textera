@@ -14,7 +14,7 @@ Finitions:
 - [ ] Input sanitization & validation
 - [ ] Feedback pour : ajout de contact / envoi de message
 - [X] Recherche d'utilisateur: la rendre case insensitive
-- [ ] Loading des pages : harmoniser / animations
+- [X] Harmoniser loading des pages
 - [X] Vérifier envoi de fichiers pour autoriser seulement les images
 - [ ] Refactor vérification des champs pour le signup et login
 - [ ] Media list des contacts

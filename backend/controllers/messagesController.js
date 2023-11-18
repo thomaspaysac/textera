@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require("express-validator");
 const firebaseFn = require('../firebaseFunctions');
 
 const Message = require('../models/message')
@@ -72,48 +73,61 @@ exports.group_media_get = asyncHandler(async (req, res, next) => {
 })
 
 // POST message create
-exports.message_create = asyncHandler(async (req, res, next) => {
-  try {
-    const message = new Message ({
-      type: 'text',
-      content: req.body.text_input,
-      author: req.body.author,
-    })
-    if (!!req.body.conversation) {
-      message.conversation = req.body.conversation;
-    } else if (!!req.body.group) {
-      message.group = req.body.group;
-    }
-    if (req.file) {
-      const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
-      if (filetypeCheck.test(req.file.mimetype)) {
-        fileUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-        message.file = fileUrl;  
-        await message.save();
-        res.status(200)
-      } else {
-        const err = 'You can only send image files.'
-        res.status(500).json(err);
-      }
+exports.message_create = [
+  body('text_input', 'Invalid message')
+    .trim()
+    .isLength({min: 1, max: 4096})
+    .escape()
+    .unescape("&#39;", "'"),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(500)
     } else {
-      await message.save();
+      try {
+        const message = new Message ({
+          type: 'text',
+          content: req.body.text_input,
+          author: req.body.author,
+        })
+        if (!!req.body.conversation) {
+          message.conversation = req.body.conversation;
+        } else if (!!req.body.group) {
+          message.group = req.body.group;
+        }
+        if (req.file) {
+          const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+          if (filetypeCheck.test(req.file.mimetype)) {
+            fileUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+            message.file = fileUrl;  
+            await message.save();
+            res.status(200)
+          } else {
+            const err = 'You can only send image files.'
+            res.status(500).json(err);
+          }
+        } else {
+          await message.save();
+        }
+        // update conversation / group
+        if (!!req.body.conversation) {
+          const conversation = await Conversation.findById(req.body.conversation);
+          conversation.lastMessage = req.body.text_input;
+          conversation.updatedAt = Date.now();
+          await conversation.save();
+          res.status(200)
+        } else if (!!req.body.group) {
+          const group = await Group.findById(req.body.group);
+          const user = await User.findById(req.body.author);
+          group.lastMessage = user.username + ': ' + req.body.text_input;
+          group.updatedAt= Date.now();
+          await group.save();
+          res.status(200)
+        }
+      } catch {
+        res.status(500)
+      }
     }
-    // update conversation / group
-    if (!!req.body.conversation) {
-      const conversation = await Conversation.findById(req.body.conversation);
-      conversation.lastMessage = req.body.text_input;
-      conversation.updatedAt = Date.now();
-      await conversation.save();
-      res.status(200)
-    } else if (!!req.body.group) {
-      const group = await Group.findById(req.body.group);
-      const user = await User.findById(req.body.author);
-      group.lastMessage = user.username + ': ' + req.body.text_input;
-      group.updatedAt= Date.now();
-      await group.save();
-      res.status(200)
-    }
-  } catch {
-    res.status(500)
-  }
-})
+  })
+]
