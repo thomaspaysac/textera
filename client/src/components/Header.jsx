@@ -26,8 +26,6 @@ const UserContainer = () => {
     return (
       <div className="user-container">
         <AvatarSmall imageUrl={localStorage.avatar} />
-        <div className="header_expanded">{userData.user_metadata.username}</div>
-        <button className="header_expanded" onClick={logout}>Logout</button>
       </div>
     )
   }
