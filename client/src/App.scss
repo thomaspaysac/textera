@@ -362,6 +362,7 @@ main {
       background-color: $accent-main;
       box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
       position: relative;
+      transition: all 0.5s;
 
       img {
         position: absolute;
@@ -369,6 +370,11 @@ main {
         left: 14px;
         width: 24px;
         height: 24px;
+      }
+
+      &:active {
+        transform: scale(1.2);
+        background-color: $accent-dark;
       }
     }
   }

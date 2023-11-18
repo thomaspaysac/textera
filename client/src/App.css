@@ -273,13 +273,17 @@ main {
       border: none;
       background-color: #F07E67;
       box-shadow: 2px 2px 2px rgba(107, 30, 20, 0.3);
-      position: relative; }
+      position: relative;
+      transition: all 0.5s; }
       .message-input #input_form button img {
         position: absolute;
         top: 12px;
         left: 14px;
         width: 24px;
         height: 24px; }
+      .message-input #input_form button:active {
+        transform: scale(1.2);
+        background-color: #6b1e14; }
 
 .conversation-list,
 .groups-list {
