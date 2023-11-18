@@ -26,12 +26,12 @@ export const Conversation = () => {
       return null
     }
     try {
-      const req = await fetch('http://localhost:3000/messages/conv/' + id, {
+      //const req = await fetch('http://localhost:3000/messages/conv/' + id, {
+      const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id, {
         headers: {
           "Authorization": userData.user_metadata.uid,
         }
       });
-      //const req = await fetch('https://textera-production.up.railway.app/messages/conv/' + id);
       const res = await req.json();
       res.conv.users.forEach((el) => {
         return el._id === userData.user_metadata.uid ? null : setCorrespondant(el);

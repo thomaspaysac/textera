@@ -1,21 +1,11 @@
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { userContext } from "../App";
 import { AvatarSmall } from "./AvatarSmall";
 import logo from '../assets/logo_transparent2.png';
 
 const UserContainer = () => {
   const userData = useContext(userContext);
-  const navigateTo = useNavigate();
-
-  const logout = () => {
-    if (window.confirm('Do you really want to log out ?')) {
-      localStorage.clear();
-      navigateTo('/');
-    } else {
-      return;
-    }
-  }
 
   useEffect(() => {
   }, [userData])

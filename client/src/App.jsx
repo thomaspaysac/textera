@@ -51,7 +51,8 @@ export const Routing = () => {
     if (!userData) {
       return;
     } else {
-      const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid);
+      //const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid);
+      const req = await fetch('https://textera-production.up.railway.app/user/' + userData.user_metadata.uid);
       const res = await req.json();
       localStorage.setItem('avatar', res.avatar);
       localStorage.setItem('status', res.status);
