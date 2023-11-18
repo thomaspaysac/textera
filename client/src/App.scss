@@ -4,6 +4,10 @@
 $blue-main: #2c2b5b;
 $blue-light: #5B5B84;
 $light-grey: #ededed;
+$accent-main: #F07E67;
+$accent-dark: #6b1e14;
+$error-main: #e60000;
+$error-dark: #730000;
 
 
 * {
@@ -142,11 +146,13 @@ main {
   //padding: 0 16px;
   min-height: 100%;
   margin: 0;
+  background: url('./assets/v748-toon-106.jpg');
+  background-size: contain;
 }
 
 .content {
   padding: 0 16px 64px 16px;
-  min-height: 80vh;
+  min-height: 90vh;
 
   .content-end {
     margin-top: 88px;
@@ -161,8 +167,9 @@ main {
 
 .newConvButton {
   border-radius: 50%;
-  border: 1px solid $blue-light;
-  background-color: $blue-main;
+  border: none;
+  background-color: #F07E67;
+  box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
   color: #ffffff;
   padding: 24px;
   height: 50px;
@@ -220,8 +227,10 @@ main {
 
     button {
       padding: 8px;
-      background-color: $blue-main;
+      background-color: $accent-main;
       color: #ffffff;
+      border: 2px solid $accent-dark;
+      box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
       border-radius: 4px;
       font-size: 1.1rem;
   
@@ -240,6 +249,8 @@ main {
 
     .upload-avatar {
       background-color: $light-grey;
+      border: 1px solid #000000;
+      box-shadow: none;
       color: #000000;
     }
 
@@ -348,7 +359,8 @@ main {
       min-width: 48px;
       border-radius: 50%;
       border: none;
-      background-color: $blue-main;
+      background-color: $accent-main;
+      box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
       position: relative;
 
       img {
@@ -832,6 +844,7 @@ main {
       border-radius: 4px;
       font-size: 1.2rem;
       border: 2px solid $blue-main;
+      box-shadow: 2px 2px 2px rgba($blue-main, 0.3);
       //height: 40px;
 
       img {
@@ -841,9 +854,11 @@ main {
     }
 
     .logout-button {
-      background-color: $blue-main;
+      background-color: $accent-main;
+      border: 2px solid $accent-dark;
+      box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
       color: #ffffff;
-      border: none;
+      //border: none;
       font-weight: 700;
     }
   }
@@ -888,6 +903,10 @@ main {
 
   .delete-avatar_button {
     margin-top: auto;
+    background-color: $error-main;
+    border: 2px solid $error-dark;
+    box-shadow: 2px 2px 2px rgba($error-dark, 0.3);
+    color: #ffffff;
   }
 }
 

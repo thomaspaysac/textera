@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Layout } from "../components/Layout";
 
-import homeImage from "../assets/undraw_mobile_messages.svg"
+import homeImage from "../assets/undraw_mobile_messages_re_yx8w.svg"
 
 export const Homepage = () => {
   return (

@@ -99,11 +99,13 @@ footer {
 
 main {
   min-height: 100%;
-  margin: 0; }
+  margin: 0;
+  background: url("./assets/v748-toon-106.jpg");
+  background-size: contain; }
 
 .content {
   padding: 0 16px 64px 16px;
-  min-height: 80vh; }
+  min-height: 90vh; }
   .content .content-end {
     margin-top: 88px; }
   .content.empty {
@@ -113,8 +115,9 @@ main {
 
 .newConvButton {
   border-radius: 50%;
-  border: 1px solid #5B5B84;
-  background-color: #2c2b5b;
+  border: none;
+  background-color: #F07E67;
+  box-shadow: 2px 2px 2px rgba(107, 30, 20, 0.3);
   color: #ffffff;
   padding: 24px;
   height: 50px;
@@ -162,8 +165,10 @@ main {
     .login-page form button,
     .signup-page form button {
       padding: 8px;
-      background-color: #2c2b5b;
+      background-color: #F07E67;
       color: #ffffff;
+      border: 2px solid #6b1e14;
+      box-shadow: 2px 2px 2px rgba(107, 30, 20, 0.3);
       border-radius: 4px;
       font-size: 1.1rem; }
       .login-page form button label,
@@ -179,6 +184,8 @@ main {
     .login-page form .upload-avatar,
     .signup-page form .upload-avatar {
       background-color: #ededed;
+      border: 1px solid #000000;
+      box-shadow: none;
       color: #000000; }
     .login-page form .input-group,
     .signup-page form .input-group {
@@ -264,7 +271,8 @@ main {
       min-width: 48px;
       border-radius: 50%;
       border: none;
-      background-color: #2c2b5b;
+      background-color: #F07E67;
+      box-shadow: 2px 2px 2px rgba(107, 30, 20, 0.3);
       position: relative; }
       .message-input #input_form button img {
         position: absolute;
@@ -623,14 +631,16 @@ main {
       padding: 12px;
       border-radius: 4px;
       font-size: 1.2rem;
-      border: 2px solid #2c2b5b; }
+      border: 2px solid #2c2b5b;
+      box-shadow: 2px 2px 2px rgba(44, 43, 91, 0.3); }
       .settings-page .actions button img {
         max-height: 24px;
         max-width: 100%; }
     .settings-page .actions .logout-button {
-      background-color: #2c2b5b;
+      background-color: #F07E67;
+      border: 2px solid #6b1e14;
+      box-shadow: 2px 2px 2px rgba(107, 30, 20, 0.3);
       color: #ffffff;
-      border: none;
       font-weight: 700; }
 
 .change-avatar-page {
@@ -658,7 +668,11 @@ main {
         max-height: 24px;
         max-width: 100%; }
   .change-avatar-page .delete-avatar_button {
-    margin-top: auto; }
+    margin-top: auto;
+    background-color: #e60000;
+    border: 2px solid #730000;
+    box-shadow: 2px 2px 2px rgba(115, 0, 0, 0.3);
+    color: #ffffff; }
 
 .change-status-page {
   font-size: 1.1rem;

@@ -72,7 +72,7 @@ export const ChangeAvatarPage = () => {
           <button type="button"><label htmlFor="avatar">
             <img src={imageIcon} alt="" />Change avatar</label></button>
           <input type="file" id="avatar" name="avatar" accept="image/*" style={{display: 'none'}} />
-          <button type="submit">Save</button> 
+          <button type="submit"><b>Save</b></button> 
         </form>
         <ErrorContainer />
         <button className="delete-avatar_button" onClick={() => deleteAvatar()}>Delete avatar</button>

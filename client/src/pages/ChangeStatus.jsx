@@ -36,7 +36,7 @@ export const ChangeStatusPage = () => {
       <form onSubmit={submitStatus}>
         <label htmlFor="status">New status: </label>
         <input type='text' id="status" name="status" defaultValue={localStorage.status} />
-        <button type="submit">Save</button>
+        <button type="submit"><b>Save</b></button>
       </form>
       </div>
     </Layout>
