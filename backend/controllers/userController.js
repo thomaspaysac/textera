@@ -51,6 +51,7 @@ exports.signup_post = [
     .trim()
     .isLength({ min: 5 })
     .escape()
+    .unescape("&#39;", "'")
     .custom(async (value) => {
       const username = await User.find({ username: value }).exec();
       if (username.length) {
