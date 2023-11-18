@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 import { AvatarSmall } from "./AvatarSmall";
 import logo from '../assets/logo_transparent2.png';
@@ -36,9 +36,11 @@ const UserContainer = () => {
 const Header = () => {
   return (
     <header>
-      <div className="logo_main">
-        <img src={logo} alt='' />
-      </div>
+      <Link to="/" state={{tab: null}}>
+        <div className="logo_main">
+          <img src={logo} alt='' />
+        </div>
+      </Link>
       <UserContainer />
     </header>
   )

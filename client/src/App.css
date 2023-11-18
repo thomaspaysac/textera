@@ -209,7 +209,8 @@ main {
       .login-page form .input-group input,
       .signup-page form .input-group input {
         width: 100%;
-        padding: 4px; }
+        padding: 4px;
+        font-size: 1.1rem; }
     .login-page form button,
     .signup-page form button {
       margin-top: 16px; }
