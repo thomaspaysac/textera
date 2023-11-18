@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 import { AvatarSmall } from "./AvatarSmall";
-import logo from '../assets/logo_transparent.png';
+import logo from '../assets/logo_transparent2.png';
 
 const UserContainer = () => {
   const userData = useContext(userContext);
