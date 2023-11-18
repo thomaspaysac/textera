@@ -9,7 +9,7 @@ Priorités:
 - [X] Sécurité : vérifier que l'utilisateur fait partie de la conversation / du groupe avant de fetch les données.
 
 Finitions:
-- [ ] Error page
+- [X] Error page
 - [ ] Models cleanup
 - [ ] Input sanitization & validation
 - [ ] Feedback pour : ajout de contact / envoi de message
