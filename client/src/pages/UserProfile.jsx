@@ -7,8 +7,8 @@ import { Layout } from "../components/Layout";
 import { ErrorPage } from "./ErrorPage";
 import { MediaThumbnail } from "../components/MediaThumbnail";
 
-import conversationIcon from '../assets/icons/conversation_black.png'
-import conversation_newIcon from '../assets/icons/conversation_new.png'
+import conversationIcon from '../assets/icons/conversation_white.png'
+import conversation_newIcon from '../assets/icons/conversation_new_white.png'
 import addIcon from '../assets/icons/add.png'
 
 export const UserProfile = () => {

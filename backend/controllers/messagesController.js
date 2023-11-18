@@ -69,14 +69,14 @@ exports.group_media_get = asyncHandler(async (req, res, next) => {
   } else {
     res.sendStatus(403);
   }
-
 })
+
 
 // POST message create
 exports.message_create = [
   body('text_input', 'Invalid message')
     .trim()
-    .isLength({min: 1, max: 4096})
+    .isLength({max: 4096})
     .escape()
     .unescape("&#39;", "'"),
 
@@ -97,7 +97,8 @@ exports.message_create = [
           message.group = req.body.group;
         }
         if (req.file) {
-          const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+          console.log(req.file.mimetype)
+          const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp|x-icon)$/i
           if (filetypeCheck.test(req.file.mimetype)) {
             fileUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
             message.file = fileUrl;  

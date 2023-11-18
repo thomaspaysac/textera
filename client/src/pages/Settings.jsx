@@ -14,7 +14,7 @@ import logoutIcon from '../assets/icons/logout.png'
 
 export const SettingsPage = () => {
   const [user, setUser] = useState();
-  const [error, setError] = useState(false);
+  const [networkError, setNetworkError] = useState(false);
 
   const userData = useContext(userContext);
   const navigateTo = useNavigate();
@@ -40,7 +40,7 @@ export const SettingsPage = () => {
       const res = await req.json()
       setUser(res);  
     } catch {
-      setError(true);
+      setNetworkError(true);
     }
   }
 
@@ -48,9 +48,9 @@ export const SettingsPage = () => {
     fetchUserData();
   }, [userData])
 
-  if (error) {
+  if (networkError) {
     return (
-      <ErrorPage error={"Error, please try again"} />
+      <ErrorPage error={"Network error"} />
     )
   }
 

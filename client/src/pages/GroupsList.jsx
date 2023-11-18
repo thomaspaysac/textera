@@ -3,9 +3,11 @@ import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { GroupOverview } from "../components/GroupOverview";
 import { NewConvButton } from "../components/NewConvButton";
+import { ErrorPage } from "./ErrorPage";
 
 export const GroupsList = () => {
   const [groups, setGroups] = useState();
+  const [networkError, setNetworkError] = useState(false);
   const userData = useContext(userContext);
 
   const groupsList = () => {
@@ -26,20 +28,30 @@ export const GroupsList = () => {
     if (!userData) {
       return
     }
-    const req = await fetch('http://localhost:3000/group/user/' + userData.user_metadata.uid, {
-      headers: {
-        "Authorization": userData.user_metadata.uid,
-      }
-    });
-    //const req = await fetch('https://textera-production.up.railway.app/group/user/' + localStorage.user_id);
-    const res = await req.json()
-    setGroups(res);
+    try {
+      const req = await fetch('http://localhost:3000/group/user/' + userData.user_metadata.uid, {
+        headers: {
+          "Authorization": userData.user_metadata.uid,
+        }
+      });
+      //const req = await fetch('https://textera-production.up.railway.app/group/user/' + localStorage.user_id);
+      const res = await req.json()
+      setGroups(res);  
+    } catch {
+      setNetworkError(true)
+    }
   }
 
   useEffect(() => {
     fetchGroups()
   }, [userData])
 
+  if (networkError) {
+    return (
+      <ErrorPage error={'Network error'} />
+    )
+  }
+  
   if (!groups) {
     return null
   }

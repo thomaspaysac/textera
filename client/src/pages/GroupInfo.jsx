@@ -62,7 +62,7 @@ export const GroupInfo = () => {
     } else if (group.admin.username === userData.user_metadata.username) {
       return (
         <Link to={`/group/${group.id}/edit`}>
-          <button>
+          <button className="edit-group_button">
             Edit group 
           </button>
         </Link>

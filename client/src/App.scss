@@ -102,6 +102,13 @@ footer {
   }
 }
 
+.positive-notification {
+  background-color: rgba($blue-main, 0.9);
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 8px;
+}
+
 .error-page {
   display: flex;
   justify-content: center;
@@ -191,6 +198,7 @@ main {
 .homepage {
   display: flex;
   padding: 24px;
+  padding-bottom: 32px;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -209,6 +217,16 @@ main {
 
   img {
     width: clamp(100px, 100%, 280px);
+  }
+
+  .guest-button {
+    background-color: $accent-main;
+    border: 2px solid $accent-dark;
+    box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
+    color: #ffffff;
+    font-size: 1rem;
+    padding: 4px 8px;
+    border-radius: 4px;
   }
 }
 
@@ -270,7 +288,7 @@ main {
   }
 
   .error-container {
-    color: #ff0000;
+    color: $error-main;
 
     ul {
       margin-left: 16px;
@@ -313,10 +331,10 @@ main {
   .error-container {
     position: absolute;
     top: -24px;
-    right: 24px;
-    background-color: #ff0000;
+    right: 16px;
+    background-color: $error-main;
     border-radius: 8px;
-    padding: 4px;
+    padding: 4px 8px;
     color: #ffffff;
   }
 
@@ -467,8 +485,8 @@ main {
     width: 100%;
 
     img {
-      height: 200px;
-      width: auto;
+      max-width:  200px;
+      height: auto;
       border-radius: 4px;
     }
   }
@@ -546,6 +564,16 @@ main {
     gap: 8px;
     text-decoration: none;
     color: #222222;
+  }
+
+  .edit-group_button {
+    background-color: $accent-main;
+    border: 2px solid $accent-dark;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 8px 12px;
   }
 }
 
@@ -642,25 +670,22 @@ main {
   text-decoration: none;
 
   button {
+    background-color: $accent-main;
+    border: 2px solid $accent-dark;
+    box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
+    color: #ffffff;
     padding: 12px;
     border-radius: 4px;
-    border: none;
     font-weight: 700;
     font-size: 1rem;
     display: flex;
     align-items: center;
     gap: 8px;
+
   }
   
   img {
     height: 24px;
-  }
-}
-
-.add-contact_button {
-  button {
-    background-color: $blue-main;
-    color: #ffffff;
   }
 }
 
@@ -695,11 +720,17 @@ main {
   button {
     padding: 8px;
     font-size: 1.2rem;
+    background-color: $accent-main;
+    border: 2px solid $accent-dark;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
+    color: #ffffff;
   }
 
   .error-container {
     text-align: center;
-    color: #ff0000;
+    color: $error-main;
+    font-weight: 700;
   }
 }
 
@@ -879,8 +910,9 @@ main {
   gap: 24px;
 
   .error-container {
-    color:#ff0000;
+    color:$error-main;
     margin-bottom: 16px;
+    font-weight: 700;
   }
 
   form {

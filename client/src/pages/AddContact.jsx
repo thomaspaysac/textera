@@ -6,6 +6,7 @@ import { Layout } from "../components/Layout"
 
 export const AddContactPage = () => {
   const [errorMessage, setErrorMessage] = useState(null)
+  const [success, setSuccess] = useState(false)
   const userData = useContext(userContext);
   const navigateTo = useNavigate();
 
@@ -13,6 +14,9 @@ export const AddContactPage = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+    if (data.username === '') {
+      return;
+    }
     const contactReq = await fetch('http://localhost:3000/user/username/' + data.username);
     //const contactReq = await fetch('https://textera-production.up.railway.app/user/username/' + data.username);
     const contactRes = await contactReq.json();
@@ -29,12 +33,28 @@ export const AddContactPage = () => {
         setErrorMessage(err);
         e.target.reset();
       } else {
-        navigateTo('/contacts');
+        setErrorMessage(null);
+        setSuccess(true);
+        setTimeout(() => {
+          navigateTo('/contacts');
+        }, "1500")
       }
     }
   }
 
-  const errorContainer = () => {
+  const SuccessNotification = () => {
+    if (!success) {
+      return null
+    }
+
+    return (
+      <div className="positive-notification">
+        User added to your contacts!
+      </div>
+    )
+  }
+
+  const ErrorContainer = () => {
     if (!errorMessage) {
       return null
     }
@@ -53,11 +73,13 @@ export const AddContactPage = () => {
         <form id="add-contact_form" onSubmit={addContact}>
           <div className="input-group">
             <label htmlFor="username">Username:</label>
-            <input type='text' id='username' name="username" />
+            <input type='text' id='username' name="username" minLength={1} />
           </div>
           <button type='submit'>Add contact</button>
         </form>
-        {errorContainer()}
+        <ErrorContainer />
+        <SuccessNotification />
+
       </div>
     </Layout>
   )

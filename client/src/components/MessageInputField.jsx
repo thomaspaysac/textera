@@ -51,7 +51,7 @@ export const MessageInputField = (props) => {
   return (
     <div className="message-input">
       <form id='input_form' onSubmit={submitInput}>
-        <textarea id="text_input" name="text_input" placeholder="Message" rows='1'></textarea>
+        <textarea id="text_input" name="text_input" placeholder="Message" rows='1' maxLength={4096}></textarea>
         <label htmlFor="file_upload" className="file-upload_button">
           <img src={imageUpload} alt='attach file' />
         </label>

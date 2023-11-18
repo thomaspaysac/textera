@@ -4,19 +4,25 @@ import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { AvatarSmall } from "../components/AvatarSmall";
 import { NewConvButton } from "../components/NewConvButton";
+import { ErrorPage } from "./ErrorPage";
 
 export const ContactsPage = () => {
   const [contacts, setContacts] = useState();
+  const [networkError, setNetworkError] = useState(false);
   const userData = useContext(userContext);
 
   const fetchContacts = async () => {
     if (!userData) {
       return
     }
-    const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid + '/contacts');
-    //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/contacts');
-    const res = await req.json()
-    setContacts(res);
+    try {
+      const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid + '/contacts');
+      //const req = await fetch('https://textera-production.up.railway.app/user/' + localStorage.user_id + '/contacts');
+      const res = await req.json()
+      setContacts(res);
+    } catch {
+      setNetworkError(true);
+    }
   }
 
   useEffect(() => {
@@ -44,6 +50,12 @@ export const ContactsPage = () => {
           })
         }
       </div>
+    )
+  }
+
+  if (networkError) {
+    return (
+      <ErrorPage error={'Network error'} />
     )
   }
 

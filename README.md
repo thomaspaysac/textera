@@ -12,9 +12,9 @@ Finitions:
 - [X] Error page
 - [X] Models cleanup
 - [X] Input sanitization & validation
-- [ ] Feedback pour : ajout de contact / envoi de message
+- [X] Feedback pour : ajout de contact / envoi de message
 - [X] Recherche d'utilisateur: la rendre case insensitive
 - [X] Harmoniser loading des pages
 - [X] Vérifier envoi de fichiers pour autoriser seulement les images
 - [X] Media list des contacts
-- [ ] Compte test
+- [X] Compte test
