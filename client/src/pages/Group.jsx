@@ -25,7 +25,7 @@ export const Group = () => {
     // Get all messages in group and group info
     try {
       //const req = await fetch('http://localhost:3000/messages/group/' + id, {
-      const req = await fetch('http://https://textera-production.up.railway.app/messages/group/' + id, {
+      const req = await fetch('https://textera-production.up.railway.app/messages/group/' + id, {
         headers: {
           "Authorization": userData.user_metadata.uid,
         }
