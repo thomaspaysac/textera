@@ -67,6 +67,14 @@ async function main() {
   await mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
 }
 
+// Set up rate limiter: maximum of sixty requests per minute
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 60,
+});
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -82,6 +90,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(limiter);
 app.use(helmet());
 app.use(compression()); 
 app.use(express.static(path.join(__dirname, 'public')));
