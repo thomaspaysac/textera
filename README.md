@@ -18,3 +18,6 @@ Finitions:
 - [X] Vérifier envoi de fichiers pour autoriser seulement les images
 - [X] Media list des contacts
 - [X] Compte test
+
+Bugs connus:
+- [ ] Le nouveau message ne s'affiche pas automatiquement lorsqu'on envoie une image

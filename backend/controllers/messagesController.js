@@ -93,7 +93,6 @@ exports.message_create = [
       }
       try {
         const message = new Message ({
-          type: 'text',
           content: req.body.text_input,
           author: req.body.author,
         })

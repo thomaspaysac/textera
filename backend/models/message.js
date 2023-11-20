@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema ({
-  type: { type: String, enum: ['text', 'file'] },
   content: { type: String },
   file: { type: String },
   author: { type: Schema.Types.ObjectId, ref: 'User' },

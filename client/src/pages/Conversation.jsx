@@ -51,7 +51,7 @@ export const Conversation = () => {
 
   useEffect(() => {
     fetchConv();
-  }, [update, userData])
+  }, [userData, update])
 
   useEffect(() => {
     scrollToBottom();
