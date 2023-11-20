@@ -28,7 +28,8 @@ exports.conversation_messages_get = asyncHandler(async (req, res, next) => {
 
 // GET all media from one conversation // SECURED
 exports.conversation_media_get = asyncHandler(async (req, res, next) => {
-  const media = await Message.find({ conversation: req.params.id, file: {$exists: true} });
+  const media = await Message.find({ conversation: req.params.id, file: {$exists: true} })
+    .sort({ createdAt: -1 });
   const conv = await Conversation.findById(req.params.id).populate('users', 'username avatar');
     const usersIds = [];
     conv.users.forEach((el) => usersIds.push(el._id.toString()))
@@ -60,7 +61,8 @@ exports.group_messages_get = asyncHandler(async (req, res, next) => {
 
 // GET all media from one group // SECURED
 exports.group_media_get = asyncHandler(async (req, res, next) => {
-  const media = await Message.find({ group: req.params.id, file: {$exists: true} });
+  const media = await Message.find({ group: req.params.id, file: {$exists: true} })
+    .sort({ createdAt: -1 });
   const group = await Group.findById(req.params.id).populate('users', 'username avatar');
   const usersIds = [];
   group.users.forEach((el) => usersIds.push(el._id.toString()))
