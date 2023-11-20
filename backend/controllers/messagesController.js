@@ -101,7 +101,6 @@ exports.message_create = [
           message.group = req.body.group;
         }
         if (req.file) {
-          console.log(req.file.mimetype)
           const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp|x-icon)$/i
           if (filetypeCheck.test(req.file.mimetype)) {
             fileUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
