@@ -29,7 +29,6 @@ const Header = () => {
           <img src={logo} alt='' />
         </div>
       </Link>
-      <UserContainer />
     </header>
   )
 }

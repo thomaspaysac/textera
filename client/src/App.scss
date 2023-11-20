@@ -3,9 +3,12 @@
 // Colors
 $blue-main: #2c2b5b;
 $blue-light: #5B5B84;
+$blue-grey : #e9e4f0;
 $light-grey: #ededed;
+$medium-grey: #BABABA;
 $accent-main: #F07E67;
 $accent-dark: #6b1e14;
+$accent-light: #e3c7af;
 $error-main: #e60000;
 $error-dark: #730000;
 
@@ -362,8 +365,8 @@ main {
 
     .file-upload_button {
       background-color: #ffffff;
-      height: 38px;
-      min-width: 38px;
+      height: 40px;
+      min-width: 40px;
       border-radius: 8px;
       padding: 8px;
 
@@ -378,10 +381,20 @@ main {
       min-width: 48px;
       border-radius: 50%;
       border: none;
-      background-color: $accent-main;
-      box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
+      background-color: $medium-grey;
+      //box-shadow: 2px 2px 2px rgba($medium-grey, 0.3);
       position: relative;
       transition: all 0.5s;
+
+      &.active {
+        background-color: $accent-main;
+        box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
+
+        &:active {
+          transform: scale(1.15);
+          background-color: $accent-dark;
+        }
+      }
 
       img {
         position: absolute;
@@ -391,10 +404,7 @@ main {
         height: 24px;
       }
 
-      &:active {
-        transform: scale(1.2);
-        background-color: $accent-dark;
-      }
+
     }
   }
 }

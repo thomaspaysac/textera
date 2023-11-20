@@ -85,6 +85,10 @@ exports.message_create = [
     if (!errors.isEmpty()) {
       res.status(500)
     } else {
+      if (req.body.text_input === '' && !req.file) {
+        res.status(500);
+        return;
+      }
       try {
         const message = new Message ({
           type: 'text',
