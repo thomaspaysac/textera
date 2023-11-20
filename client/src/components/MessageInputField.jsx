@@ -23,12 +23,16 @@ export const MessageInputField = (props) => {
   const onTextInput = (e) => {
     if (e.target.value !== '') {
       setCheckText(true);
+    } else {
+      setCheckText(false);
     }
   }
 
   const onFileUpload = (e) => {
     if (e.target.value) {
       setCheckFile(true);
+    } else {
+      setCheckFile(false);
     }
   }
 
