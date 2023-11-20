@@ -3,6 +3,7 @@ import { userContext } from "../App";
 import { Layout } from "../components/Layout"
 import { ConversationOverview } from "../components/ConversationOverview";
 import { NewConvButton } from "../components/NewConvButton";
+import { LoadingPage } from "../components/LoadingPage";
 import { ErrorPage } from "./ErrorPage";
 
 export const ConversationsList = () => {
@@ -53,7 +54,7 @@ export const ConversationsList = () => {
   }
 
   if (!conversations) {
-    return null
+    return <LoadingPage />
   }
 
   if (!conversations.length) {

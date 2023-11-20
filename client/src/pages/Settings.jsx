@@ -6,6 +6,7 @@ import { userContext } from "../App";
 import { Layout } from "../components/Layout"
 import { AvatarBig } from "../components/AvatarBig";
 import { ErrorPage } from "./ErrorPage";
+import { LoadingPage } from "../components/LoadingPage";
 
 import imageIcon from '../assets/icons/image_upload.png'
 import statusIcon from '../assets/icons/status.png'
@@ -55,7 +56,7 @@ export const SettingsPage = () => {
   }
 
   if (!user || !userData) {
-    return null
+    return <LoadingPage />
   }
 
   return (  

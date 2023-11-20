@@ -3,6 +3,7 @@ import { userContext } from "../App";
 import { Layout } from "../components/Layout";
 import { GroupOverview } from "../components/GroupOverview";
 import { NewConvButton } from "../components/NewConvButton";
+import { LoadingPage } from "../components/LoadingPage";
 import { ErrorPage } from "./ErrorPage";
 
 export const GroupsList = () => {
@@ -53,7 +54,7 @@ export const GroupsList = () => {
   }
   
   if (!groups) {
-    return null
+    return <LoadingPage />
   }
 
   if (!groups.length) {

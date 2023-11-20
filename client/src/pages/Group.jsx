@@ -5,6 +5,7 @@ import { Layout } from "../components/Layout";
 import { GroupHeader } from "../components/GroupHeader";
 import { MessageInputField } from "../components/MessageInputField";
 import { MessageSingle } from "../components/MessageSingle";
+import { LoadingPage } from "../components/LoadingPage";
 import { ErrorPage } from "./ErrorPage";
 
 export const Group = () => {
@@ -64,7 +65,7 @@ export const Group = () => {
   }
 
   if (!messages || !groupInfo) {
-    return null
+    return <LoadingPage />
   }
 
   return (

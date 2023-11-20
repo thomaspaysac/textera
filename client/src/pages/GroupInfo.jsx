@@ -8,6 +8,7 @@ import { AvatarSmall } from "../components/AvatarSmall";
 import { AvatarVerySmall } from "../components/AvatarVerySmall";
 import { MediaThumbnail } from "../components/MediaThumbnail";
 import { Layout } from "../components/Layout";
+import { LoadingPage } from "../components/LoadingPage";
 import { ErrorPage } from "./ErrorPage";
 
 
@@ -53,7 +54,7 @@ export const GroupInfo = () => {
   }
 
   if (!group || !media) {
-    return null
+    return <LoadingPage />
   }
 
   const EditGroupButton = () => {

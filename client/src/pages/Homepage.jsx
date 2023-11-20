@@ -24,11 +24,11 @@ export const Homepage = () => {
       return null
     }
 
-      return (
-        <button className="guest-button" onClick={login}>
-          Try with a guest account
-        </button>
-      )
+    return (
+      <button className="guest-button" onClick={login}>
+        Try with a guest account
+      </button>
+    )
   }
 
   return (

@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 import { Layout } from "../components/Layout"
+import { LoadingPage } from "../components/LoadingPage";
 import { AvatarSmall } from "../components/AvatarSmall";
 import imageIcon from '../assets/icons/image_upload.png'
 
@@ -86,7 +87,7 @@ export const GroupCreatePage = () => {
   }
 
   if (!contacts) {
-    return null
+    return <LoadingPage />
   }
 
   return (

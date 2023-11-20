@@ -5,6 +5,7 @@ import { Layout } from "../components/Layout";
 import { ConversationHeader } from "../components/ConversationHeader";
 import { MessageInputField } from "../components/MessageInputField";
 import { MessageSingle } from "../components/MessageSingle";
+import { LoadingPage } from "../components/LoadingPage";
 import { ErrorPage } from "./ErrorPage";
 
 export const Conversation = () => {
@@ -63,7 +64,7 @@ export const Conversation = () => {
   }
 
   if (!messages || !correspondant) {
-    return null;
+    return <LoadingPage />;
   }
 
   return (

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { ErrorPage } from "./ErrorPage";
 import { MediaThumbnail } from "../components/MediaThumbnail";
+import { LoadingPage } from "../components/LoadingPage";
 
 import conversationIcon from '../assets/icons/conversation_white.png'
 import conversation_newIcon from '../assets/icons/conversation_new_white.png'
@@ -161,7 +162,7 @@ export const UserProfile = () => {
   }
 
   if (!user) {
-    return null
+    return <LoadingPage />
   }
 
   return (

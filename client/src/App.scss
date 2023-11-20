@@ -162,7 +162,7 @@ main {
 }
 
 .content {
-  padding: 0 16px 64px 16px;
+  padding: 0 16px 12vh 16px;
   min-height: 84vh;
 
   .content-end {
@@ -308,8 +308,8 @@ main {
 
 // CONVERSATIONS
 .conversation-page {
-  background: url('./assets/v748-toon-106.jpg');
-  background-size: contain;
+  //background: url('./assets/v748-toon-106.jpg');
+  //background-size: contain;
 }
 
 .conversation-header,
