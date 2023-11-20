@@ -129,7 +129,7 @@ export const GroupEditPage = () => {
               <img src={imageIcon} alt='group image' />
             </label>
             <input type='file' id='image' name='image' accept="image/*" style={{display: "none"}} />
-            <input type="text" id="title" name="title" placeholder="Group name" defaultValue={group.title} />
+            <input type="text" id="title" name="title" minLength={1} maxLength={100} placeholder="Group name" defaultValue={group.title} />
           </div>
           
           

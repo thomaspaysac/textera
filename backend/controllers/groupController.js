@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const firebaseFn = require('../firebaseFunctions');
+const { body, validationResult } = require("express-validator");
 
 const Group = require('../models/group');
 const User = require('../models/user');
@@ -34,43 +35,73 @@ exports.get_groupById = asyncHandler(async (req, res, next) => {
 
 
 // POST Create group
-exports.create_group = asyncHandler(async (req, res, next) => {
-  const group = new Group({
-    title: req.body.title,
-    users: req.body.users,
-    admin: req.body.admin,
-    lastMessage: '',
-    image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
-  });
-  if (req.file) {
-    const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
-    if (filetypeCheck.test(req.file.mimetype)) {
-      imageUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-      group.image = imageUrl;
-    }
-  }
-  await group.save();
-  res.json(group._id);
-  res.status(200);
-})
+exports.create_group = [
+  body('title', 'Invalid title')
+  .trim()
+  .isLength({min: 1, max: 100})
+  .escape()
+  .unescape("&#39;", "'"),
 
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(500);
+      return;
+    } else {
+      const group = new Group({
+        title: req.body.title,
+        users: req.body.users,
+        admin: req.body.admin,
+        lastMessage: '',
+        image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
+      });
+      if (req.file) {
+        const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+        if (filetypeCheck.test(req.file.mimetype)) {
+          imageUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+          group.image = imageUrl;
+        }
+      }
+      await group.save();
+      res.json(group._id);
+      res.status(200);
+    }
+  })
+]
 
 // PATCH Edit group
-exports.edit_group = asyncHandler(async (req, res, next) => {
-  const group = await Group.findById(req.params.id);
-  group.title = req.body.title;
-  group.users = req.body.users;
-  if (req.file) {
-    const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
-    if (filetypeCheck.test(req.file.mimetype)) {
-      imageUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-      group.image = imageUrl;
+exports.edit_group = [
+  body('title', 'Invalid title')
+  .trim()
+  .isLength({min: 1, max: 100})
+  .escape()
+  .unescape("&#39;", "'"),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(500);
+      return;
+    } else {
+      const group = await Group.findById(req.params.id);
+      group.title = req.body.title;
+      group.users = req.body.users;
+      if (req.file) {
+        const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+        if (filetypeCheck.test(req.file.mimetype)) {
+          imageUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+          group.image = imageUrl;
+        }
+      }
+      await group.save();
+      res.json(group._id);
+      res.status(200);
     }
-  }
-  await group.save();
-  res.json(group._id);
-  res.status(200);
-})
+  })
+]
+
+
+
 
 
 /*
