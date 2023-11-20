@@ -52,7 +52,8 @@ export const MessageInputField = (props) => {
         body: formData,
       })
       .then(e.target.reset())
-      .then(props.onSend())    
+      .then(props.onSend());
+      setCheckText(false);
     } else {
       setErrorMessage('Wrong file type')
     }
