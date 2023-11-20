@@ -391,6 +391,7 @@ main {
     gap: 4px;
     font-size: 1rem;
     background-color: #e5e5e5;
+    box-shadow: -1px 1px 4px #0000004e;
     max-width: 80%; }
 
 .group-message_own {
@@ -406,13 +407,15 @@ main {
 
 .message_own,
 .group-message_own {
-  background-color: #ededed;
+  background-color: #fcead9;
+  box-shadow: 1px 1px 4px rgba(107, 30, 20, 0.3);
   align-self: end;
   align-items: end;
   max-width: 90%; }
 
 .message_other {
   background-color: #e5e5e5;
+  box-shadow: -1px 1px 4px #0000004e;
   align-self: start;
   max-width: 90%; }
 
