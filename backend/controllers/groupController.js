@@ -53,7 +53,7 @@ exports.create_group = [
         users: req.body.users,
         admin: req.body.admin,
         lastMessage: '',
-        image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/group-default.png?alt=media&token=074d0f53-c338-4c29-9b30-26271ca4affd',
+        image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fgroup_default.png?alt=media&token=82e2d6b1-407d-4df1-9955-1d1987fdcbfa',
       });
       if (req.file) {
         const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i

@@ -96,7 +96,7 @@ exports.signup_post = [
       email: req.body.username + '@email.com',
       username: req.body.username,
       //password: req.body.password,
-      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser.png?alt=media&token=6f221ba1-0825-4c40-b7c4-1b8a790b4a70",
+      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser_default.png?alt=media&token=75d55559-7cb6-440a-9b26-f511d15b0a88",
     });
     if (req.file) {
       const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
@@ -180,7 +180,7 @@ exports.change_avatar = asyncHandler(async (req, res, next) => {
 exports.delete_avatar = asyncHandler(async (req, res, next) => {
   try {
     const user = await User.findById(req.body.userID);
-    user.avatar = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser.png?alt=media&token=6f221ba1-0825-4c40-b7c4-1b8a790b4a70";
+    user.avatar = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser_default.png?alt=media&token=75d55559-7cb6-440a-9b26-f511d15b0a88";
     await user.save();
     res.sendStatus(200);  
   } catch {
