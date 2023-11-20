@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { userContext } from '../App';
 import sendIcon from '../assets/icons/send.png'
 import imageUpload from '../assets/icons/image_upload_black.png'
+import imageUploadColored from '../assets/icons/image_upload_colored.png'
 
 export const MessageInputField = (props) => {
   const [errorMessage, setErrorMessage] = useState(null)
@@ -74,7 +75,7 @@ export const MessageInputField = (props) => {
       <form id='input_form' onSubmit={submitInput}>
         <textarea id="text_input" name="text_input" placeholder="Message" rows='1' maxLength={4096} onChange={onTextInput}></textarea>
         <label htmlFor="file_upload" className='file-upload_button'>
-          <img src={imageUpload} alt='attach file' />
+          <img src={checkFile ? imageUploadColored : imageUpload} alt='attach file' />
         </label>
         <input type='file' id='file_upload' name='file_upload' accept="image/*" onChange={onFileUpload} />
         <input name='author' style={{display: "none"}} value={userData.user_metadata.uid} readOnly />
