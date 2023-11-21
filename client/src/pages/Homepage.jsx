@@ -13,7 +13,7 @@ export const Homepage = () => {
   const GuestLogin = () => {
     const login = async () => {
       await supabase.auth.signInWithPassword({
-        email: "randomuser@email.com",
+        email: "rando@email.com",
         password: "randomizer",
       });
       navigateTo('/conv');
