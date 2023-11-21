@@ -41,7 +41,7 @@ export const ChangeAvatarPage = () => {
         },
         body: JSON.stringify(data)
       });
-      localStorage.avatar = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/avatar-default.png?alt=media&token=b90f49d9-7495-42b4";
+      localStorage.avatar = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser_default.png?alt=media&token=4261b87a-533c-4886-840a-45a4b9b51ff4";
       navigateTo('/settings');  
     }
   }
