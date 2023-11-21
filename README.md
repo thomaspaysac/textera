@@ -1,3 +1,6 @@
+# Textera : a messaging app built with Express and React
+
+---
 Priorités:
 - [X] Création de compte
 - [X] Authentification
