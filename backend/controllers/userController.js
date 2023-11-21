@@ -47,9 +47,9 @@ exports.signup_get = asyncHandler(async (req, res, next) => {
 
 // POST signup form
 exports.signup_post = [
-  body('username', 'Username must contain at least 5 characters')
+  body('username', 'Username must contain between 5 and 20 characters')
     .trim()
-    .isLength({ min: 5 })
+    .isLength({ min: 5, max: 20 })
     .escape()
     .unescape("&#39;", "'")
     .custom(async (value) => {

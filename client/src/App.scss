@@ -454,11 +454,13 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  max-width: 75vw;
 
   .conversation_name,
   .group_name {
     font-size: 1.2rem;
     font-weight: 700;
+    overflow: clip;
   }
 
   .last-update {
@@ -677,6 +679,7 @@ main {
       gap: 8px;
       text-decoration: none;
       color: #222222;
+      overflow-x: clip;
     }
   }
 }

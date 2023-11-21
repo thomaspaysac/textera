@@ -52,11 +52,11 @@ export const SignupPage = () => {
           <form id='signup_form' className='form' onSubmit={signup}>
             <div className="input-group">
               <label htmlFor="username">Username: </label>
-              <input type='text' id='username' name='username' />
+              <input type='text' id='username' name='username' minLength={5} maxLength={20} />
             </div>
             <div className="input-group">
               <label htmlFor="password">Password: </label>
-              <input type='password' id='password' name='password' />
+              <input type='password' id='password' name='password' minLength={5} />
             </div>
             <div className="input-group">
               <label htmlFor='password_confirm'>Confirm password: </label>
