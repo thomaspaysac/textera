@@ -5,7 +5,7 @@ This project was created as a part of The Odin Project curriculum.
 Hosted on Netlify : https://textera.netlify.app/
 
 ## Screenshots
-<img src="./screenshots/homepage.jpg" alt="Homepage" width="200"><img src="./screenshots/conv.jpg" alt="Conversation" width="200"><img src="./screenshots/group.jpg" alt="Group" width="200"><img src="./screenshots/contacts.jpg" alt="Contacts" width="200"><img src="./screenshots/settings.jpg" alt="Settings" width="200">
+<img src="./screenshots/homepage.jpg" alt="Homepage" width="200"> <img src="./screenshots/conv.jpg" alt="Conversation" width="200"> <img src="./screenshots/group.jpg" alt="Group" width="200"> <img src="./screenshots/contacts.jpg" alt="Contacts" width="200"> <img src="./screenshots/settings.jpg" alt="Settings" width="200">
 
 ---
 
