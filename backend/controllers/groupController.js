@@ -5,9 +5,6 @@ const { body, validationResult } = require("express-validator");
 const Group = require('../models/group');
 const User = require('../models/user');
 
-const defaultImage = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fgroup_default.png?alt=media&token=d34d44ba-5099-490e-abfe-021b2b20e167"
-
-
 // GET One user's groups // SECURED
 exports.user_groups_get = asyncHandler(async (req, res, next) => {
   if (req.headers.authorization !== req.params.id) {
@@ -55,7 +52,7 @@ exports.create_group = [
         users: req.body.users,
         admin: req.body.admin,
         lastMessage: '',
-        image: defaultImage,
+        image: 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fgroup_default.png?alt=media&token=d34d44ba-5099-490e-abfe-021b2b20e167',
       });
       if (req.file) {
         const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
