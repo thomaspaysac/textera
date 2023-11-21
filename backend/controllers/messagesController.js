@@ -83,6 +83,7 @@ exports.message_create = [
     .unescape("&#39;", "'"),
 
   asyncHandler(async (req, res, next) => {
+    console.log(req.body, req.file)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(500)
