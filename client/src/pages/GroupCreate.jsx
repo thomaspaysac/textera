@@ -9,12 +9,17 @@ import imageIcon from '../assets/icons/image_upload.png'
 export const GroupCreatePage = () => {
   const userData = useContext(userContext);
   const [contacts, setContacts] = useState();
-  const [usersID, setUsersID] = useState([userData.user_metadata.uid]);
-  const [usersInfo, setUsersInfo] = useState([{id: userData.user_metadata.uid, username : userData.user_metadata.username, avatar: localStorage.avatar}]);
+  const [usersID, setUsersID] = useState();
+  const [usersInfo, setUsersInfo] = useState();
 
   const navigateTo = useNavigate();
 
   const fetchContacts = async () => {
+    if (!userData) {
+      return
+    }
+    setUsersID([userData.user_metadata.uid]);
+    setUsersInfo([{id: userData.user_metadata.uid, username : userData.user_metadata.username, avatar: localStorage.avatar}])
     //const req = await fetch('http://localhost:3000/user/' + userData.user_metadata.uid + '/contacts');
     const req = await fetch('https://textera-production.up.railway.app/user/' + userData.user_metadata.uid + '/contacts');
     const res = await req.json()
@@ -23,7 +28,7 @@ export const GroupCreatePage = () => {
 
   useEffect(() => {
     fetchContacts();
-  }, [])
+  }, [userData])
 
   const createGroup = async (e) => {
     e.preventDefault();

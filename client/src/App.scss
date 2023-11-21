@@ -844,11 +844,13 @@ main {
     justify-content: center;
 
     button {
-      font-size: 1.2rem;
-      font-weight: 700;
-      width: 100%;
-      padding: 8px;
+      background-color: $accent-main;
+      border: 2px solid $accent-dark;
       border-radius: 4px;
+      box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
+      color: #ffffff;
+      font-size: 1.1rem;
+      padding: 8px 12px;
     }
   }
 }

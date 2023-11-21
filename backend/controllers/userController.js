@@ -12,6 +12,8 @@ const firebaseFn = require('../firebaseFunctions');
 
 const User = require('../models/user');
 
+const defaultAvatar = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser_default.png?alt=media&token=4261b87a-533c-4886-840a-45a4b9b51ff4"
+
 // SUPABASE config
 const supabaseInit = require('@supabase/supabase-js');
 const supabase = supabaseInit.createClient(process.env.SUPABASE_PROJECT, process.env.SUPABASE_KEY);
@@ -96,7 +98,7 @@ exports.signup_post = [
       email: req.body.username + '@email.com',
       username: req.body.username,
       //password: req.body.password,
-      avatar: "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser_default.png?alt=media&token=75d55559-7cb6-440a-9b26-f511d15b0a88",
+      avatar: defaultAvatar,
     });
     if (req.file) {
       const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
@@ -180,7 +182,7 @@ exports.change_avatar = asyncHandler(async (req, res, next) => {
 exports.delete_avatar = asyncHandler(async (req, res, next) => {
   try {
     const user = await User.findById(req.body.userID);
-    user.avatar = "https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser_default.png?alt=media&token=75d55559-7cb6-440a-9b26-f511d15b0a88";
+    user.avatar = defaultAvatar;
     await user.save();
     res.sendStatus(200);  
   } catch {
