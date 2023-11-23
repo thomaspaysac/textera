@@ -18,14 +18,26 @@ export default defineConfig({
         theme_color: '#ffffff',
         icons: [
           {
-            src: '/dist/assets/ico192.png',
+            src: 'dist/assets/pwa_icons/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: '/dist/assets/ico512.png',
+            src: 'dist/assets/pwa_icons/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png'
+          },
+          {
+            src: 'dist/assets/pwa_icons/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: 'dist/assets/pwa_icons/maskable-icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
           }
         ]
       }
