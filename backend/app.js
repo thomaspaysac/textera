@@ -23,7 +23,7 @@ const User = require('./models/user');
 
 const app = express();
 app.use(cors({
-    origin: 'https://https://textera.netlify.app/'
+    origin: 'https://textera.netlify.app/'
 }));
 
 
