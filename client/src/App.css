@@ -336,8 +336,11 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  max-width: 77vw; }
+  gap: 16px; }
+  @media (max-width: 480px) {
+    .conversation-overview_metadata,
+    .group-overview_metadata {
+      max-width: 77vw; } }
   .conversation-overview_metadata .conversation_name,
   .conversation-overview_metadata .group_name,
   .group-overview_metadata .conversation_name,

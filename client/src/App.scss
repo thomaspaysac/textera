@@ -454,7 +454,11 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  max-width: 77vw;
+
+  @media (max-width: 480px) {
+    max-width: 77vw;
+  }
+  
 
   .conversation_name,
   .group_name {
