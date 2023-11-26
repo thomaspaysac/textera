@@ -191,14 +191,18 @@ exports.delete_avatar = asyncHandler(async (req, res, next) => {
 // PATCH change user status
 exports.change_status = asyncHandler(async (req, res, next) => {
   const errors = []
-  try {
-    const user = await User.findById(req.body.userID);
-    user.status = req.body.status;
-    await user.save();
-    res.status(200).json({ errors });
-  } catch {
-    errors.push('Unexpected error');
-    res.status(500).json({ errors });
+  if (req.headers.authorization !== req.body.userID) {
+    res.sendStatus(403);
+  } else {
+    try {
+      const user = await User.findById(req.body.userID);
+      user.status = req.body.status;
+      await user.save();
+      res.status(200).json({ errors });
+    } catch {
+      errors.push('Unexpected error');
+      res.status(500).json({ errors });
+    }
   }
 })
 

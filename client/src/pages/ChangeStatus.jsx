@@ -17,7 +17,8 @@ export const ChangeStatusPage = () => {
     const req = await fetch('https://textera-production.up.railway.app/user/edit/status', {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": 'application/json',
+        "Authorization": userData.user_metadata.uid,
       },
       body: JSON.stringify(data)
     });
