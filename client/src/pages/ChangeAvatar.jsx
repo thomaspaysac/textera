@@ -19,6 +19,9 @@ export const ChangeAvatarPage = () => {
     //const req = await fetch('http://localhost:3000/user/edit/avatar', {
     const req = await fetch('https://textera-production.up.railway.app/user/edit/avatar', {
       method: 'PATCH',
+      headers: {
+        "Authorization": userData.user_metadata.uid,
+      },
       body: formData
     })
     const res = await req.json();
@@ -37,7 +40,8 @@ export const ChangeAvatarPage = () => {
       await fetch('https://textera-production.up.railway.app/user/edit/avatar/delete', {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": 'application/json',
+          "Authorization": userData.user_metadata.uid,
         },
         body: JSON.stringify(data)
       });

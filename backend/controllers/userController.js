@@ -155,36 +155,44 @@ exports.add_contact = asyncHandler(async (req, res, next) => {
   }
 })
 
-// PATCH change user avatar
+// PATCH change user avatar // SECURED
 exports.change_avatar = asyncHandler(async (req, res, next) => {
   const errors = []
-  // Validate file type
-  const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
-  if (req.file && filetypeCheck.test(req.file.mimetype)) {
-    avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
-    // Get user
-    const user = await User.findById(req.body.userID);
-    user.avatar = avatarUrl;
-    await user.save();
-    res.status(200).json({errors, newAvatar: avatarUrl})
-  } else if (!req.file) {
-    errors.push('Choose an image');
-    res.status(500).json({errors});
+  if (req.headers.authorization !== req.body.userID) {
+    res.sendStatus(403);
   } else {
-    errors.push('Wrong file type');
-    res.status(500).json({errors});
+// Validate file type
+    const filetypeCheck = /(gif|jpe?g|tiff?|png|webp|bmp)$/i
+    if (req.file && filetypeCheck.test(req.file.mimetype)) {
+      avatarUrl = await firebaseFn.uploadFile(req.file.path, req.file.filename);
+      // Get user
+      const user = await User.findById(req.body.userID);
+      user.avatar = avatarUrl;
+      await user.save();
+      res.status(200).json({errors, newAvatar: avatarUrl})
+    } else if (!req.file) {
+      errors.push('Choose an image');
+      res.status(500).json({errors});
+    } else {
+      errors.push('Wrong file type');
+      res.status(500).json({errors});
+    }
   }
 })
 
-// PATCH delete user avatar
+// PATCH delete user avatar // SECURED
 exports.delete_avatar = asyncHandler(async (req, res, next) => {
-  try {
-    const user = await User.findById(req.body.userID);
-    user.avatar = 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser_default.png?alt=media&token=4261b87a-533c-4886-840a-45a4b9b51ff4';
-    await user.save();
-    res.sendStatus(200);  
-  } catch {
-    res.status(500);
+  if (req.headers.authorization !== req.body.userID) {
+    res.sendStatus(403);
+  } else {
+    try {
+      const user = await User.findById(req.body.userID);
+      user.avatar = 'https://firebasestorage.googleapis.com/v0/b/textera-e04fe.appspot.com/o/system%2Fuser_default.png?alt=media&token=4261b87a-533c-4886-840a-45a4b9b51ff4';
+      await user.save();
+      res.sendStatus(200);  
+    } catch {
+      res.status(500);
+    }
   }
 })
 
