@@ -1,4 +1,4 @@
-# [Textera : a messaging app built with Express and React](https://textera.netlify.app/)
+# [Textera : a messaging progressive web app built with Express and React](https://textera.netlify.app/)
 
 This project was created as a part of The Odin Project curriculum.
 
@@ -27,6 +27,7 @@ The web app is built using **React** and hosted on Netlify.
 - Securing backend routes
 - Making a UI for smartphone
 - Prepare my code for hosting (backend and frontend)
+- Deploy a progressive web app (PWA)
 
 ## Known bugs
 - When sending an image, the page needs to be refreshed for the message to display
