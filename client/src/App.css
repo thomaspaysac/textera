@@ -267,7 +267,8 @@ main {
       border: none;
       background-color: #ffffff;
       font-size: 1.1rem;
-      resize: none; }
+      resize: none;
+      max-height: 20vh; }
     .message-input #input_form input[type='file'] {
       display: none; }
     .message-input #input_form .file-upload_button {
