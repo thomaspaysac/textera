@@ -487,6 +487,7 @@ main {
   flex-direction: column;
   gap: 4px;
   font-size: 1.1rem;
+  overflow-wrap: break-word;
 
   .message-single_author {
     font-weight: 700;

@@ -18,6 +18,7 @@ export const UserProfile = () => {
   const [conversation, setConversation] = useState([]);
   const [media, setMedia] = useState();
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
   const navigateTo = useNavigate();
@@ -39,6 +40,7 @@ export const UserProfile = () => {
       })
       const convRes = await convReq.json();
       setConversation(convRes);
+      setLoading(false);
     } catch {
       setError(true)
     }
@@ -128,6 +130,16 @@ export const UserProfile = () => {
   }
 
   const ConversationPrompt = () => {
+    if (loading) {
+      return (
+        <div className="conversation-button">
+          <button>
+            Loading...
+          </button>
+        </div>
+      )
+    }
+
     if (user.contacts.includes(userData.user_metadata.uid) && conversation.length === 0) {
       return (
         <div className="conversation-button">
@@ -140,17 +152,15 @@ export const UserProfile = () => {
     } else if (user.contacts.includes(userData.user_metadata.uid)) {
       return (
         <>
-        <Link to={`/conv/${conversation[0]._id}`} className="conversation-button">
-          <button >
-            <img src={conversationIcon} alt="" /> Go to conversation
-          </button>
-        </Link>
-        <MediaList/>
-
+          <Link to={`/conv/${conversation[0]._id}`} className="conversation-button">
+            <button >
+              <img src={conversationIcon} alt="" /> Go to conversation
+            </button>
+          </Link>
+          <MediaList/>
         </>
-        
       )
-    }
+    } 
   }
 
   if (error) {
