@@ -22,11 +22,9 @@ const messagesRouter = require('./routes/messages')
 const User = require('./models/user');
 
 const app = express();
-/*app.use(cors({
+app.use(cors({
     origin: 'https://textera.netlify.app'
-}));*/
-app.use(cors())
-
+}));
 
 // Passport setup
 passport.serializeUser((user, done) => {
