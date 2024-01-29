@@ -234,6 +234,12 @@ main {
     font-size: 1rem;
     padding: 4px 8px;
     border-radius: 4px;
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+      background-color: $accent-dark;
+    }
   }
 }
 
@@ -258,6 +264,12 @@ main {
       box-shadow: 2px 2px 2px rgba($accent-dark, 0.3);
       border-radius: 4px;
       font-size: 1.1rem;
+
+      &:hover,
+      &:active {
+        cursor: pointer;
+        background-color: $accent-dark;
+      }
   
       label {
         display: flex;
@@ -492,6 +504,7 @@ main {
   gap: 4px;
   font-size: 1.1rem;
   overflow-wrap: break-word;
+  word-wrap:break-word;
 
   .message-single_author {
     font-weight: 700;
