@@ -348,7 +348,8 @@ main {
     font-size: 1rem;
     color: #707070;
     max-width: 80%;
-    overflow: clip; }
+    overflow: hidden;
+    text-overflow: ellipsis; }
 
 .conversation-overview_metadata,
 .group-overview_metadata {
