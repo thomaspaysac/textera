@@ -341,7 +341,9 @@ main {
   .conversation-overview_content .last-message,
   .group-overview_content .last-message {
     font-size: 1rem;
-    color: #707070; }
+    color: #707070;
+    max-width: 85%;
+    overflow: clip; }
 
 .conversation-overview_metadata,
 .group-overview_metadata {
