@@ -504,10 +504,11 @@ main {
   gap: 4px;
   font-size: 1.1rem;
   
-  &:first-child {
+  .message_text {
     overflow-wrap: break-word;
     word-wrap:break-word;
   }
+
 
   .message-single_author {
     font-weight: 700;

@@ -377,7 +377,7 @@ main {
   flex-direction: column;
   gap: 4px;
   font-size: 1.1rem; }
-  .message-single:first-child {
+  .message-single .message_text {
     overflow-wrap: break-word;
     word-wrap: break-word; }
   .message-single .message-single_author {

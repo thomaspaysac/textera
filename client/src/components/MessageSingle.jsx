@@ -47,7 +47,7 @@ export const MessageSingle = (props) => {
         <div className={'message-single'}>
           {messageAuthor()}
           <DisplayFile />
-          <div>
+          <div className="message_text">
             {props.content}
           </div>
           <div className="message_timestamp">
@@ -61,7 +61,7 @@ export const MessageSingle = (props) => {
   return (
     <div className={'message-single message_' + props.author}>
       <DisplayFile />
-      <div>
+      <div className="message_text">
         {props.content}
       </div>
       <div className="message_timestamp">
