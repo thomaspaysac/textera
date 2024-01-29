@@ -690,7 +690,9 @@ main {
       font-weight: 700; }
     .settings-page .user-info .user_status {
       font-size: 1.1rem;
-      font-style: italic; }
+      font-style: italic;
+      text-align: center;
+      word-break: break-word; }
   .settings-page .actions {
     display: flex;
     flex-direction: column;
