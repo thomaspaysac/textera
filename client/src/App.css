@@ -341,7 +341,7 @@ main {
 .group-overview_content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   gap: 4px; }
   .conversation-overview_content .last-message,
   .group-overview_content .last-message {
@@ -360,7 +360,7 @@ main {
   @media (max-width: 480px) {
     .conversation-overview_metadata,
     .group-overview_metadata {
-      width: 77vw; } }
+      width: 100%; } }
   .conversation-overview_metadata .conversation_name,
   .conversation-overview_metadata .group_name,
   .group-overview_metadata .conversation_name,

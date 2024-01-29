@@ -461,7 +461,7 @@ main {
 .group-overview_content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   gap: 4px;
 
   .last-message {
@@ -481,7 +481,7 @@ main {
   gap: 16px;
 
   @media (max-width: 480px) {
-    width: 77vw;
+    width: 100%;
   }
   
 
