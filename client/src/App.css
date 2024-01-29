@@ -378,8 +378,7 @@ main {
   gap: 4px;
   font-size: 1.1rem; }
   .message-single .message_text {
-    overflow-wrap: break-word;
-    word-wrap: break-word; }
+    word-break: break-all; }
   .message-single .message-single_author {
     font-weight: 700;
     color: #222222; }
