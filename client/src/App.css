@@ -354,14 +354,16 @@ main {
   @media (max-width: 480px) {
     .conversation-overview_metadata,
     .group-overview_metadata {
-      max-width: 77vw; } }
+      width: 77vw; } }
   .conversation-overview_metadata .conversation_name,
   .conversation-overview_metadata .group_name,
   .group-overview_metadata .conversation_name,
   .group-overview_metadata .group_name {
     font-size: 1.2rem;
     font-weight: 700;
-    overflow: clip; }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; }
   .conversation-overview_metadata .last-update,
   .group-overview_metadata .last-update {
     font-size: 0.9rem;

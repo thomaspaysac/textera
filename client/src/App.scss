@@ -474,7 +474,7 @@ main {
   gap: 16px;
 
   @media (max-width: 480px) {
-    max-width: 77vw;
+    width: 77vw;
   }
   
 
@@ -482,7 +482,9 @@ main {
   .group_name {
     font-size: 1.2rem;
     font-weight: 700;
-    overflow: clip;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
   }
 
   .last-update {
