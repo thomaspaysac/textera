@@ -7,7 +7,7 @@ export const GroupHeader = (props) => {
         <div>
           <AvatarSmall imageUrl={props.image} />
         </div>
-        <div>{props.name}</div>
+        <div className="group-header_name">{props.name}</div>
     </Link>
   )
 }

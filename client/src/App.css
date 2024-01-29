@@ -251,6 +251,11 @@ main {
   text-decoration: none;
   color: #000000;
   font-weight: 700; }
+  .conversation-header .group-header_name,
+  .group-header .group-header_name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
 
 .message-input {
   position: sticky;
@@ -363,7 +368,8 @@ main {
     font-weight: 700;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 70%; }
+    max-width: 70%;
+    white-space: nowrap; }
   .conversation-overview_metadata .last-update,
   .group-overview_metadata .last-update {
     font-size: 0.9rem;
@@ -382,7 +388,7 @@ main {
   gap: 4px;
   font-size: 1.1rem; }
   .message-single .message_text {
-    word-break: break-all; }
+    word-break: break-word; }
   .message-single .message-single_author {
     font-weight: 700;
     color: #222222; }
@@ -450,7 +456,9 @@ main {
   .group-info .user_name,
   .group-info .group-name {
     font-size: 1.5rem;
-    font-weight: 700; }
+    font-weight: 700;
+    text-align: center;
+    word-break: break-word; }
   .user-profile .user_status,
   .group-info .user_status {
     font-style: italic; }
@@ -533,6 +541,10 @@ main {
       text-decoration: none;
       color: #222222;
       overflow-x: clip; }
+      .contacts-page .contacts-list .contact-single .contact-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
 
 .conversation-button,
 .add-contact_button {

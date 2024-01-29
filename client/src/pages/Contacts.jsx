@@ -44,7 +44,7 @@ export const ContactsPage = () => {
             return (
               <Link to={`/user/${el._id}`} key={el._id} className="contact-single">
                 <AvatarSmall imageUrl={el.avatar} />
-                <div>{el.username}</div>
+                <div className="contact-name">{el.username}</div>
               </Link>
             )
           })
