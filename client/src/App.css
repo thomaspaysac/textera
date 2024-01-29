@@ -376,9 +376,10 @@ main {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 1.1rem;
-  overflow-wrap: break-word;
-  word-wrap: break-word; }
+  font-size: 1.1rem; }
+  .message-single:first-child {
+    overflow-wrap: break-word;
+    word-wrap: break-word; }
   .message-single .message-single_author {
     font-weight: 700;
     color: #222222; }
